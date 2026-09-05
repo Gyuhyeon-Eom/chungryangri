@@ -1,226 +1,186 @@
-/* 청량리 시장 커머스 — DESIGN-airtable.md 구조에 청량리 흙색 팔레트 적용.
-   흰 캔버스 기본, 시그니처 카드로 리듬, 디스플레이는 볼드 금지, 그림자·그라디언트 없음. */
+/* 청량리마켓 — 커머스 레이아웃 (온누리전통시장 구조 참고)
+   유틸바 → 로고+검색 → 진녹색 카테고리바 → 배너 → 타임세일 → 상품 그리드 */
 
 :root {
-  --ink: #2a241e;
-  --body: #443d35;
-  --muted: #6b6257;
-  --canvas: #ffffff;
-  --soft: #faf7f2;
-  --strong: #ebe4d9;
-  --hairline: #ddd6cb;
-  --jujube: #8c3a1e;      /* 대추·밤 껍질 */
-  --forest: #2d4739;      /* 채소 진녹색 */
-  --cream: #f2e8d5;       /* 한지·포대 */
-  --ochre: #c9722c;
-  --on-dark: #ffffff;
-  --radius-lg: 12px;
-  --radius-md: 10px;
-  --radius-sm: 6px;
-  --section: 96px;
-  --max: 1240px;
+  --green: #1e4d38;        /* 시장 진녹색 — 주 브랜드 */
+  --green-dark: #143528;
+  --ink: #222222;
+  --body: #444444;
+  --muted: #8a8a8a;
+  --line: #e5e5e5;
+  --bg: #ffffff;
+  --bg-soft: #f7f7f5;
+  --price: #d13030;        /* 가격·할인 강조 */
+  --badge-ship: #2f6fce;
+  --badge-new: #e8720c;
+  --radius: 8px;
+  --max: 1200px;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  margin: 0;
-  font-family: "Apple SD Gothic Neo", "Pretendard", -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--body);
-  background: var(--canvas);
-  -webkit-font-smoothing: antialiased;
-  /* 한글은 어절 안에서 줄이 끊기면 안 된다 */
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  margin: 0; font-size: 14px; line-height: 1.5; color: var(--body); background: var(--bg);
+  font-family: "Apple SD Gothic Neo", "Pretendard", -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: break-word;
 }
-
-h1, h2, h3 { color: var(--ink); font-weight: 400; margin: 0; letter-spacing: -0.01em; }
-h1 { font-size: 40px; line-height: 1.2; }
-h2 { font-size: 32px; line-height: 1.22; }
-h3 { font-size: 20px; line-height: 1.4; font-weight: 500; }
+h2, h3, h4 { margin: 0; color: var(--ink); }
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; border: 0; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
-.band { padding: var(--section) 0; }
-.band--soft { background: var(--soft); }
-.eyebrow {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
-  color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
-}
-.lede { font-size: 16px; color: var(--body); max-width: 62ch; margin-top: 16px; }
+/* ---------- 유틸 바 ---------- */
+.util { background: var(--bg-soft); border-bottom: 1px solid var(--line); font-size: 12px; }
+.util .wrap { display: flex; justify-content: space-between; align-items: center; height: 34px; }
+.util-slogan { color: var(--muted); }
+.util-links { display: flex; gap: 16px; }
+.util-links a { color: var(--muted); }
 
-/* ---------- 상단 네비 ---------- */
-.nav {
-  position: sticky; top: 0; z-index: 40; height: 64px;
-  background: var(--canvas); border-bottom: 1px solid var(--hairline);
-  display: flex; align-items: center;
-}
-.nav .wrap { display: flex; align-items: center; gap: 28px; width: 100%; }
-.brand { font-size: 17px; color: var(--ink); font-weight: 500; letter-spacing: -0.02em; }
-.brand span { color: var(--jujube); }
-.nav-links { display: flex; gap: 22px; margin-left: 8px; }
-.nav-links a { font-size: 14px; color: var(--body); }
-.nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+/* ---------- 헤더 ---------- */
+.header { border-bottom: 1px solid var(--line); }
+.header-in { display: flex; align-items: center; gap: 24px; padding: 18px 20px; }
+.logo { display: flex; align-items: baseline; white-space: nowrap; }
+.logo-mark { font-size: 26px; font-weight: 800; color: var(--green); letter-spacing: -0.03em; }
+.logo-sub { font-size: 26px; font-weight: 800; color: var(--price); letter-spacing: -0.03em; }
 
-/* 채널 토글 — 분석의 도매/소매 구분이 사이트의 1차 축이 된다 */
-.channel {
-  display: inline-flex; background: var(--strong);
-  border-radius: 999px; padding: 3px;
-}
-.channel button {
-  border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 500;
-  background: transparent; color: var(--muted); transition: none;
-}
-.channel button[aria-pressed="true"] { background: var(--ink); color: var(--on-dark); }
+.search { flex: 1; display: flex; max-width: 560px; border: 2px solid var(--green); border-radius: 999px; overflow: hidden; }
+.search input { flex: 1; border: 0; padding: 11px 20px; font-size: 14px; outline: none; font-family: inherit; }
+.search button { background: var(--green); color: #fff; padding: 0 24px; font-size: 14px; font-weight: 700; }
 
-.btn {
-  border-radius: var(--radius-lg); padding: 13px 22px;
-  font-size: 15px; font-weight: 500; display: inline-block;
-}
-.btn--primary { background: var(--ink); color: var(--on-dark); }
-.btn--primary:active { background: #17130f; }
-.btn--ghost { background: var(--canvas); color: var(--ink); border: 1px solid var(--hairline); }
-.btn--sm { padding: 9px 15px; font-size: 13px; }
-
-.cart-btn { position: relative; }
+.header-actions { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.channel { display: inline-flex; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+.channel button { border-radius: 999px; padding: 7px 15px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.channel button[aria-pressed="true"] { background: var(--green); color: #fff; }
+.icon-btn { position: relative; color: var(--ink); padding: 6px; display: inline-flex; }
 .cart-count {
-  position: absolute; top: -6px; right: -6px; min-width: 19px; height: 19px;
-  border-radius: 999px; background: var(--jujube); color: #fff;
-  font-size: 11px; line-height: 19px; text-align: center; padding: 0 5px;
+  position: absolute; top: -3px; right: -5px; min-width: 18px; height: 18px; border-radius: 999px;
+  background: var(--price); color: #fff; font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; padding: 0 5px;
 }
 
-/* ---------- 히어로 ---------- */
-.hero { padding: 88px 0 72px; }
-.hero h1 { max-width: 17ch; }
-.hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-  margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--hairline);
-}
-.hero-stats b { display: block; font-size: 30px; font-weight: 400; color: var(--ink); }
-.hero-stats span { font-size: 13px; color: var(--muted); }
+/* ---------- 카테고리 바 ---------- */
+.catbar { background: var(--green); position: sticky; top: 0; z-index: 30; }
+.catbar-in { display: flex; align-items: center; gap: 4px; height: 46px; }
+.allcat { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 14px; font-weight: 700; padding: 0 18px 0 0; height: 100%; border-right: 1px solid rgba(255,255,255,.18); margin-right: 8px; }
+.cat-quick { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.cat-quick::-webkit-scrollbar { display: none; }
+.cat-quick button { color: rgba(255,255,255,.85); font-size: 13.5px; font-weight: 500; padding: 8px 12px; white-space: nowrap; border-radius: 6px; }
+.cat-quick button[aria-pressed="true"] { background: rgba(255,255,255,.16); color: #fff; font-weight: 700; }
+.allcat-panel { background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 8px 20px rgba(0,0,0,.07); }
+.allcat-panel .wrap { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; padding: 18px 20px; }
+.allcat-panel button { text-align: left; padding: 9px 12px; font-size: 13.5px; color: var(--body); border-radius: 6px; }
+.allcat-panel button:active { background: var(--bg-soft); }
 
-/* ---------- 시그니처 카드 ---------- */
-.signature {
-  border-radius: var(--radius-lg); padding: 56px 48px; color: var(--on-dark);
-}
-.signature--jujube { background: var(--jujube); }
-.signature--forest { background: var(--forest); }
-.signature--cream { background: var(--cream); color: var(--ink); }
-.signature h2 { color: inherit; max-width: 20ch; }
-.signature p { margin-top: 18px; max-width: 58ch; opacity: 0.88; }
-.sig-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
-.sig-points { display: grid; gap: 14px; }
-.sig-point { display: flex; gap: 12px; align-items: baseline; font-size: 14px; opacity: 0.92; }
-.sig-point b { font-size: 26px; font-weight: 400; min-width: 84px; }
+/* ---------- 배너 ---------- */
+.banners { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; padding-top: 20px; }
+.banner { border-radius: 12px; padding: 26px 28px; display: flex; justify-content: space-between; align-items: center; color: #fff; overflow: hidden; }
+.banner em { display: block; font-style: normal; font-size: 12.5px; font-weight: 700; opacity: .85; margin-bottom: 8px; }
+.banner strong { display: block; font-size: 24px; line-height: 1.3; font-weight: 800; letter-spacing: -0.02em; }
+.banner span { display: block; font-size: 13px; opacity: .8; margin-top: 8px; }
+.banner-a { background: linear-gradient(115deg, #1e4d38, #2c6b4e); min-height: 208px; }
+.banner-art { font-size: 64px; letter-spacing: -6px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.2)); }
+.banner-side { display: grid; gap: 14px; }
+.banner-b { background: linear-gradient(115deg, #7c3413, #a04a1e); padding: 20px 22px; }
+.banner-c { background: linear-gradient(115deg, #8a6a1e, #b08a2e); padding: 20px 22px; }
+.banner-b strong, .banner-c strong { font-size: 18px; }
 
-/* ---------- 시장 카드 ---------- */
-.market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-.market {
-  border: 1px solid var(--hairline); border-radius: var(--radius-md);
-  padding: 24px; background: var(--canvas); display: flex; flex-direction: column;
-}
-.market h3 { margin-bottom: 6px; }
-.tag {
-  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
-  padding: 4px 9px; border-radius: var(--radius-sm); margin-bottom: 14px;
-}
-.tag--b2b { background: var(--forest); color: #fff; }
-.tag--b2c { background: var(--cream); color: var(--ink); }
-.tag--both { background: var(--ink); color: #fff; }
-.market-meta { display: grid; gap: 7px; margin: 4px 0 16px; font-size: 13px; }
-.market-meta div { display: flex; justify-content: space-between; gap: 12px; }
-.market-meta dt { color: var(--muted); }
-.market-meta dd { margin: 0; color: var(--ink); }
-.goods { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
-.goods span {
-  font-size: 12px; color: var(--body); background: var(--soft);
-  border-radius: var(--radius-sm); padding: 4px 9px;
-}
-
-/* ---------- 필터 + 상품 ---------- */
-.toolbar {
-  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-  margin: 32px 0 8px; padding-bottom: 20px; border-bottom: 1px solid var(--hairline);
-}
-.chip {
-  font-size: 13px; padding: 8px 14px; border-radius: 999px;
-  background: var(--canvas); color: var(--body); border: 1px solid var(--hairline);
-}
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--on-dark); border-color: var(--ink); }
+/* ---------- 섹션 ---------- */
+.section { padding: 36px 20px 8px; }
+.section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+.section-head h2 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+.countdown { font-size: 13px; color: var(--muted); }
+.countdown b { color: var(--price); font-variant-numeric: tabular-nums; font-size: 15px; }
 .count { margin-left: auto; font-size: 13px; color: var(--muted); }
 
-.products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 28px; }
-.product {
-  border: 1px solid var(--hairline); border-radius: var(--radius-md);
-  padding: 18px; display: flex; flex-direction: column; background: var(--canvas);
+/* ---------- 상품 그리드 ---------- */
+.grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px 14px; }
+.grid-deal { grid-template-columns: repeat(5, 1fr); }
+.card { display: flex; flex-direction: column; }
+.thumb {
+  position: relative; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
+  border: 1px solid rgba(0,0,0,.045);
 }
-.product .cat { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
-.product h4 { margin: 6px 0 2px; font-size: 16px; font-weight: 500; color: var(--ink); }
-.product .from { font-size: 12px; color: var(--muted); }
-.product .price { margin-top: 14px; font-size: 19px; color: var(--ink); }
-.product .price small { font-size: 12px; color: var(--muted); font-weight: 400; }
-.product button { margin-top: 14px; width: 100%; text-align: center; }
-.empty { padding: 56px 0; text-align: center; color: var(--muted); }
+.thumb .emoji { font-size: 64px; line-height: 1; filter: drop-shadow(0 6px 8px rgba(0,0,0,.14)); }
+.thumb .off {
+  position: absolute; left: 0; top: 0; background: var(--price); color: #fff;
+  font-size: 12px; font-weight: 800; padding: 5px 8px; border-radius: var(--radius) 0 8px 0;
+}
+.card .market-name { font-size: 11.5px; color: var(--muted); }
+.card .name { font-size: 13.5px; color: var(--ink); margin: 3px 0 6px; line-height: 1.4; min-height: 2.8em;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.price-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.price-row .pct { color: var(--price); font-size: 16px; font-weight: 800; }
+.price-row .krw { color: var(--ink); font-size: 16px; font-weight: 800; }
+.price-row .unit { font-size: 11.5px; color: var(--muted); }
+.was { font-size: 12px; color: #b5b5b5; text-decoration: line-through; margin-top: 1px; }
+.badges { display: flex; gap: 4px; margin-top: 7px; }
+.badge { font-size: 10.5px; font-weight: 700; padding: 2.5px 6px; border-radius: 3px; }
+.badge-ship { color: var(--badge-ship); border: 1px solid currentColor; }
+.badge-new { color: var(--badge-new); border: 1px solid currentColor; }
+.badge-b2b { color: var(--green); border: 1px solid currentColor; }
+.card .add {
+  margin-top: 9px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 0;
+  font-size: 13px; font-weight: 700; color: var(--ink); text-align: center; background: #fff;
+}
+.card .add:active { background: var(--bg-soft); }
+
+/* ---------- 시장 스트립 ---------- */
+.market-strip-band { background: var(--bg-soft); margin-top: 36px; padding: 32px 0 36px; }
+.market-strip { display: grid; grid-template-columns: repeat(9, 1fr); gap: 10px; }
+.mcard { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 10px; text-align: center; }
+.mcard[aria-pressed="true"] { border-color: var(--green); box-shadow: 0 0 0 1.2px var(--green) inset; }
+.mcard .m-emoji { font-size: 30px; display: block; margin-bottom: 8px; }
+.mcard b { display: block; font-size: 12.5px; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.mcard span { font-size: 11px; color: var(--muted); }
+
+/* ---------- 필터 칩 ---------- */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.chips button { font-size: 13px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); color: var(--body); background: #fff; }
+.chips button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.empty { padding: 60px 0; text-align: center; color: var(--muted); }
 
 /* ---------- 장바구니 ---------- */
 .drawer {
-  position: fixed; top: 0; right: 0; bottom: 0; width: 380px; max-width: 92vw;
-  background: var(--canvas); border-left: 1px solid var(--hairline);
-  transform: translateX(100%); transition: transform .22s ease;
+  position: fixed; top: 0; right: 0; bottom: 0; width: 380px; max-width: 92vw; background: #fff;
+  border-left: 1px solid var(--line); transform: translateX(100%); transition: transform .2s ease;
   z-index: 60; display: flex; flex-direction: column;
 }
 .drawer[data-open="true"] { transform: translateX(0); }
-.drawer header {
-  padding: 22px 24px; border-bottom: 1px solid var(--hairline);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.drawer header h3 { font-size: 17px; }
-.drawer .items { flex: 1; overflow-y: auto; padding: 8px 24px; }
-.line { padding: 16px 0; border-bottom: 1px solid var(--hairline); }
-.line-top { display: flex; justify-content: space-between; gap: 12px; }
-.line strong { font-weight: 500; color: var(--ink); }
-.line .sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
-.qty { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-.qty button {
-  width: 26px; height: 26px; border-radius: var(--radius-sm);
-  border: 1px solid var(--hairline); background: var(--canvas); color: var(--ink);
-}
-.drawer footer { padding: 22px 24px; border-top: 1px solid var(--hairline); }
-.total { display: flex; justify-content: space-between; font-size: 17px; color: var(--ink); margin-bottom: 16px; }
-.scrim {
-  position: fixed; inset: 0; background: rgba(42,36,30,.34);
-  opacity: 0; pointer-events: none; transition: opacity .22s ease; z-index: 50;
-}
+.drawer > header { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.drawer h3 { font-size: 16px; font-weight: 800; }
+.drawer .items { flex: 1; overflow-y: auto; padding: 4px 22px; }
+.line-item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.line-top { display: flex; justify-content: space-between; gap: 10px; }
+.line-top strong { font-weight: 700; color: var(--ink); font-size: 13.5px; }
+.line-item .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.qty { display: flex; align-items: center; gap: 10px; margin-top: 9px; }
+.qty button { width: 25px; height: 25px; border-radius: 5px; border: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+.drawer > footer { padding: 18px 22px; border-top: 1px solid var(--line); }
+.total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 12px; }
+.buy-btn { width: 100%; background: var(--price); color: #fff; font-size: 15px; font-weight: 800; padding: 13px 0; border-radius: 8px; }
+.scrim { position: fixed; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 50; }
 .scrim[data-open="true"] { opacity: 1; pointer-events: auto; }
 
 /* ---------- 푸터 ---------- */
-.footer { border-top: 1px solid var(--hairline); padding: 56px 0 40px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
-.footer h4 { font-size: 13px; color: var(--ink); font-weight: 600; margin: 0 0 12px; }
-.footer a, .footer li { font-size: 13px; color: var(--muted); }
-.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-.footer .note { margin-top: 32px; font-size: 12px; color: var(--muted); }
+.footer { border-top: 1px solid var(--line); background: var(--bg-soft); margin-top: 48px; }
+.footer-in { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 36px; padding: 36px 20px 44px; }
+.footer p, .footer li { font-size: 12.5px; color: var(--muted); }
+.footer h4 { font-size: 13px; margin-bottom: 10px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 
 @media (max-width: 1000px) {
-  .products { grid-template-columns: repeat(2, 1fr); }
-  .market-grid { grid-template-columns: repeat(2, 1fr); }
-  .sig-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr; }
+  .grid, .grid-deal { grid-template-columns: repeat(3, 1fr); }
+  .market-strip { grid-template-columns: repeat(5, 1fr); }
+  .banners { grid-template-columns: 1fr; }
+  .allcat-panel .wrap { grid-template-columns: repeat(3, 1fr); }
+  .footer-in { grid-template-columns: 1fr; gap: 20px; }
 }
-@media (max-width: 620px) {
-  :root { --section: 64px; }
-  h1 { font-size: 30px; } h2 { font-size: 25px; }
-  .products, .market-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .wrap { padding: 0 20px; }
-  .signature { padding: 36px 24px; }
+@media (max-width: 640px) {
+  .grid, .grid-deal { grid-template-columns: repeat(2, 1fr); }
+  .market-strip { grid-template-columns: repeat(3, 1fr); }
+  .header-in { flex-wrap: wrap; gap: 12px; }
+  .search { order: 3; max-width: none; width: 100%; }
+  .util-slogan { display: none; }
 }

@@ -1,202 +1,251 @@
-/* 청량리 마켓 — 정적 커머스 프런트.
-   data.json 은 분석 파이프라인(src/build_site_data.py)이 만든다.
-   채널(도매/소매)이 1차 축이라, 채널을 바꾸면 시장 목록과 상품 단위가 함께 바뀐다. */
+/* 청량리마켓 — 커머스 프런트.
+   data.json(분석 파이프라인 산출)을 상품·시장 소스로 쓴다.
+   이미지: 카테고리별 이모지 타일. 실제 상품 사진이 준비되면 IMG 맵만 교체하면 된다. */
 
 const KRW = new Intl.NumberFormat('ko-KR');
 const won = (n) => KRW.format(n) + '원';
+
+/* 카테고리 → [이모지, 타일 배경] */
+const TILE = {
+  '한약재': ['🌿', '#eef3ec'], '인삼·홍삼': ['🫚', '#f3ece2'], '건약초': ['🍂', '#f1ede2'],
+  '밤·견과류': ['🌰', '#f3ede3'], '곡류·참기름': ['🫙', '#f5efe2'], '선물세트': ['🎁', '#f2ece8'],
+  '제철 과일': ['🍎', '#fbeeea'], '청과': ['🍅', '#fbf0e8'], '청과 도매': ['📦', '#f0ede6'],
+  '채소': ['🥬', '#ecf3ea'], '농산물': ['🥔', '#f3efe6'], '수산물': ['🐟', '#e9f1f5'],
+  '활어': ['🐠', '#e7f2f6'], '선어': ['🎣', '#eaf1f4'], '패류': ['🦪', '#edf0ef'],
+  '건어물': ['🦑', '#f2efe8'], '정육': ['🥩', '#f9ecec'], '반찬': ['🥘', '#f7efe6'],
+  '먹거리': ['🥟', '#f8f0e5'], '통닭': ['🍗', '#f8efe2'], '족발': ['🍖', '#f6ece6'],
+  '회': ['🍣', '#eaf2f2'], '분식': ['🍢', '#f9eee7'], '건강식품': ['🍯', '#f6efe0'],
+  '미용재료': ['✂️', '#efeff3'], '잡화': ['🧺', '#f1f0ec'],
+};
+const MARKET_EMOJI = {
+  '서울약령시장': '🌿', '경동시장': '🧺', '경동광성상가': '🍯', '청량리종합시장': '🌰',
+  '청량리청과물시장': '🍎', '동서시장': '🍅', '청량리농수산물시장': '🥔',
+  '청량리수산시장': '🐟', '청량리전통시장': '🍗',
+};
 
 const state = {
   data: null,
   channel: localStorage.getItem('cl-channel') || 'b2c',
   category: '전체',
   market: '전체',
+  query: '',
   cart: JSON.parse(localStorage.getItem('cl-cart') || '{}'),
 };
-
 const $ = (id) => document.getElementById(id);
 
-/* ---------------- 렌더 ---------------- */
+/* 할인 표시는 상품 id 해시로 고정한다 — 새로고침마다 바뀌면 신뢰가 깨진다 */
+function hash(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
+function saleInfo(p) {
+  const h = hash(p.id);
+  const off = [0, 0, 10, 15, 20, 30][h % 6];        // 1/3은 정가 판매
+  if (!off) return { off: 0, was: null };
+  const was = Math.round(p.price / (1 - off / 100) / 100) * 100;
+  return { off, was };
+}
+const isNew = (p) => hash(p.id) % 4 === 0;
+const freeShip = (p) => p.price >= 20000;
 
-function renderHero() {
-  const s = state.data.summary;
-  $('s-markets').textContent = s.markets;
-  $('s-stores').textContent = KRW.format(s.stores);
-  $('s-merchants').textContent = KRW.format(s.merchants);
-  $('s-products').textContent = new Set(state.data.products.map((p) => p.name)).size;
+/* ---------------- 상품 카드 ---------------- */
+function card(p) {
+  const [emoji, bg] = TILE[p.category] || ['🛒', '#f2f2f0'];
+  const { off, was } = saleInfo(p);
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <div class="thumb" style="background:${bg}">
+      ${off ? `<span class="off">${off}%</span>` : ''}
+      <span class="emoji">${emoji}</span>
+    </div>
+    <span class="market-name">${p.market}</span>
+    <p class="name">${p.name} ${p.unit}${p.channel === 'b2b' ? ' (도매)' : ''}</p>
+    <div class="price-row">
+      ${off ? `<span class="pct">${off}%</span>` : ''}
+      <span class="krw">${won(p.price)}</span><span class="unit">/ ${p.unit}</span>
+    </div>
+    ${was ? `<div class="was">${won(was)}</div>` : ''}
+    <div class="badges">
+      ${freeShip(p) ? '<span class="badge badge-ship">무료배송</span>' : ''}
+      ${isNew(p) ? '<span class="badge badge-new">신상품</span>' : ''}
+      ${p.channel === 'b2b' ? '<span class="badge badge-b2b">도매</span>' : ''}
+    </div>`;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'add';
+  btn.textContent = p.channel === 'b2b' ? '견적 담기' : '장바구니 담기';
+  btn.onclick = () => addToCart(p);
+  el.appendChild(btn);
+  return el;
+}
+
+/* ---------------- 렌더 ---------------- */
+function pool() {
+  return state.data.products.filter((p) => p.channel === state.channel);
+}
+function visible() {
+  const q = state.query.trim();
+  return pool().filter((p) =>
+    (state.category === '전체' || p.category === state.category) &&
+    (state.market === '전체' || p.market === state.market) &&
+    (!q || p.name.includes(q) || p.market.includes(q) || p.category.includes(q)));
+}
+
+function renderDeals() {
+  const grid = $('deal-grid');
+  grid.innerHTML = '';
+  // 할인율 높은 순 5개 — 타임세일 구좌
+  const deals = pool().map((p) => ({ p, s: saleInfo(p) }))
+    .filter((x) => x.s.off >= 15)
+    .sort((a, b) => b.s.off - a.s.off).slice(0, 5);
+  for (const { p } of deals) grid.appendChild(card(p));
 }
 
 function renderMarkets() {
-  const grid = $('market-grid');
-  grid.innerHTML = '';
+  const strip = $('market-strip');
+  strip.innerHTML = '';
+  const all = document.createElement('button');
   for (const m of state.data.markets) {
-    const both = m.channels.length === 2;
-    const cls = both ? 'both' : m.channels[0];
-    const label = both ? '도매 · 소매' : (m.channels[0] === 'b2b' ? '도매' : '소매');
-    const el = document.createElement('article');
-    el.className = 'market';
-    el.innerHTML = `
-      <span class="tag tag--${cls}">${label}</span>
-      <h3>${m.name}</h3>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:14px">${m.kind}</p>
-      <div class="market-meta">
-        <div><dt>주 거래 시간</dt><dd>${m.peak}시</dd></div>
-        <div><dt>주말 매출 비중</dt><dd>${m.weekendShare}%</dd></div>
-        <div><dt>60대 이상 비중</dt><dd>${m.seniorShare ?? '—'}%</dd></div>
-      </div>
-      <div class="goods">${m.goods.map((g) => `<span>${g}</span>`).join('')}</div>`;
-    grid.appendChild(el);
-  }
-  $('footer-markets').innerHTML = state.data.markets
-    .map((m) => `<li>${m.name}</li>`).join('');
-}
-
-function visibleProducts() {
-  return state.data.products.filter((p) =>
-    p.channel === state.channel &&
-    (state.category === '전체' || p.category === state.category) &&
-    (state.market === '전체' || p.market === state.market));
-}
-
-function renderFilters() {
-  const pool = state.data.products.filter((p) => p.channel === state.channel);
-  const cats = ['전체', ...new Set(pool.map((p) => p.category))];
-  const bar = $('filters');
-  bar.innerHTML = '';
-  for (const c of cats) {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'chip';
+    b.className = 'mcard';
+    b.setAttribute('aria-pressed', String(state.market === m.name));
+    b.innerHTML = `<span class="m-emoji">${MARKET_EMOJI[m.name] || '🏪'}</span>
+      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.kind}</span>`;
+    b.onclick = () => {
+      state.market = state.market === m.name ? '전체' : m.name;
+      render();
+      $('shop').scrollIntoView({ behavior: 'smooth' });
+    };
+    strip.appendChild(b);
+  }
+  $('footer-markets').innerHTML = state.data.markets.map((m) => `<li>${m.name}</li>`).join('');
+}
+
+function renderCats() {
+  const cats = ['전체', ...new Set(pool().map((p) => p.category))];
+  const quick = $('cat-quick');
+  quick.innerHTML = '';
+  for (const c of cats.slice(0, 9)) {
+    const b = document.createElement('button');
+    b.type = 'button';
     b.textContent = c;
     b.setAttribute('aria-pressed', String(c === state.category));
     b.onclick = () => { state.category = c; render(); };
-    bar.appendChild(b);
+    quick.appendChild(b);
   }
-  const count = document.createElement('span');
-  count.className = 'count';
-  count.id = 'count';
-  bar.appendChild(count);
+  const panel = $('allcat-grid');
+  panel.innerHTML = '';
+  for (const c of cats) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c;
+    b.onclick = () => { state.category = c; $('allcat-panel').hidden = true; render(); };
+    panel.appendChild(b);
+  }
+  // 하단 칩
+  const chips = $('filters');
+  chips.innerHTML = '';
+  for (const c of cats) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c;
+    b.setAttribute('aria-pressed', String(c === state.category));
+    b.onclick = () => { state.category = c; render(); };
+    chips.appendChild(b);
+  }
 }
 
 function renderProducts() {
-  const list = visibleProducts();
+  const list = visible();
   const grid = $('products');
   grid.innerHTML = '';
   $('empty').hidden = list.length > 0;
-  const c = $('count');
-  if (c) c.textContent = `${list.length}개 상품`;
+  $('count').textContent = `${list.length}개 상품`;
+  for (const p of list) grid.appendChild(card(p));
 
-  for (const p of list) {
-    const el = document.createElement('article');
-    el.className = 'product';
-    el.innerHTML = `
-      <span class="cat">${p.category}</span>
-      <h4>${p.name}</h4>
-      <span class="from">${p.market} · ${p.origin}</span>
-      <div class="price">${won(p.price)} <small>/ ${p.unit}</small></div>`;
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'btn btn--ghost btn--sm';
-    btn.textContent = state.channel === 'b2b' ? '견적 담기' : '장바구니';
-    btn.onclick = () => addToCart(p);
-    el.appendChild(btn);
-    grid.appendChild(el);
-  }
+  const parts = [];
+  if (state.market !== '전체') parts.push(state.market);
+  if (state.category !== '전체') parts.push(state.category);
+  if (state.query.trim()) parts.push(`"${state.query.trim()}" 검색`);
+  $('shop-title').textContent = parts.length ? parts.join(' · ') : '전체 상품';
 }
 
-function renderChannelCopy() {
-  const b2b = state.channel === 'b2b';
-  $('hero-title').textContent = b2b
-    ? '도매는 도매 시장에서만 보입니다'
-    : '시장마다 파는 방식이 다릅니다';
-  $('hero-lede').textContent = b2b
-    ? '평일 도매 성격이 확인된 시장의 상품만 박스·kg 단위로 보여드립니다. 수량과 납기에 따라 단가가 달라져 견적으로 안내합니다.'
-    : '청량리 9개 시장의 5년치 거래 데이터를 분석해 도매 중심 시장과 소매 중심 시장을 나눴습니다. 도매로 사실지 소매로 사실지 고르면, 그에 맞는 시장과 단위만 보입니다.';
-  $('shop-title').textContent = b2b ? '도매로 구매하기' : '소매로 구매하기';
-  $('shop-lede').textContent = b2b
-    ? '박스·kg 단위 도매가입니다. 장바구니에 담으면 견적 요청으로 이어집니다.'
-    : '낱개·소포장 단위로 구성했습니다. 시장에서 직접 발송합니다.';
-  $('drawer-title').textContent = b2b ? '견적 요청 목록' : '장바구니';
-  $('checkout').textContent = b2b ? '견적 요청하기' : '주문하기';
+function renderChannel() {
   document.querySelectorAll('.channel button').forEach((b) =>
     b.setAttribute('aria-pressed', String(b.dataset.channel === state.channel)));
+  $('drawer-title').textContent = state.channel === 'b2b' ? '견적 요청 목록' : '장바구니';
+  $('checkout').textContent = state.channel === 'b2b' ? '견적 요청하기' : '주문하기';
+}
+
+function render() {
+  renderChannel();
+  renderCats();
+  renderDeals();
+  renderProducts();
+  // 시장 카드 선택 상태 갱신
+  document.querySelectorAll('.mcard').forEach((b, i) => {
+    const name = state.data.markets[i]?.name;
+    b.setAttribute('aria-pressed', String(state.market === name));
+  });
+}
+
+/* ---------------- 카운트다운 (자정 리셋) ---------------- */
+function tick() {
+  const now = new Date();
+  const end = new Date(now); end.setHours(24, 0, 0, 0);
+  const s = Math.max(0, Math.floor((end - now) / 1000));
+  const hh = String(Math.floor(s / 3600)).padStart(2, '0');
+  const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+  const ss = String(s % 60).padStart(2, '0');
+  $('countdown').textContent = `${hh}:${mm}:${ss}`;
 }
 
 /* ---------------- 장바구니 ---------------- */
-
 function addToCart(p) {
   const line = state.cart[p.id] || { ...p, qty: 0 };
   line.qty += 1;
   state.cart[p.id] = line;
-  persistCart();
+  localStorage.setItem('cl-cart', JSON.stringify(state.cart));
   renderCart();
   openDrawer(true);
 }
-
-function setQty(id, delta) {
-  const line = state.cart[id];
-  if (!line) return;
-  line.qty += delta;
-  if (line.qty <= 0) delete state.cart[id];
-  persistCart();
+function setQty(id, d) {
+  const l = state.cart[id];
+  if (!l) return;
+  l.qty += d;
+  if (l.qty <= 0) delete state.cart[id];
+  localStorage.setItem('cl-cart', JSON.stringify(state.cart));
   renderCart();
 }
-
-function persistCart() {
-  localStorage.setItem('cl-cart', JSON.stringify(state.cart));
-}
-
 function renderCart() {
   const lines = Object.values(state.cart);
   const box = $('cart-items');
-  box.innerHTML = '';
-
-  if (!lines.length) {
-    box.innerHTML = '<p class="empty" style="padding:40px 0">담긴 상품이 없습니다.</p>';
-  }
+  box.innerHTML = lines.length ? '' : '<p class="empty">담긴 상품이 없습니다.</p>';
   for (const l of lines) {
     const el = document.createElement('div');
-    el.className = 'line';
-    el.innerHTML = `
-      <div class="line-top">
-        <div><strong>${l.name}</strong><div class="sub">${l.market} · ${l.unit}</div></div>
-        <div>${won(l.price * l.qty)}</div>
-      </div>`;
+    el.className = 'line-item';
+    el.innerHTML = `<div class="line-top"><div><strong>${l.name}</strong>
+      <div class="sub">${l.market} · ${l.unit}</div></div><div>${won(l.price * l.qty)}</div></div>`;
     const qty = document.createElement('div');
     qty.className = 'qty';
-    const minus = document.createElement('button');
-    minus.type = 'button'; minus.textContent = '−';
-    minus.onclick = () => setQty(l.id, -1);
-    const num = document.createElement('span');
-    num.textContent = l.qty;
-    const plus = document.createElement('button');
-    plus.type = 'button'; plus.textContent = '+';
-    plus.onclick = () => setQty(l.id, 1);
-    qty.append(minus, num, plus);
+    const minus = document.createElement('button'); minus.textContent = '−'; minus.onclick = () => setQty(l.id, -1);
+    const n = document.createElement('span'); n.textContent = l.qty;
+    const plus = document.createElement('button'); plus.textContent = '+'; plus.onclick = () => setQty(l.id, 1);
+    qty.append(minus, n, plus);
     el.appendChild(qty);
     box.appendChild(el);
   }
-
   const total = lines.reduce((s, l) => s + l.price * l.qty, 0);
-  const n = lines.reduce((s, l) => s + l.qty, 0);
+  const cnt = lines.reduce((s, l) => s + l.qty, 0);
   $('cart-total').textContent = won(total);
-  const badge = $('cart-count');
-  badge.textContent = n;
-  badge.hidden = n === 0;
+  $('cart-count').textContent = cnt;
+  $('cart-count').hidden = cnt === 0;
 }
-
 function openDrawer(open) {
   $('drawer').dataset.open = String(open);
   $('scrim').dataset.open = String(open);
 }
 
 /* ---------------- 초기화 ---------------- */
-
-function render() {
-  renderChannelCopy();
-  renderFilters();
-  renderProducts();
-}
-
 function bind() {
   document.querySelectorAll('.channel button').forEach((b) => {
     b.onclick = () => {
@@ -206,32 +255,34 @@ function bind() {
       render();
     };
   });
+  $('allcat-btn').onclick = () => { const p = $('allcat-panel'); p.hidden = !p.hidden; };
+  const doSearch = () => { state.query = $('search').value; render(); $('shop').scrollIntoView({ behavior: 'smooth' }); };
+  $('search-btn').onclick = doSearch;
+  $('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+  $('search').addEventListener('input', () => { state.query = $('search').value; renderProducts(); });
   $('cart-open').onclick = () => openDrawer(true);
   $('cart-close').onclick = () => openDrawer(false);
   $('scrim').onclick = () => openDrawer(false);
   $('checkout').onclick = () => {
-    const lines = Object.values(state.cart);
-    if (!lines.length) return;
+    if (!Object.keys(state.cart).length) return;
     alert(state.channel === 'b2b'
       ? '견적 요청이 접수되었습니다. 담당자가 확인 후 연락드립니다.'
       : '주문이 접수되었습니다. 시장에서 직접 발송됩니다.');
   };
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') openDrawer(false);
-  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { openDrawer(false); $('allcat-panel').hidden = true; } });
+  document.querySelectorAll('[data-noop]').forEach((a) => a.onclick = (e) => e.preventDefault());
+  setInterval(tick, 1000); tick();
 }
 
 fetch('data.json')
   .then((r) => r.json())
   .then((data) => {
     state.data = data;
-    renderHero();
     renderMarkets();
     render();
     renderCart();
     bind();
   })
   .catch(() => {
-    document.getElementById('products').innerHTML =
-      '<p class="empty">데이터를 불러오지 못했습니다. 로컬에서 열었다면 웹 서버로 실행해 주세요.</p>';
+    $('products').innerHTML = '<p class="empty">데이터를 불러오지 못했습니다.</p>';
   });
