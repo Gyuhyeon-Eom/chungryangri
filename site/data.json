@@ -53,6 +53,7 @@
       "youthShare": 4.6,
       "ticket": 38563,
       "growth": 45.8,
+      "seoulTop": 17,
       "timeProfile": {
         "00~06": 2.5,
         "06~11": 28.1,
@@ -90,6 +91,7 @@
       "youthShare": 3.7,
       "ticket": 27932,
       "growth": 44.3,
+      "seoulTop": 19,
       "timeProfile": {
         "00~06": 1.1,
         "06~11": 24.6,
@@ -125,6 +127,7 @@
       "youthShare": 10.7,
       "ticket": 23091,
       "growth": 142.5,
+      "seoulTop": 3,
       "timeProfile": {
         "00~06": 1.6,
         "06~11": 19.5,
@@ -161,6 +164,7 @@
       "youthShare": 14.0,
       "ticket": 74325,
       "growth": -11.6,
+      "seoulTop": 75,
       "timeProfile": {
         "00~06": 0.8,
         "06~11": 13.8,
@@ -196,6 +200,7 @@
       "youthShare": 5.3,
       "ticket": 34721,
       "growth": 100.9,
+      "seoulTop": 7,
       "timeProfile": {
         "00~06": 2.9,
         "06~11": 32.9,
@@ -231,6 +236,7 @@
       "youthShare": 6.1,
       "ticket": 39884,
       "growth": 194.5,
+      "seoulTop": 1,
       "timeProfile": {
         "00~06": 9.0,
         "06~11": 34.6,
@@ -267,6 +273,7 @@
       "youthShare": 12.6,
       "ticket": 25140,
       "growth": 77.1,
+      "seoulTop": 9,
       "timeProfile": {
         "00~06": 1.3,
         "06~11": 18.4,
@@ -304,6 +311,7 @@
       "youthShare": 5.3,
       "ticket": 26064,
       "growth": 47.6,
+      "seoulTop": 16,
       "timeProfile": {
         "00~06": 2.0,
         "06~11": 24.5,
@@ -339,6 +347,7 @@
       "youthShare": 12.8,
       "ticket": 21489,
       "growth": 84.6,
+      "seoulTop": 8,
       "timeProfile": {
         "00~06": 2.3,
         "06~11": 21.5,

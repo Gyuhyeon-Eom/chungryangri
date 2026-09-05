@@ -5,7 +5,10 @@
 const KRW = new Intl.NumberFormat('ko-KR');
 const won = (n) => KRW.format(n) + '원';
 
-/* 카테고리 → [이모지, 타일 배경] */
+/* 실사 이미지 맵 — img/map.json 이 로드되면 이모지 대신 사진을 쓴다 */
+let IMG = {};
+
+/* 카테고리 → [이모지, 타일 배경] (이미지 없을 때 폴백) */
 const TILE = {
   '한약재': ['🌿', '#eef3ec'], '인삼·홍삼': ['🫚', '#f3ece2'], '건약초': ['🍂', '#f1ede2'],
   '밤·견과류': ['🌰', '#f3ede3'], '곡류·참기름': ['🫙', '#f5efe2'], '선물세트': ['🎁', '#f2ece8'],
@@ -46,17 +49,23 @@ const isNew = (p) => hash(p.id) % 4 === 0;
 const freeShip = (p) => p.price >= 20000;
 
 /* ---------------- 상품 카드 ---------------- */
+function marketOf(p) { return state.data.markets.find((m) => m.name === p.market); }
+
 function card(p) {
   const [emoji, bg] = TILE[p.category] || ['🛒', '#f2f2f0'];
+  const img = IMG[p.category];
   const { off, was } = saleInfo(p);
+  const m = marketOf(p);
+  const top = m && m.seoulTop != null && m.seoulTop <= 10 ? m.seoulTop : null;
   const el = document.createElement('article');
   el.className = 'card';
   el.innerHTML = `
     <div class="thumb" style="background:${bg}">
       ${off ? `<span class="off">${off}%</span>` : ''}
-      <span class="emoji">${emoji}</span>
+      ${img ? `<img src="${img}" alt="${p.category}" loading="lazy" onerror="this.remove()">`
+            : `<span class="emoji">${emoji}</span>`}
     </div>
-    <span class="market-name">${p.market}</span>
+    <span class="market-name">${p.market}${top ? ` <b class="mini-top">성장 상위 ${top}%</b>` : ''}</span>
     <p class="name">${p.name} ${p.unit}${p.channel === 'b2b' ? ' (도매)' : ''}</p>
     <div class="price-row">
       ${off ? `<span class="pct">${off}%</span>` : ''}
@@ -89,6 +98,34 @@ function visible() {
     (!q || p.name.includes(q) || p.market.includes(q) || p.category.includes(q)));
 }
 
+
+/* ---------------- 분석 기반: 지금 장 서는 시장 ----------------
+   현재 시각을 시간대 구간에 대응시키고, 시장별 그 구간 매출 비중으로 순위를 매긴다.
+   섹션 구좌가 하루 안에서도 시간 따라 바뀐다 — 분석이 화면을 직접 움직이는 부분. */
+const BAND_OF_HOUR = (h) =>
+  h < 6 ? '00~06' : h < 11 ? '06~11' : h < 14 ? '11~14' : h < 17 ? '14~17' : h < 21 ? '17~21' : '21~24';
+
+function liveMarkets() {
+  const band = BAND_OF_HOUR(new Date().getHours());
+  return state.data.markets
+    .map((m) => ({ m, share: m.timeProfile[band] || 0 }))
+    .sort((a, b) => b.share - a.share);
+}
+
+function renderLive() {
+  const band = BAND_OF_HOUR(new Date().getHours());
+  const ranked = liveMarkets();
+  const tops = ranked.slice(0, 2);
+  $('live-why').innerHTML = tops.map(({ m, share }) =>
+    `<b>${m.name}</b> ${band}시 매출 비중 ${share}%`).join(' · ');
+
+  const names = new Set(tops.map((t) => t.m.name));
+  const picks = pool().filter((p) => names.has(p.market)).slice(0, 5);
+  const grid = $('live-grid');
+  grid.innerHTML = '';
+  for (const p of picks) grid.appendChild(card(p));
+}
+
 function renderDeals() {
   const grid = $('deal-grid');
   grid.innerHTML = '';
@@ -97,6 +134,18 @@ function renderDeals() {
     .filter((x) => x.s.off >= 15)
     .sort((a, b) => b.s.off - a.s.off).slice(0, 5);
   for (const { p } of deals) grid.appendChild(card(p));
+}
+
+function sparkline(profile, band) {
+  const bands = ['00~06','06~11','11~14','14~17','17~21','21~24'];
+  const max = Math.max(...bands.map((b) => profile[b] || 0)) || 1;
+  const bars = bands.map((b, i) => {
+    const h = Math.max(2, (profile[b] || 0) / max * 22);
+    const hot = b === band;
+    return `<rect x="${i * 11}" y="${24 - h}" width="8" height="${h}" rx="1.5"
+      fill="${hot ? '#1e4d38' : '#d5d0c6'}"/>`;
+  }).join('');
+  return `<svg width="63" height="24" viewBox="0 0 63 24" aria-hidden="true">${bars}</svg>`;
 }
 
 function renderMarkets() {
@@ -108,8 +157,12 @@ function renderMarkets() {
     b.type = 'button';
     b.className = 'mcard';
     b.setAttribute('aria-pressed', String(state.market === m.name));
+    const band = BAND_OF_HOUR(new Date().getHours());
+    const top = m.seoulTop != null && m.seoulTop <= 10;
     b.innerHTML = `<span class="m-emoji">${MARKET_EMOJI[m.name] || '🏪'}</span>
-      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.kind}</span>`;
+      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.kind}</span>
+      ${sparkline(m.timeProfile, band)}
+      <em class="m-stat">${top ? `서울 상위 ${m.seoulTop}%` : `피크 ${m.peak}시`}</em>`;
     b.onclick = () => {
       state.market = state.market === m.name ? '전체' : m.name;
       render();
@@ -179,6 +232,7 @@ function renderChannel() {
 function render() {
   renderChannel();
   renderCats();
+  renderLive();
   renderDeals();
   renderProducts();
   // 시장 카드 선택 상태 갱신
@@ -274,7 +328,9 @@ function bind() {
   setInterval(tick, 1000); tick();
 }
 
-fetch('data.json?v=2')
+fetch('img/map.json').then((r) => r.ok ? r.json() : {}).then((m) => { IMG = m; }).catch(() => {});
+
+fetch('data.json?v=3')
   .then((r) => r.json())
   .then((data) => {
     state.data = data;

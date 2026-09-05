@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>청량리마켓 — 청량리 9개 전통시장 온라인 장보기</title>
 <meta name="description" content="청량리 9개 전통시장의 상품을 시장에서 직접 발송합니다. 도매·소매 모두 가능.">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -82,13 +82,27 @@
     </div>
   </section>
 
-  <!-- 타임세일 -->
-  <section class="wrap section">
-    <div class="section-head">
-      <h2>⏰ 오늘의 장날 특가</h2>
-      <div class="countdown">남은시간 <b id="countdown">--:--:--</b></div>
+  <!-- 지금 장 서는 시장 — 시간대 매출 데이터가 실시간으로 구좌를 정한다 -->
+  <section class="live-band">
+    <div class="wrap section" style="padding-top:28px">
+      <div class="section-head">
+        <h2>🔥 지금 장 서는 시장</h2>
+        <span class="live-why" id="live-why"></span>
+      </div>
+      <div class="grid grid-deal" id="live-grid"></div>
+      <p class="data-note">청량리 9개 시장의 2021~2025년 시간대별 매출 데이터 기준, 현재 시각에 거래가 가장 활발한 시장의 상품입니다.</p>
     </div>
-    <div class="grid grid-deal" id="deal-grid"></div>
+  </section>
+
+  <!-- 타임세일 -->
+  <section class="deal-band">
+    <div class="wrap section" style="padding-top:28px">
+      <div class="section-head">
+        <h2>⏰ 오늘의 장날 특가</h2>
+        <div class="countdown">남은시간 <b id="countdown">--:--:--</b></div>
+      </div>
+      <div class="grid grid-deal" id="deal-grid"></div>
+    </div>
   </section>
 
   <!-- 시장 바로가기 -->
@@ -147,6 +161,6 @@
   </footer>
 </aside>
 
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

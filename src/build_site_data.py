@@ -138,6 +138,7 @@ def main():
             "youthShare": round(youth, 1) if youth else None,
             "ticket": int(dt.loc[m, "객단가25"]) if m in dt.index else None,
             "growth": round(float(growth.loc[gk, "growth"]), 1) if gk else None,
+            "seoulTop": round(100 - float(growth.loc[gk, "백분위"])) if gk else None,
             "timeProfile": {b: round(float(t[b]), 1) for b in BANDS},
             "dowProfile": {d: round(float(dw.loc[m, d]), 1) for d in DOW},
         })
