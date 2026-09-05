@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>청량리마켓 — 청량리 9개 전통시장 온라인 장보기</title>
 <meta name="description" content="청량리 9개 전통시장의 상품을 시장에서 직접 발송합니다. 도매·소매 모두 가능.">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -24,8 +24,15 @@
 <!-- 헤더: 로고 + 검색 + 장바구니 -->
 <header class="header">
   <div class="wrap header-in">
-    <a class="logo" href="#top">
-      <span class="logo-mark">청량리</span><span class="logo-sub">마켓</span>
+    <a class="logo" href="#top" aria-label="청량리마켓 홈">
+      <svg class="logo-icon" width="34" height="34" viewBox="0 0 48 48" fill="none">
+        <rect x="6" y="20" width="36" height="22" rx="3" fill="#1e4d38"/>
+        <path d="M4 14c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v6H4v-6z" fill="#1e4d38"/>
+        <path d="M4 20c3.3 0 3.3 4 6.6 4s3.3-4 6.6-4 3.3 4 6.6 4 3.3-4 6.6-4 3.3 4 6.7 4 3.3-4 6.9-4v-4H4v4z" fill="#d13030"/>
+        <rect x="13" y="28" width="9" height="14" rx="1.5" fill="#f2e8d5"/>
+        <rect x="26" y="28" width="9" height="8" rx="1.5" fill="#f2e8d5"/>
+      </svg>
+      <span class="logo-text"><span class="logo-mark">청량리</span><span class="logo-sub">마켓</span></span>
     </a>
     <div class="search">
       <input id="search" type="search" placeholder="상품·시장·카테고리 검색 (예: 사과, 수산시장, 한약재)">
@@ -58,35 +65,46 @@
 
 <main id="top">
 
-  <!-- 배너 -->
-  <section class="wrap banners">
-    <button type="button" class="banner banner-a" data-banner="fresh">
-      <div>
-        <em>청량리 장날 특가</em>
-        <strong>제철 과일·수산물<br>시장 직송</strong>
-        <span>9개 시장 상인이 직접 포장해서 보냅니다</span>
+  <!-- 히어로 -->
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <em>청량리 9개 전통시장 · 산지 그대로</em>
+      <h1>시장의 아침을<br>그대로 배송합니다</h1>
+      <p>새벽 위판장의 생선, 방앗간에서 막 짠 참기름, 전국에서 모이는 한약재.<br>
+         상인이 직접 고르고 포장해 당일 발송합니다.</p>
+      <div class="hero-cta">
+        <button type="button" class="cta-main" data-banner="fresh">오늘 들어온 상품</button>
+        <button type="button" class="cta-sub" data-banner="b2b">도매 견적 문의</button>
       </div>
-      <div class="banner-art">🍎🐟🌰</div>
-    </button>
-    <div class="banner-side">
-      <button type="button" class="banner banner-b" data-banner="b2b">
-        <em>도매 견적</em>
-        <strong>식당·업소 사장님</strong>
-        <span>박스·kg 단위 · 약령시 한약재</span>
-      </button>
-      <button type="button" class="banner banner-c" data-banner="gift">
-        <em>선물세트</em>
-        <strong>견과·참기름·홍삼</strong>
-        <span>청량리종합시장 명절 준비</span>
-      </button>
     </div>
+    <div class="hero-photos" aria-hidden="true">
+      <img src="img/herbs.jpg" alt="" class="hp hp-a">
+      <img src="img/mackerel.jpg" alt="" class="hp hp-b">
+      <img src="img/apple.jpg" alt="" class="hp hp-c">
+    </div>
+  </section>
+
+  <!-- 프로모 스트립 -->
+  <section class="wrap promo-row">
+    <button type="button" class="promo" data-banner="fresh">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1e4d38" stroke-width="1.8"><path d="M12 2v4M5 8l2.5 2.5M19 8l-2.5 2.5M3 14h18l-1.5 7h-15L3 14z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div><b>제철 과일·수산 직송</b><span>새벽 입고분 당일 발송</span></div>
+    </button>
+    <button type="button" class="promo" data-banner="b2b">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1e4d38" stroke-width="1.8"><rect x="3" y="7" width="13" height="11" rx="1.5"/><path d="M16 11h3.2L21 14v4h-5M7.5 21a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zM17 21a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6z"/></svg>
+      <div><b>식당·업소 도매 견적</b><span>박스·kg 단위, 약령시 한약재</span></div>
+    </button>
+    <button type="button" class="promo" data-banner="gift">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1e4d38" stroke-width="1.8"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M2 6.5h20V9H2zM12 6.5V20M12 6.5C10 6.5 8 5 8 3.5 8 2 10 2 12 4c2-2 4-2 4-.5C16 5 14 6.5 12 6.5z"/></svg>
+      <div><b>명절 선물세트</b><span>견과·참기름·홍삼 세트</span></div>
+    </button>
   </section>
 
   <!-- 지금 장 서는 시장 — 시간대 매출 데이터가 실시간으로 구좌를 정한다 -->
   <section class="live-band">
     <div class="wrap section" style="padding-top:28px">
       <div class="section-head">
-        <h2>🚚 오늘 발송 마감 임박</h2>
+        <h2><span class="sec-dot"></span>오늘 발송 마감 임박</h2>
         <span class="live-why" id="live-why"></span>
       </div>
       <div class="grid grid-deal" id="live-grid"></div>
@@ -98,7 +116,7 @@
   <section class="deal-band">
     <div class="wrap section" style="padding-top:28px">
       <div class="section-head">
-        <h2>⏰ 오늘의 장날 특가</h2>
+        <h2><span class="sec-dot sec-dot--red"></span>오늘의 장날 특가</h2>
         <div class="countdown">남은시간 <b id="countdown">--:--:--</b></div>
       </div>
       <div class="grid grid-deal" id="deal-grid"></div>
@@ -107,7 +125,7 @@
 
   <!-- 시장별 대표 상품 선반 -->
   <section class="wrap section" id="shelves-sec">
-    <div class="section-head"><h2>🧺 시장별 대표 상품</h2>
+    <div class="section-head"><h2><span class="sec-dot"></span>시장별 대표 상품</h2>
       <span class="count">거래 데이터로 확인된 각 시장의 강점 품목</span></div>
     <div id="shelves"></div>
   </section>
@@ -194,6 +212,6 @@
 
 <div class="toast" id="toast" hidden></div>
 
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

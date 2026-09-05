@@ -214,11 +214,14 @@ function renderMarkets() {
     b.type = 'button';
     b.className = 'mcard';
     b.setAttribute('aria-pressed', String(state.market === m.name));
-    const band = BAND_OF_HOUR(new Date().getHours());
-    b.innerHTML = `<span class="m-emoji">${MARKET_EMOJI[m.name] || '🏪'}</span>
-      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.humanKind || m.kind}</span>
-      ${sparkline(m.timeProfile, band)}
-      <em class="m-stat">${m.story || ''}</em>`;
+    const avatar = IMG[(m.flagship || [])[0]];
+    b.innerHTML = `
+      <span class="m-avatar">${avatar
+        ? `<img src="${avatar}" alt="" loading="lazy">`
+        : `<i>${m.name.slice(0, 2)}</i>`}</span>
+      <b>${m.name.replace('청량리', '청량리 ')}</b>
+      <span>${m.humanKind || m.kind}</span>`;
+    b.title = m.story || '';
     b.onclick = () => {
       state.market = state.market === m.name ? '전체' : m.name;
       render();
