@@ -177,7 +177,7 @@ function renderShelves() {
     sec.appendChild(grid);
     sec.querySelector('.shelf-more').onclick = () => {
       state.market = name; state.category = '전체'; render();
-      $('shop').scrollIntoView({ behavior: 'smooth' });
+      gotoShop();
     };
     wrap.appendChild(sec);
   }
@@ -224,8 +224,9 @@ function renderMarkets() {
     b.title = m.story || '';
     b.onclick = () => {
       state.market = state.market === m.name ? '전체' : m.name;
+      state.category = '전체';   // 시장을 바꾸면 카테고리는 초기화 — 필터 뒤엉킴 방지
       render();
-      $('shop').scrollIntoView({ behavior: 'smooth' });
+      gotoShop();
     };
     strip.appendChild(b);
   }
@@ -245,7 +246,7 @@ function renderCats() {
     b.type = 'button';
     b.textContent = c;
     b.setAttribute('aria-pressed', String(c === state.category));
-    b.onclick = () => { state.category = c; render(); };
+    b.onclick = () => { state.category = c; render(); gotoShop(); };
     quick.appendChild(b);
   }
   const panel = $('allcat-grid');
@@ -254,7 +255,7 @@ function renderCats() {
     const b = document.createElement('button');
     b.type = 'button';
     b.textContent = c;
-    b.onclick = () => { state.category = c; $('allcat-panel').hidden = true; render(); };
+    b.onclick = () => { state.category = c; $('allcat-panel').hidden = true; render(); gotoShop(); };
     panel.appendChild(b);
   }
   // 하단 칩
@@ -290,6 +291,17 @@ function renderChannel() {
     b.setAttribute('aria-pressed', String(b.dataset.channel === state.channel)));
   $('drawer-title').textContent = state.channel === 'b2b' ? '견적 요청 목록' : '장바구니';
   $('checkout').textContent = state.channel === 'b2b' ? '견적 요청하기' : '주문하기';
+}
+
+function gotoShop() {
+  // render() 직후 레이아웃이 크게 바뀌어 smooth 스크롤이 취소되므로 즉시 점프.
+  // 이미지 로드로 위치가 밀리는 것까지 한 번 더 보정한다.
+  const jump = () => {
+    const top = $('shop').getBoundingClientRect().top + window.scrollY - 58;
+    window.scrollTo({ top, behavior: 'instant' });
+  };
+  jump();
+  setTimeout(jump, 120);
 }
 
 function render() {
@@ -410,7 +422,7 @@ function bind() {
     };
   });
   $('allcat-btn').onclick = () => { const p = $('allcat-panel'); p.hidden = !p.hidden; };
-  const doSearch = () => { state.query = $('search').value; render(); $('shop').scrollIntoView({ behavior: 'smooth' }); };
+  const doSearch = () => { state.query = $('search').value; render(); gotoShop(); };
   $('search-btn').onclick = doSearch;
   $('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
   $('search').addEventListener('input', () => { state.query = $('search').value; renderProducts(); });
@@ -477,7 +489,7 @@ function bind() {
       state.channel = 'b2c'; state.category = '제철 과일'; state.market = '전체';
     }
     render();
-    $('shop').scrollIntoView({ behavior: 'smooth' });
+    gotoShop();
   });
   setInterval(tick, 1000); tick();
 }

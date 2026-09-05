@@ -106,7 +106,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; }
 .promo svg { flex-shrink: 0; }
 
 /* ---------- 섹션 ---------- */
-.section { padding: 36px 20px 8px; }
+.section { padding: 36px 20px 8px; scroll-margin-top: 56px; }
 .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
 .section-head h2 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em;
   display: flex; align-items: center; gap: 9px; }
