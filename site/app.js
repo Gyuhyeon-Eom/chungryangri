@@ -7,6 +7,10 @@ const won = (n) => KRW.format(n) + '원';
 
 /* 실사 이미지 맵 — img/map.json 이 로드되면 이모지 대신 사진을 쓴다 */
 let IMG = {};
+let PIMG = {};   // 상품명 → 이미지
+/* 카테고리 폴백이 오답이 되는 상품 — 틀린 사진보다 No Image가 낫다 */
+const NO_IMG = new Set(['배', '배(박스)', '사과(박스)', '호두', '대추',
+                        '오징어', '대파', '다시마', '펌 롯드', '주방 소도구']);
 
 /* 카테고리 → [이모지, 타일 배경] (이미지 없을 때 폴백) */
 const TILE = {
@@ -52,20 +56,22 @@ const freeShip = (p) => p.price >= 20000;
 function marketOf(p) { return state.data.markets.find((m) => m.name === p.market); }
 
 function card(p) {
-  const [emoji, bg] = TILE[p.category] || ['🛒', '#f2f2f0'];
-  const img = IMG[p.category];
+  const [, bg] = TILE[p.category] || ['', '#f2f2f0'];
+  const img = PIMG[p.name] || (NO_IMG.has(p.name) ? null : IMG[p.category]);
   const { off, was } = saleInfo(p);
   const m = marketOf(p);
-  const top = m && m.seoulTop != null && m.seoulTop <= 10 ? m.seoulTop : null;
+  const isFlagship = m && (m.flagship || [])[0] === p.category;  // 시장당 간판 1개만
   const el = document.createElement('article');
   el.className = 'card';
   el.innerHTML = `
     <div class="thumb" style="background:${bg}">
       ${off ? `<span class="off">${off}%</span>` : ''}
-      ${img ? `<img src="${img}" alt="${p.category}" loading="lazy" onerror="this.remove()">`
-            : `<span class="emoji">${emoji}</span>`}
+      ${img ? `<img src="${img}" alt="${p.name}" loading="lazy"
+                 onerror="this.parentElement.classList.add('noimg'); this.remove()">`
+            : ''}
+      <span class="noimg-label">이미지 준비중</span>
     </div>
-    <span class="market-name">${p.market}${top ? ` <b class="mini-top">성장 상위 ${top}%</b>` : ''}</span>
+    <span class="market-name">${p.market}${isFlagship ? ' <b class="mini-top">대표 품목</b>' : ''}</span>
     <p class="name">${p.name} ${p.unit}${p.channel === 'b2b' ? ' (도매)' : ''}</p>
     <div class="price-row">
       ${off ? `<span class="pct">${off}%</span>` : ''}
@@ -126,6 +132,36 @@ function renderLive() {
   for (const p of picks) grid.appendChild(card(p));
 }
 
+
+/* ---------------- 시장별 대표 상품 선반 ----------------
+   "어느 시장에서 뭘 사야 하는지"를 선반 헤드라인으로 말해준다.
+   리포트의 결론(업종 구성·시간대·성장)을 사용자 언어로 옮긴 부분. */
+function renderShelves() {
+  const wrap = $('shelves');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const order = ['서울약령시장', '청량리수산시장', '청량리종합시장', '청량리전통시장', '청량리청과물시장'];
+  for (const name of order) {
+    const m = state.data.markets.find((x) => x.name === name);
+    if (!m || !m.shelf) continue;
+    const picks = pool().filter((p) => p.market === name && (m.flagship || []).includes(p.category)).slice(0, 5);
+    if (picks.length < 3) continue;
+    const sec = document.createElement('div');
+    sec.className = 'shelf';
+    sec.innerHTML = `<div class="shelf-head"><h3>${m.shelf}</h3>
+      <button type="button" class="shelf-more">전체 보기</button></div>`;
+    const grid = document.createElement('div');
+    grid.className = 'grid grid-deal';
+    for (const p of picks) grid.appendChild(card(p));
+    sec.appendChild(grid);
+    sec.querySelector('.shelf-more').onclick = () => {
+      state.market = name; state.category = '전체'; render();
+      $('shop').scrollIntoView({ behavior: 'smooth' });
+    };
+    wrap.appendChild(sec);
+  }
+}
+
 function renderDeals() {
   const grid = $('deal-grid');
   grid.innerHTML = '';
@@ -158,11 +194,10 @@ function renderMarkets() {
     b.className = 'mcard';
     b.setAttribute('aria-pressed', String(state.market === m.name));
     const band = BAND_OF_HOUR(new Date().getHours());
-    const top = m.seoulTop != null && m.seoulTop <= 10;
     b.innerHTML = `<span class="m-emoji">${MARKET_EMOJI[m.name] || '🏪'}</span>
-      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.kind}</span>
+      <b>${m.name.replace('청량리', '청량리 ')}</b><span>${m.humanKind || m.kind}</span>
       ${sparkline(m.timeProfile, band)}
-      <em class="m-stat">${top ? `서울 상위 ${m.seoulTop}%` : `피크 ${m.peak}시`}</em>`;
+      <em class="m-stat">${m.story || ''}</em>`;
     b.onclick = () => {
       state.market = state.market === m.name ? '전체' : m.name;
       render();
@@ -233,6 +268,7 @@ function render() {
   renderChannel();
   renderCats();
   renderLive();
+  renderShelves();
   renderDeals();
   renderProducts();
   // 시장 카드 선택 상태 갱신
@@ -328,9 +364,10 @@ function bind() {
   setInterval(tick, 1000); tick();
 }
 
-fetch('img/map.json').then((r) => r.ok ? r.json() : {}).then((m) => { IMG = m; }).catch(() => {});
+fetch('img/p/map.json').then((r) => r.ok ? r.json() : {}).then((m) => { PIMG = m; if (state.data) render(); }).catch(() => {});
+fetch('img/map.json').then((r) => r.ok ? r.json() : {}).then((m) => { IMG = m; if (state.data) render(); }).catch(() => {});
 
-fetch('data.json?v=3')
+fetch('data.json?v=4')
   .then((r) => r.json())
   .then((data) => {
     state.data = data;

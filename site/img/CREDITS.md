@@ -26,3 +26,23 @@
 - **분식** `tteokbokki.jpg` — [File:Korean.snacks-Tteokbokki-08.jpg](https://commons.wikimedia.org/wiki/File:Korean.snacks-Tteokbokki-08.jpg) · CC BY 2.0 · by jetalone (flickr)
 - **건강식품** `honey.jpg` — [File:Three French monofloral honey jars.jpg](https://commons.wikimedia.org/wiki/File:Three_French_monofloral_honey_jars.jpg) · CC BY 4.0 · Hayden Soloviev
 - **미용재료** `scissors.jpg` — [File:Hair texturizing shears.jpg](https://commons.wikimedia.org/wiki/File:Hair_texturizing_shears.jpg) · CC BY-SA 4.0 · Gaurav Dhwaj Khadka
+
+## 상품 단위 이미지
+- **딸기** `p/strawberry.jpg` — [File:Still life with strawberries in a crystal bowl.jpg](https://commons.wikimedia.org/wiki/File:Still_life_with_strawberries_in_a_crystal_bowl.jpg) · CC BY-SA 4.0 · W.carter
+- **감귤** `p/mandarin.jpg` — [File:Mandarin Oranges (Citrus Reticulata).jpg](https://commons.wikimedia.org/wiki/File:Mandarin_Oranges_(Citrus_Reticulata).jpg) · CC BY-SA 3.0 · Joe Ravi
+- **찹쌀** `p/rice.jpg` — [File:Red glutinous rice (1).jpg](https://commons.wikimedia.org/wiki/File:Red_glutinous_rice_(1).jpg) · CC0 · Fumikas Sagisavas
+- **오징어** `p/squid.jpg` — [File:Squid and fish caught by local fisherman.jpg](https://commons.wikimedia.org/wiki/File:Squid_and_fish_caught_by_local_fisherman.jpg) · CC BY-SA 4.0 · Firmansyah Syamsuddin
+- **갈치** `p/hairtail.jpg` — [File:Trichiurus lepturus by OpenCage.jpg](https://commons.wikimedia.org/wiki/File:Trichiurus_lepturus_by_OpenCage.jpg) · CC BY-SA 2.5
+- **조기** `p/croaker.jpg` — [File:Frozen-fresh yellow croaker.jpg](https://commons.wikimedia.org/wiki/File:Frozen-fresh_yellow_croaker.jpg) · CC0 · Fumikas Sagisavas
+- **우럭** `p/rockfish.jpg` — [File:Sebastes schlegelii by OpenCage.jpg](https://commons.wikimedia.org/wiki/File:Sebastes_schlegelii_by_OpenCage.jpg) · CC BY-SA 2.5
+- **고구마** `p/sweetpotato.jpg` — [File:Ipomoea batatas 006.JPG](https://commons.wikimedia.org/wiki/File:Ipomoea_batatas_006.JPG) · CC BY-SA 3.0 · Llez
+- **한우 등심** `p/beef.jpg` — [File:대통령상에 빛나는 행주한우.jpg](https://commons.wikimedia.org/wiki/File:대통령상에_빛나는_행주한우.jpg) · CC BY-SA 4.0 · 고양축산농협
+- **장아찌** `p/jangajji.jpg` — [File:Korean pickle-Kkatnip jangajji-01.jpg](https://commons.wikimedia.org/wiki/File:Korean_pickle-Kkatnip_jangajji-01.jpg) · CC BY-SA 2.0 · by Joseph Steinberg (Baltimoron in Korea) at Flickr
+- **찹쌀도넛** `p/donut.jpg` — [File:Kkwabaegi.jpg](https://commons.wikimedia.org/wiki/File:Kkwabaegi.jpg) · CC BY 4.0 · 쪼끄미**
+- **삼겹살** `p/porkbelly.jpg` — [File:Sliced pork belly - Bo Ssam Boiled Pork Belly - Sydney Madang Restaurant AUD27 small.jpg](https://commons.wikimedia.org/wiki/File:Sliced_pork_belly_-_Bo_Ssam_Boiled_Pork_Belly_-_Sydney_Madang_Restaurant_AUD27_small.jpg) · CC BY-SA 2.0 · avlxyz
+- **멸치** `p/anchovy2.jpg` — [File:Dried anchovies.jpg](https://commons.wikimedia.org/wiki/File:Dried_anchovies.jpg) · CC BY 2.0 · myllissa
+- **옛날 통닭** `p/tongdak.jpg` — [File:Tongdak.jpg](https://commons.wikimedia.org/wiki/File:Tongdak.jpg) · CC BY-SA 2.0 kr · 국립국어원
+- **바지락** `p/manilaclam.jpg` — [File:Steamed clams texture.jpg](https://commons.wikimedia.org/wiki/File:Steamed_clams_texture.jpg) · CC BY-SA 4.0 · CNEcija12345
+- **양파** `p/onion.jpg` — [File:Onion mother plants (bulbs) for production seeds.jpg](https://commons.wikimedia.org/wiki/File:Onion_mother_plants_(bulbs)_for_production_seeds.jpg) · CC BY-SA 3.0 · Shuhrataxmedov
+- **토마토** `p/tomato2.jpg` — [File:Organic home-grown tomatoes - unripe to ripe.jpg](https://commons.wikimedia.org/wiki/File:Organic_home-grown_tomatoes_-_unripe_to_ripe.jpg) · CC BY-SA 4.0 · Michal Klajban
+- **사과** `p/apple2.jpg` — [File:Red Apple.jpg](https://commons.wikimedia.org/wiki/File:Red_Apple.jpg) · CC BY 2.0 · Abhijit Tembhekar from Mumbai, India
