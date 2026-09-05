@@ -105,25 +105,46 @@ function visible() {
 }
 
 
-/* ---------------- 분석 기반: 지금 장 서는 시장 ----------------
-   현재 시각을 시간대 구간에 대응시키고, 시장별 그 구간 매출 비중으로 순위를 매긴다.
-   섹션 구좌가 하루 안에서도 시간 따라 바뀐다 — 분석이 화면을 직접 움직이는 부분. */
+/* ---------------- 분석 기반: 오늘 발송 마감 ----------------
+   시장별 거래 피크가 끝나는 시각을 당일 발송 마감으로 본다.
+   (피크가 끝나면 그날 들어온 물건이 소진되기 시작한다는 뜻이므로.)
+   온라인 구매자에게는 "언제 주문해야 오늘 준비된 물건을 받는가"로 번역된다. */
 const BAND_OF_HOUR = (h) =>
   h < 6 ? '00~06' : h < 11 ? '06~11' : h < 14 ? '11~14' : h < 17 ? '14~17' : h < 21 ? '17~21' : '21~24';
 
-function liveMarkets() {
-  const band = BAND_OF_HOUR(new Date().getHours());
-  return state.data.markets
-    .map((m) => ({ m, share: m.timeProfile[band] || 0 }))
-    .sort((a, b) => b.share - a.share);
+function cutoffHour(m) {
+  // 피크 구간(최대 매출 시간대)의 끝 시각 = 발송 마감
+  const bands = ['00~06', '06~11', '11~14', '14~17', '17~21', '21~24'];
+  const ends = { '00~06': 6, '06~11': 11, '11~14': 14, '14~17': 17, '17~21': 21, '21~24': 24 };
+  const peak = bands.reduce((a, b) => (m.timeProfile[b] || 0) > (m.timeProfile[a] || 0) ? b : a);
+  return ends[peak];
+}
+
+function fmtLeft(hours) {
+  const h = Math.floor(hours), mm = Math.round((hours - h) * 60);
+  return h > 0 ? `${h}시간 ${mm}분` : `${mm}분`;
 }
 
 function renderLive() {
-  const band = BAND_OF_HOUR(new Date().getHours());
-  const ranked = liveMarkets();
-  const tops = ranked.slice(0, 2);
-  $('live-why').innerHTML = tops.map(({ m, share }) =>
-    `<b>${m.name}</b> ${band}시 매출 비중 ${share}%`).join(' · ');
+  const now = new Date();
+  const nowH = now.getHours() + now.getMinutes() / 60;
+  const withCut = state.data.markets.map((m) => ({ m, cut: cutoffHour(m), left: cutoffHour(m) - nowH }));
+  const open = withCut.filter((x) => x.left > 0).sort((a, b) => a.left - b.left);
+
+  let tops, why, note;
+  if (open.length) {
+    tops = open.slice(0, 2);
+    why = tops.map(({ m, cut, left }) =>
+      `<b>${m.name}</b> 오늘 발송 마감 ${cut}시 · <b class="left">${fmtLeft(left)} 남음</b>`).join(' &nbsp;·&nbsp; ');
+    note = '시장별 거래 피크(2021~2025 매출 데이터)가 끝나기 전에 주문하면 당일 준비된 물건으로 발송됩니다.';
+  } else {
+    // 모든 시장 마감 → 아침 일찍 여는 순서로 내일 예약
+    tops = withCut.sort((a, b) => a.cut - b.cut).slice(0, 2);
+    why = tops.map(({ m, cut }) => `<b>${m.name}</b> 내일 ${cut}시 발송분 예약`).join(' &nbsp;·&nbsp; ');
+    note = '오늘 발송은 마감되었습니다. 지금 주문하면 내일 준비되는 물건으로 가장 먼저 발송됩니다.';
+  }
+  $('live-why').innerHTML = why;
+  $('live-note').textContent = note;
 
   const names = new Set(tops.map((t) => t.m.name));
   const picks = pool().filter((p) => names.has(p.market)).slice(0, 5);
@@ -205,7 +226,11 @@ function renderMarkets() {
     };
     strip.appendChild(b);
   }
-  $('footer-markets').innerHTML = state.data.markets.map((m) => `<li>${m.name}</li>`).join('');
+  $('footer-markets').innerHTML = state.data.markets
+    .map((m) => `<li><a href="#shop" data-fm="${m.name}">${m.name}</a></li>`).join('');
+  document.querySelectorAll('[data-fm]').forEach((a) => a.onclick = () => {
+    state.market = a.dataset.fm; state.category = '전체'; render();
+  });
 }
 
 function renderCats() {
@@ -289,6 +314,42 @@ function tick() {
   $('countdown').textContent = `${hh}:${mm}:${ss}`;
 }
 
+/* ---------------- 토스트·모달 ---------------- */
+let toastTimer;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.hidden = false;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.classList.remove('show'); t.hidden = true; }, 2600);
+}
+
+function openModal(id) {
+  $('modal-scrim').hidden = false;
+  document.querySelectorAll('.modal').forEach((m) => m.hidden = true);
+  $(id).hidden = false;
+}
+function closeModals() {
+  $('modal-scrim').hidden = true;
+  document.querySelectorAll('.modal').forEach((m) => m.hidden = true);
+}
+
+function renderOrders() {
+  const orders = JSON.parse(localStorage.getItem('cl-orders') || '[]');
+  const box = $('orders-list');
+  if (!orders.length) {
+    box.innerHTML = '<p class="modal-note">주문 내역이 없습니다.</p>';
+    return;
+  }
+  box.innerHTML = orders.slice().reverse().map((o) => `
+    <div class="order-row">
+      <div><b>${o.id}</b> <span class="order-status">${o.channel === 'b2b' ? '견적 확인중' : '발송 준비중'}</span></div>
+      <div class="order-items">${o.items.map((i) => `${i.name} ×${i.qty}`).join(', ')}</div>
+      <div class="order-total">${won(o.total)} · ${o.date}</div>
+    </div>`).join('');
+}
+
 /* ---------------- 장바구니 ---------------- */
 function addToCart(p) {
   const line = state.cart[p.id] || { ...p, qty: 0 };
@@ -296,7 +357,7 @@ function addToCart(p) {
   state.cart[p.id] = line;
   localStorage.setItem('cl-cart', JSON.stringify(state.cart));
   renderCart();
-  openDrawer(true);
+  toast(`${p.name} — ${state.channel === 'b2b' ? '견적 목록' : '장바구니'}에 담았습니다`);
 }
 function setQty(id, d) {
   const l = state.cart[id];
@@ -354,13 +415,67 @@ function bind() {
   $('cart-close').onclick = () => openDrawer(false);
   $('scrim').onclick = () => openDrawer(false);
   $('checkout').onclick = () => {
-    if (!Object.keys(state.cart).length) return;
-    alert(state.channel === 'b2b'
-      ? '견적 요청이 접수되었습니다. 담당자가 확인 후 연락드립니다.'
-      : '주문이 접수되었습니다. 시장에서 직접 발송됩니다.');
+    const lines = Object.values(state.cart);
+    if (!lines.length) { toast('담긴 상품이 없습니다'); return; }
+    const orders = JSON.parse(localStorage.getItem('cl-orders') || '[]');
+    const id = 'CL' + String(Date.now()).slice(-8);
+    orders.push({ id, channel: state.channel,
+      items: lines.map((l) => ({ name: l.name, qty: l.qty })),
+      total: lines.reduce((s, l) => s + l.price * l.qty, 0),
+      date: new Date().toLocaleDateString('ko-KR') });
+    localStorage.setItem('cl-orders', JSON.stringify(orders));
+    state.cart = {};
+    localStorage.setItem('cl-cart', '{}');
+    renderCart();
+    openDrawer(false);
+    toast(state.channel === 'b2b'
+      ? `견적 ${id} 접수 — 담당자가 확인 후 연락드립니다`
+      : `주문 ${id} 접수 — 시장에서 직접 발송됩니다`);
   };
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { openDrawer(false); $('allcat-panel').hidden = true; } });
-  document.querySelectorAll('[data-noop]').forEach((a) => a.onclick = (e) => e.preventDefault());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { openDrawer(false); $('allcat-panel').hidden = true; closeModals(); } });
+  // 로그인·주문·고객센터
+  const user = localStorage.getItem('cl-user');
+  if (user) $('nav-login').textContent = user + '님';
+  $('nav-login').onclick = (e) => {
+    e.preventDefault();
+    if (localStorage.getItem('cl-user')) {
+      localStorage.removeItem('cl-user');
+      $('nav-login').textContent = '로그인';
+      toast('로그아웃되었습니다');
+    } else openModal('modal-login');
+  };
+  $('login-submit').onclick = () => {
+    const email = $('login-email').value.trim() || 'guest@cl.market';
+    const name = email.split('@')[0];
+    localStorage.setItem('cl-user', name);
+    $('nav-login').textContent = name + '님';
+    closeModals();
+    toast(`${name}님, 어서 오세요`);
+  };
+  $('nav-orders').onclick = (e) => { e.preventDefault(); renderOrders(); openModal('modal-orders'); };
+  $('nav-support').onclick = (e) => { e.preventDefault(); openModal('modal-support'); };
+  $('support-submit').onclick = () => {
+    if (!$('support-msg').value.trim()) { toast('문의 내용을 입력해주세요'); return; }
+    $('support-msg').value = '';
+    closeModals();
+    toast('문의가 접수되었습니다 — 영업일 기준 1일 내 답변드립니다');
+  };
+  $('modal-scrim').onclick = closeModals;
+
+  // 배너 → 실제 필터 동작
+  document.querySelectorAll('[data-banner]').forEach((b) => b.onclick = () => {
+    const kind = b.dataset.banner;
+    if (kind === 'b2b') {
+      state.channel = 'b2b'; state.category = '전체';
+      localStorage.setItem('cl-channel', 'b2b');
+    } else if (kind === 'gift') {
+      state.channel = 'b2c'; state.category = '선물세트'; state.market = '전체';
+    } else {
+      state.channel = 'b2c'; state.category = '제철 과일'; state.market = '전체';
+    }
+    render();
+    $('shop').scrollIntoView({ behavior: 'smooth' });
+  });
   setInterval(tick, 1000); tick();
 }
 

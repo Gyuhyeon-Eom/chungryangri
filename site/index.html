@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>청량리마켓 — 청량리 9개 전통시장 온라인 장보기</title>
 <meta name="description" content="청량리 9개 전통시장의 상품을 시장에서 직접 발송합니다. 도매·소매 모두 가능.">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -14,9 +14,9 @@
   <div class="wrap">
     <span class="util-slogan">청량리 9개 시장, 시장에서 바로 발송</span>
     <nav class="util-links">
-      <a href="#" data-noop>로그인</a>
-      <a href="#" data-noop>주문/배송</a>
-      <a href="#" data-noop>고객센터</a>
+      <a href="#" id="nav-login">로그인</a>
+      <a href="#" id="nav-orders">주문/배송</a>
+      <a href="#" id="nav-support">고객센터</a>
     </nav>
   </div>
 </div>
@@ -60,25 +60,25 @@
 
   <!-- 배너 -->
   <section class="wrap banners">
-    <div class="banner banner-a">
+    <button type="button" class="banner banner-a" data-banner="fresh">
       <div>
         <em>청량리 장날 특가</em>
         <strong>제철 과일·수산물<br>시장 직송</strong>
         <span>9개 시장 상인이 직접 포장해서 보냅니다</span>
       </div>
       <div class="banner-art">🍎🐟🌰</div>
-    </div>
+    </button>
     <div class="banner-side">
-      <div class="banner banner-b">
+      <button type="button" class="banner banner-b" data-banner="b2b">
         <em>도매 견적</em>
         <strong>식당·업소 사장님</strong>
         <span>박스·kg 단위 · 약령시 한약재</span>
-      </div>
-      <div class="banner banner-c">
+      </button>
+      <button type="button" class="banner banner-c" data-banner="gift">
         <em>선물세트</em>
         <strong>견과·참기름·홍삼</strong>
         <span>청량리종합시장 명절 준비</span>
-      </div>
+      </button>
     </div>
   </section>
 
@@ -86,11 +86,11 @@
   <section class="live-band">
     <div class="wrap section" style="padding-top:28px">
       <div class="section-head">
-        <h2>🔥 지금 장 서는 시장</h2>
+        <h2>🚚 오늘 발송 마감 임박</h2>
         <span class="live-why" id="live-why"></span>
       </div>
       <div class="grid grid-deal" id="live-grid"></div>
-      <p class="data-note">청량리 9개 시장의 2021~2025년 시간대별 매출 데이터 기준, 현재 시각에 거래가 가장 활발한 시장의 상품입니다.</p>
+      <p class="data-note" id="live-note">시장별 거래 피크(2021~2025 매출 데이터)가 끝나기 전에 주문하면 당일 준비된 물건으로 발송됩니다.</p>
     </div>
   </section>
 
@@ -168,6 +168,32 @@
   </footer>
 </aside>
 
-<script src="app.js?v=4"></script>
+<div class="modal-scrim" id="modal-scrim" hidden></div>
+
+<div class="modal" id="modal-login" hidden>
+  <h3>로그인</h3>
+  <label>이메일<input type="email" id="login-email" placeholder="you@example.com"></label>
+  <label>비밀번호<input type="password" id="login-pw" placeholder="••••••••"></label>
+  <button class="buy-btn" id="login-submit" type="button">로그인</button>
+  <p class="modal-note">데모 환경입니다 — 아무 값이나 입력해도 로그인됩니다.</p>
+</div>
+
+<div class="modal" id="modal-orders" hidden>
+  <h3>주문/배송 조회</h3>
+  <div id="orders-list"></div>
+</div>
+
+<div class="modal" id="modal-support" hidden>
+  <h3>고객센터</h3>
+  <label>문의 유형
+    <select id="support-type"><option>배송 문의</option><option>도매 견적</option><option>입점 문의</option><option>기타</option></select>
+  </label>
+  <label>내용<textarea id="support-msg" rows="4" placeholder="문의 내용을 적어주세요"></textarea></label>
+  <button class="buy-btn" id="support-submit" type="button">접수하기</button>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="app.js?v=5"></script>
 </body>
 </html>
