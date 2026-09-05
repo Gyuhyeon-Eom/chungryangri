@@ -274,7 +274,7 @@ function bind() {
   setInterval(tick, 1000); tick();
 }
 
-fetch('data.json')
+fetch('data.json?v=2')
   .then((r) => r.json())
   .then((data) => {
     state.data = data;
