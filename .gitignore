@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
+
+# 데이터는 화이트리스트 방식 — processed/geo 만 커밋한다.
+# 원본(raw·interim·수동 다운로드 폴더)은 용량이 커서 전부 제외.
+data/*
+!data/processed/
+!data/geo/
+!data/raw/
+data/raw/*
+!data/raw/.gitkeep
+!data/interim/
+data/interim/*
+!data/interim/.gitkeep
+
+# 렌더링 산출물
+output/*.jpg
+output/deck.pdf
+output/~$*
+site/.DS_Store
+.DS_Store
+logs_*.txt

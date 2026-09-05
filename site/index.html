@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>청량리 마켓 — 9개 전통시장 도매·소매 통합 플랫폼</title>
+<meta name="description" content="청량리 9개 전통시장의 거래 데이터를 분석해 시장별 성격에 맞게 도매와 소매를 나눈 커머스 플랫폼.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">청량리<span>마켓</span></a>
+    <div class="nav-links">
+      <a href="#markets">시장</a>
+      <a href="#shop">상품</a>
+      <a href="#how">거래 방식</a>
+    </div>
+    <div class="nav-right">
+      <div class="channel" role="group" aria-label="거래 방식 선택">
+        <button type="button" data-channel="b2c" aria-pressed="true">소매</button>
+        <button type="button" data-channel="b2b" aria-pressed="false">도매</button>
+      </div>
+      <button class="btn btn--ghost btn--sm cart-btn" id="cart-open" type="button">
+        장바구니<span class="cart-count" id="cart-count" hidden>0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <p class="eyebrow">청량리 전통시장 클러스터</p>
+  <h1 id="hero-title">시장마다 파는 방식이 다릅니다</h1>
+  <p class="lede" id="hero-lede">
+    청량리 9개 시장의 5년치 거래 데이터를 분석해 도매 중심 시장과 소매 중심 시장을 나눴습니다.
+    도매로 사실지 소매로 사실지 고르면, 그에 맞는 시장과 단위만 보입니다.
+  </p>
+  <div class="hero-actions">
+    <a class="btn btn--primary" href="#shop">상품 보기</a>
+    <a class="btn btn--ghost" href="#markets">시장별 특징</a>
+  </div>
+  <div class="hero-stats">
+    <div><b id="s-markets">9</b><span>개 전통시장</span></div>
+    <div><b id="s-stores">2,588</b><span>개 점포</span></div>
+    <div><b id="s-merchants">6,766</b><span>명 상인</span></div>
+    <div><b id="s-products">86</b><span>개 취급 품목</span></div>
+  </div>
+</header>
+
+<section class="wrap" style="padding-bottom:96px">
+  <div class="signature signature--jujube">
+    <div class="sig-grid">
+      <div>
+        <p class="eyebrow" style="color:rgba(255,255,255,.72)">왜 나눠서 파는가</p>
+        <h2>같은 청량리라도<br>도매와 소매는 다른 시장입니다</h2>
+        <p>
+          서울약령시장은 주말 매출 비중이 19.3%로 사실상 주 6일 도매 상권입니다.
+          반면 청량리청과물시장은 32.3%로 주말에 더 팔립니다.
+          한 화면에 섞어 놓으면 양쪽 모두 불편해집니다.
+        </p>
+      </div>
+      <div class="sig-points">
+        <div class="sig-point"><b>19.3%</b><span>서울약령시장 주말 매출 비중<br>평일 도매 중심</span></div>
+        <div class="sig-point"><b>33.6%</b><span>동서시장 주말 매출 비중<br>주말 소매 중심</span></div>
+        <div class="sig-point"><b>4개</b><span>거래 패턴으로 도출한 시장 유형</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--soft" id="markets">
+  <div class="wrap">
+    <p class="eyebrow">시장별 특징</p>
+    <h2>9개 시장, 네 가지 성격</h2>
+    <p class="lede">
+      시간대·요일·연령대 매출 구성으로 군집화한 결과입니다. 표시된 수치는 2025년 기준입니다.
+    </p>
+    <div class="market-grid" id="market-grid"></div>
+  </div>
+</section>
+
+<section class="band" id="shop">
+  <div class="wrap">
+    <p class="eyebrow">상품</p>
+    <h2 id="shop-title">소매로 구매하기</h2>
+    <p class="lede" id="shop-lede">낱개·소포장 단위로 구성했습니다. 시장에서 직접 발송합니다.</p>
+
+    <div class="toolbar" id="filters"></div>
+    <div class="products" id="products"></div>
+    <p class="empty" id="empty" hidden>해당 조건에 맞는 상품이 없습니다.</p>
+  </div>
+</section>
+
+<section class="wrap" style="padding-bottom:96px" id="how">
+  <div class="signature signature--cream">
+    <div class="sig-grid">
+      <div>
+        <p class="eyebrow">거래 방식</p>
+        <h2>도매는 상담 후 견적,<br>소매는 바로 결제</h2>
+        <p>
+          도매는 수량과 납기에 따라 단가가 달라져 담당자가 확인 후 견적을 보냅니다.
+          소매는 장바구니에서 바로 주문할 수 있습니다.
+        </p>
+      </div>
+      <div class="sig-points">
+        <div class="sig-point"><b>1</b><span>품목과 수량을 담는다</span></div>
+        <div class="sig-point"><b>2</b><span>도매는 견적 요청, 소매는 결제</span></div>
+        <div class="sig-point"><b>3</b><span>시장 상인이 직접 포장·발송</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px">청량리<span>마켓</span></div>
+        <p style="font-size:13px;color:var(--muted);max-width:44ch">
+          청량리 9개 전통시장의 도매·소매 통합 플랫폼.
+          시장별 거래 데이터 분석을 기반으로 구성했습니다.
+        </p>
+      </div>
+      <div>
+        <h4>시장</h4>
+        <ul id="footer-markets"></ul>
+      </div>
+      <div>
+        <h4>안내</h4>
+        <ul>
+          <li>도매 견적 문의</li>
+          <li>배송·반품 정책</li>
+          <li>입점 문의</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">
+      서울 동대문구 제기동·청량리동·용신동 일대 · 데이터 기준 2026년 8월 ·
+      시장 특성 수치는 서울시 상권분석서비스 2021~2025년 자료 분석 결과입니다.
+    </p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="장바구니">
+  <header>
+    <h3 id="drawer-title">장바구니</h3>
+    <button class="btn btn--ghost btn--sm" id="cart-close" type="button">닫기</button>
+  </header>
+  <div class="items" id="cart-items"></div>
+  <footer>
+    <div class="total"><span>합계</span><span id="cart-total">0원</span></div>
+    <button class="btn btn--primary" id="checkout" type="button" style="width:100%">주문하기</button>
+  </footer>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>

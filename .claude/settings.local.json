@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//private/tmp/dx/**)",
+      "Bash(rm -rf *)",
+      "Bash(unzip -qo /Users/eomgyuhyeon/projects/chungryangri/output/청량리_전통시장_상권분석_보고서.docx)",
+      "Bash(uv run *)"
+    ]
+  }
+}

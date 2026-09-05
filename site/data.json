@@ -1,0 +1,1223 @@
+{
+  "updated": "2026-08",
+  "summary": {
+    "markets": 9,
+    "stores": 2588,
+    "merchants": 6766,
+    "seoulRank": "서울 전통시장 283개 중 8개 시장이 상위 20% 이내"
+  },
+  "categories": [
+    "한약재",
+    "건강식품",
+    "잡화",
+    "청과",
+    "건어물",
+    "미용재료",
+    "정육",
+    "채소",
+    "먹거리",
+    "인삼·홍삼",
+    "건약초",
+    "청과 도매",
+    "농산물",
+    "수산물",
+    "활어",
+    "선어",
+    "패류",
+    "통닭",
+    "족발",
+    "회",
+    "분식",
+    "밤·견과류",
+    "곡류·참기름",
+    "선물세트",
+    "반찬",
+    "제철 과일"
+  ],
+  "markets": [
+    {
+      "name": "경동광성상가",
+      "kind": "혼합 대형",
+      "channels": [
+        "b2b",
+        "b2c"
+      ],
+      "goods": [
+        "한약재",
+        "건강식품",
+        "잡화"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 28.9,
+      "seniorShare": 71.9,
+      "youthShare": 4.6,
+      "ticket": 38563,
+      "growth": 45.8,
+      "timeProfile": {
+        "00~06": 2.5,
+        "06~11": 28.1,
+        "11~14": 29.8,
+        "14~17": 34.4,
+        "17~21": 5.3,
+        "21~24": 0.0
+      },
+      "dowProfile": {
+        "월요일": 13.6,
+        "화요일": 14.0,
+        "수요일": 13.4,
+        "목요일": 14.1,
+        "금요일": 16.0,
+        "토요일": 18.1,
+        "일요일": 10.8
+      }
+    },
+    {
+      "name": "경동시장",
+      "kind": "혼합 대형",
+      "channels": [
+        "b2b",
+        "b2c"
+      ],
+      "goods": [
+        "청과",
+        "건어물",
+        "미용재료",
+        "정육"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 30.2,
+      "seniorShare": 72.7,
+      "youthShare": 3.7,
+      "ticket": 27932,
+      "growth": 44.3,
+      "timeProfile": {
+        "00~06": 1.1,
+        "06~11": 24.6,
+        "11~14": 35.1,
+        "14~17": 32.6,
+        "17~21": 6.3,
+        "21~24": 0.2
+      },
+      "dowProfile": {
+        "월요일": 13.8,
+        "화요일": 13.4,
+        "수요일": 14.1,
+        "목요일": 13.7,
+        "금요일": 14.8,
+        "토요일": 18.8,
+        "일요일": 11.4
+      }
+    },
+    {
+      "name": "동서시장",
+      "kind": "주말 소매형",
+      "channels": [
+        "b2c"
+      ],
+      "goods": [
+        "청과",
+        "채소",
+        "먹거리"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 33.6,
+      "seniorShare": 49.3,
+      "youthShare": 10.7,
+      "ticket": 23091,
+      "growth": 142.5,
+      "timeProfile": {
+        "00~06": 1.6,
+        "06~11": 19.5,
+        "11~14": 31.5,
+        "14~17": 32.8,
+        "17~21": 14.6,
+        "21~24": 0.1
+      },
+      "dowProfile": {
+        "월요일": 12.2,
+        "화요일": 14.2,
+        "수요일": 12.2,
+        "목요일": 13.4,
+        "금요일": 14.3,
+        "토요일": 19.0,
+        "일요일": 14.6
+      }
+    },
+    {
+      "name": "서울약령시장",
+      "kind": "평일 도매형",
+      "channels": [
+        "b2b"
+      ],
+      "goods": [
+        "한약재",
+        "인삼·홍삼",
+        "건약초",
+        "청과 도매"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 19.3,
+      "seniorShare": 57.1,
+      "youthShare": 14.0,
+      "ticket": 74325,
+      "growth": -11.6,
+      "timeProfile": {
+        "00~06": 0.8,
+        "06~11": 13.8,
+        "11~14": 34.5,
+        "14~17": 37.5,
+        "17~21": 12.2,
+        "21~24": 1.1
+      },
+      "dowProfile": {
+        "월요일": 18.5,
+        "화요일": 17.1,
+        "수요일": 14.6,
+        "목요일": 15.2,
+        "금요일": 15.3,
+        "토요일": 13.8,
+        "일요일": 5.4
+      }
+    },
+    {
+      "name": "청량리농수산물시장",
+      "kind": "근린 생필품형",
+      "channels": [
+        "b2c"
+      ],
+      "goods": [
+        "농산물",
+        "수산물",
+        "건어물"
+      ],
+      "peak": "06~11 · 11~14",
+      "weekendShare": 23.6,
+      "seniorShare": 58.4,
+      "youthShare": 5.3,
+      "ticket": 34721,
+      "growth": 100.9,
+      "timeProfile": {
+        "00~06": 2.9,
+        "06~11": 32.9,
+        "11~14": 30.5,
+        "14~17": 29.5,
+        "17~21": 4.1,
+        "21~24": 0.0
+      },
+      "dowProfile": {
+        "월요일": 15.3,
+        "화요일": 13.6,
+        "수요일": 14.9,
+        "목요일": 16.1,
+        "금요일": 16.5,
+        "토요일": 15.9,
+        "일요일": 7.7
+      }
+    },
+    {
+      "name": "청량리수산시장",
+      "kind": "근린 생필품형",
+      "channels": [
+        "b2c"
+      ],
+      "goods": [
+        "활어",
+        "선어",
+        "패류"
+      ],
+      "peak": "06~11 · 11~14",
+      "weekendShare": 25.5,
+      "seniorShare": 69.1,
+      "youthShare": 6.1,
+      "ticket": 39884,
+      "growth": 194.5,
+      "timeProfile": {
+        "00~06": 9.0,
+        "06~11": 34.6,
+        "11~14": 26.4,
+        "14~17": 24.5,
+        "17~21": 5.5,
+        "21~24": 0.0
+      },
+      "dowProfile": {
+        "월요일": 13.8,
+        "화요일": 15.9,
+        "수요일": 14.4,
+        "목요일": 14.6,
+        "금요일": 15.7,
+        "토요일": 18.5,
+        "일요일": 7.0
+      }
+    },
+    {
+      "name": "청량리전통시장",
+      "kind": "주말 소매형",
+      "channels": [
+        "b2c"
+      ],
+      "goods": [
+        "통닭",
+        "족발",
+        "회",
+        "분식"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 26.1,
+      "seniorShare": 47.7,
+      "youthShare": 12.6,
+      "ticket": 25140,
+      "growth": 77.1,
+      "timeProfile": {
+        "00~06": 1.3,
+        "06~11": 18.4,
+        "11~14": 25.8,
+        "14~17": 26.5,
+        "17~21": 23.2,
+        "21~24": 4.8
+      },
+      "dowProfile": {
+        "월요일": 15.3,
+        "화요일": 13.7,
+        "수요일": 15.2,
+        "목요일": 14.0,
+        "금요일": 15.8,
+        "토요일": 16.8,
+        "일요일": 9.3
+      }
+    },
+    {
+      "name": "청량리종합시장",
+      "kind": "혼합 대형",
+      "channels": [
+        "b2b",
+        "b2c"
+      ],
+      "goods": [
+        "밤·견과류",
+        "곡류·참기름",
+        "선물세트",
+        "반찬"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 30.4,
+      "seniorShare": 64.6,
+      "youthShare": 5.3,
+      "ticket": 26064,
+      "growth": 47.6,
+      "timeProfile": {
+        "00~06": 2.0,
+        "06~11": 24.5,
+        "11~14": 33.5,
+        "14~17": 31.2,
+        "17~21": 8.5,
+        "21~24": 0.3
+      },
+      "dowProfile": {
+        "월요일": 13.6,
+        "화요일": 13.1,
+        "수요일": 12.7,
+        "목요일": 14.8,
+        "금요일": 15.5,
+        "토요일": 19.2,
+        "일요일": 11.3
+      }
+    },
+    {
+      "name": "청량리청과물시장",
+      "kind": "주말 소매형",
+      "channels": [
+        "b2c"
+      ],
+      "goods": [
+        "제철 과일",
+        "채소",
+        "청과 도매"
+      ],
+      "peak": "11~14 · 14~17",
+      "weekendShare": 32.3,
+      "seniorShare": 46.6,
+      "youthShare": 12.8,
+      "ticket": 21489,
+      "growth": 84.6,
+      "timeProfile": {
+        "00~06": 2.3,
+        "06~11": 21.5,
+        "11~14": 29.6,
+        "14~17": 29.9,
+        "17~21": 15.5,
+        "21~24": 1.2
+      },
+      "dowProfile": {
+        "월요일": 12.3,
+        "화요일": 13.5,
+        "수요일": 12.8,
+        "목요일": 13.9,
+        "금요일": 15.2,
+        "토요일": 19.6,
+        "일요일": 12.7
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "경동-황기-b2b",
+      "name": "황기",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 18000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-황기-b2c",
+      "name": "황기",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 7500,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-당귀-b2b",
+      "name": "당귀",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 24000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-당귀-b2c",
+      "name": "당귀",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 9800,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-감초-b2b",
+      "name": "감초",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 15000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-감초-b2c",
+      "name": "감초",
+      "category": "한약재",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 6500,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-도라지청-b2b",
+      "name": "도라지청",
+      "category": "건강식품",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "10병",
+      "price": 120000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-도라지청-b2c",
+      "name": "도라지청",
+      "category": "건강식품",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "1병",
+      "price": 15000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-배도라지즙-b2b",
+      "name": "배도라지즙",
+      "category": "건강식품",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "100포",
+      "price": 85000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-배도라지즙-b2c",
+      "name": "배도라지즙",
+      "category": "건강식품",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "30포",
+      "price": 32000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-주방 소도구-b2b",
+      "name": "주방 소도구",
+      "category": "잡화",
+      "market": "경동광성상가",
+      "channel": "b2b",
+      "unit": "50개",
+      "price": 65000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-주방 소도구-b2c",
+      "name": "주방 소도구",
+      "category": "잡화",
+      "market": "경동광성상가",
+      "channel": "b2c",
+      "unit": "1개",
+      "price": 2000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-토마토-b2b",
+      "name": "토마토",
+      "category": "청과",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "10kg",
+      "price": 36000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-토마토-b2c",
+      "name": "토마토",
+      "category": "청과",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 5900,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-딸기-b2b",
+      "name": "딸기",
+      "category": "청과",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "2kg",
+      "price": 28000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-딸기-b2c",
+      "name": "딸기",
+      "category": "청과",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 9500,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-멸치-b2b",
+      "name": "멸치",
+      "category": "건어물",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "3kg",
+      "price": 78000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-멸치-b2c",
+      "name": "멸치",
+      "category": "건어물",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 15900,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-다시마-b2b",
+      "name": "다시마",
+      "category": "건어물",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "3kg",
+      "price": 42000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-다시마-b2c",
+      "name": "다시마",
+      "category": "건어물",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 6900,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-미용 가위-b2b",
+      "name": "미용 가위",
+      "category": "미용재료",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "10개",
+      "price": 180000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-미용 가위-b2c",
+      "name": "미용 가위",
+      "category": "미용재료",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "1개",
+      "price": 24000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-펌 롯드-b2b",
+      "name": "펌 롯드",
+      "category": "미용재료",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "50세트",
+      "price": 95000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-펌 롯드-b2c",
+      "name": "펌 롯드",
+      "category": "미용재료",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "1세트",
+      "price": 2500,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-삼겹살-b2b",
+      "name": "삼겹살",
+      "category": "정육",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "10kg",
+      "price": 158000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-삼겹살-b2c",
+      "name": "삼겹살",
+      "category": "정육",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 12900,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-한우 등심-b2b",
+      "name": "한우 등심",
+      "category": "정육",
+      "market": "경동시장",
+      "channel": "b2b",
+      "unit": "5kg",
+      "price": 420000,
+      "origin": "국내산"
+    },
+    {
+      "id": "경동-한우 등심-b2c",
+      "name": "한우 등심",
+      "category": "정육",
+      "market": "경동시장",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 32000,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-토마토-b2c",
+      "name": "토마토",
+      "category": "청과",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 5900,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-딸기-b2c",
+      "name": "딸기",
+      "category": "청과",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 9500,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-대파-b2c",
+      "name": "대파",
+      "category": "채소",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "1단",
+      "price": 3500,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-양파-b2c",
+      "name": "양파",
+      "category": "채소",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "2kg",
+      "price": 4900,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-찹쌀도넛-b2c",
+      "name": "찹쌀도넛",
+      "category": "먹거리",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "5개",
+      "price": 5000,
+      "origin": "국내산"
+    },
+    {
+      "id": "동서-수제 만두-b2c",
+      "name": "수제 만두",
+      "category": "먹거리",
+      "market": "동서시장",
+      "channel": "b2c",
+      "unit": "10개",
+      "price": 7000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-황기-b2b",
+      "name": "황기",
+      "category": "한약재",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 18000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-당귀-b2b",
+      "name": "당귀",
+      "category": "한약재",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 24000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-감초-b2b",
+      "name": "감초",
+      "category": "한약재",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 15000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-6년근 수삼-b2b",
+      "name": "6년근 수삼",
+      "category": "인삼·홍삼",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1채(750g)",
+      "price": 62000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-홍삼 절편-b2b",
+      "name": "홍삼 절편",
+      "category": "인삼·홍삼",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "500g",
+      "price": 45000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-작약-b2b",
+      "name": "작약",
+      "category": "건약초",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 21000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-구기자-b2b",
+      "name": "구기자",
+      "category": "건약초",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "1kg",
+      "price": 26000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-사과(박스)-b2b",
+      "name": "사과(박스)",
+      "category": "청과 도매",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "15kg",
+      "price": 58000,
+      "origin": "국내산"
+    },
+    {
+      "id": "서울-배(박스)-b2b",
+      "name": "배(박스)",
+      "category": "청과 도매",
+      "market": "서울약령시장",
+      "channel": "b2b",
+      "unit": "15kg",
+      "price": 64000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-고구마-b2c",
+      "name": "고구마",
+      "category": "농산물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "2kg",
+      "price": 8500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-감자-b2c",
+      "name": "감자",
+      "category": "농산물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "2kg",
+      "price": 6500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-고등어-b2c",
+      "name": "고등어",
+      "category": "수산물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "2마리",
+      "price": 8900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-오징어-b2c",
+      "name": "오징어",
+      "category": "수산물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "2마리",
+      "price": 9500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-멸치-b2c",
+      "name": "멸치",
+      "category": "건어물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 15900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-다시마-b2c",
+      "name": "다시마",
+      "category": "건어물",
+      "market": "청량리농수산물시장",
+      "channel": "b2c",
+      "unit": "300g",
+      "price": 6900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-광어-b2c",
+      "name": "광어",
+      "category": "활어",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 42000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-우럭-b2c",
+      "name": "우럭",
+      "category": "활어",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 36000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-갈치-b2c",
+      "name": "갈치",
+      "category": "선어",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "1마리",
+      "price": 12000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-조기-b2c",
+      "name": "조기",
+      "category": "선어",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "3마리",
+      "price": 9800,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-바지락-b2c",
+      "name": "바지락",
+      "category": "패류",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 6500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-홍합-b2c",
+      "name": "홍합",
+      "category": "패류",
+      "market": "청량리수산시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 4500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-옛날 통닭-b2c",
+      "name": "옛날 통닭",
+      "category": "통닭",
+      "market": "청량리전통시장",
+      "channel": "b2c",
+      "unit": "1마리",
+      "price": 16000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-족발-b2c",
+      "name": "족발",
+      "category": "족발",
+      "market": "청량리전통시장",
+      "channel": "b2c",
+      "unit": "1인분",
+      "price": 19000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-모둠회-b2c",
+      "name": "모둠회",
+      "category": "회",
+      "market": "청량리전통시장",
+      "channel": "b2c",
+      "unit": "1인분",
+      "price": 35000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-떡볶이-b2c",
+      "name": "떡볶이",
+      "category": "분식",
+      "market": "청량리전통시장",
+      "channel": "b2c",
+      "unit": "1인분",
+      "price": 5500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-햇밤-b2b",
+      "name": "햇밤",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "10kg",
+      "price": 78000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-햇밤-b2c",
+      "name": "햇밤",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 9800,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-호두-b2b",
+      "name": "호두",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "5kg",
+      "price": 92000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-호두-b2c",
+      "name": "호두",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 11500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-대추-b2b",
+      "name": "대추",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "5kg",
+      "price": 68000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-대추-b2c",
+      "name": "대추",
+      "category": "밤·견과류",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 8900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-참기름-b2b",
+      "name": "참기름",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "1.8L",
+      "price": 42000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-참기름-b2c",
+      "name": "참기름",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "320ml",
+      "price": 12000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-들기름-b2b",
+      "name": "들기름",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "1.8L",
+      "price": 48000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-들기름-b2c",
+      "name": "들기름",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "320ml",
+      "price": 13500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-찹쌀-b2b",
+      "name": "찹쌀",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "20kg",
+      "price": 76000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-찹쌀-b2c",
+      "name": "찹쌀",
+      "category": "곡류·참기름",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "2kg",
+      "price": 9500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-견과 선물세트-b2b",
+      "name": "견과 선물세트",
+      "category": "선물세트",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "10세트",
+      "price": 280000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-견과 선물세트-b2c",
+      "name": "견과 선물세트",
+      "category": "선물세트",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "1세트",
+      "price": 35000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-참기름 선물세트-b2b",
+      "name": "참기름 선물세트",
+      "category": "선물세트",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "10세트",
+      "price": 320000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-참기름 선물세트-b2c",
+      "name": "참기름 선물세트",
+      "category": "선물세트",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "1세트",
+      "price": 39000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-김치-b2b",
+      "name": "김치",
+      "category": "반찬",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "10kg",
+      "price": 48000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-김치-b2c",
+      "name": "김치",
+      "category": "반찬",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "1kg",
+      "price": 8900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-장아찌-b2b",
+      "name": "장아찌",
+      "category": "반찬",
+      "market": "청량리종합시장",
+      "channel": "b2b",
+      "unit": "5kg",
+      "price": 38000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-장아찌-b2c",
+      "name": "장아찌",
+      "category": "반찬",
+      "market": "청량리종합시장",
+      "channel": "b2c",
+      "unit": "500g",
+      "price": 6500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-사과-b2c",
+      "name": "사과",
+      "category": "제철 과일",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "1.5kg",
+      "price": 9800,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-배-b2c",
+      "name": "배",
+      "category": "제철 과일",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "1.5kg",
+      "price": 11500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-감귤-b2c",
+      "name": "감귤",
+      "category": "제철 과일",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "1.5kg",
+      "price": 7900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-대파-b2c",
+      "name": "대파",
+      "category": "채소",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "1단",
+      "price": 3500,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-양파-b2c",
+      "name": "양파",
+      "category": "채소",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "2kg",
+      "price": 4900,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-사과(박스)-b2c",
+      "name": "사과(박스)",
+      "category": "청과 도매",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "15kg",
+      "price": 66000,
+      "origin": "국내산"
+    },
+    {
+      "id": "청량-배(박스)-b2c",
+      "name": "배(박스)",
+      "category": "청과 도매",
+      "market": "청량리청과물시장",
+      "channel": "b2c",
+      "unit": "15kg",
+      "price": 72000,
+      "origin": "국내산"
+    }
+  ]
+}

@@ -1,0 +1,1856 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>청량리 전통시장 클러스터 상권 분석 보고서</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 18mm 18mm; }
+  :root {
+    --ink: #000000; --muted: #666666; --accent: #2E5E8A;
+    --rule: #BFBFBF; --th-bg: #E7E6E6; --warn: #B03A3A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "KoPub돋움체 Medium", "Apple SD Gothic Neo", "AppleGothic", sans-serif;
+    font-size: 8.5pt; line-height: 1.65; color: var(--ink); margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc-title {
+    font-family: "KoPub돋움체 Bold", "Apple SD Gothic Neo", sans-serif;
+    font-size: 16pt; font-weight: 700; margin: 0 0 2mm; letter-spacing: -0.01em;
+  }
+  .doc-meta { font-size: 8pt; color: var(--muted); margin: 0 0 7mm; }
+  h1 {
+    font-size: 12pt; font-weight: 700; margin: 8mm 0 3mm;
+    padding-bottom: 1.5mm; border-bottom: 1.2px solid var(--ink);
+    page-break-after: avoid;
+  }
+  h1:first-of-type { margin-top: 6mm; }
+  h2 {
+    font-size: 11.5pt; font-weight: 700; color: var(--accent);
+    margin: 5.5mm 0 2.5mm; page-break-after: avoid;
+  }
+  p { margin: 0 0 2.2mm; text-align: justify; }
+  ul { margin: 0 0 2.5mm; padding-left: 5mm; }
+  li { margin-bottom: 0.8mm; }
+  .summary-list { margin: 0 0 3mm; padding-left: 0; list-style: none; }
+  .summary-list li { margin-bottom: 1.4mm; padding-left: 6mm; text-indent: -6mm; }
+  .caption { font-size: 8pt; color: var(--muted); margin: 3.5mm 0 1.2mm; page-break-after: avoid; }
+  .note { font-size: 8pt; color: var(--muted); margin: 1.5mm 0 0; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 8.5pt;
+    margin-bottom: 1mm; page-break-inside: avoid;
+  }
+  th, td { border: 0.5px solid var(--rule); padding: 1.3mm 2mm; vertical-align: middle; }
+  th { background: var(--th-bg); font-weight: 700; text-align: center; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.ctr { text-align: center; }
+  tr.total td { background: #F5F5F5; font-weight: 700; }
+  tr.hi td { background: #FCF2F2; }
+  .warn { color: var(--warn); font-weight: 700; }
+  .figure { margin: 1mm 0 2mm; page-break-inside: avoid; }
+  svg { display: block; }
+  .callout {
+    border-left: 2.5px solid var(--accent); background: #F4F7FA;
+    padding: 2.5mm 3mm; margin: 3mm 0; page-break-inside: avoid;
+  }
+  .callout.alert { border-left-color: var(--warn); background: #FCF4F4; }
+  .callout p:last-child { margin-bottom: 0; }
+  .two-col { display: flex; gap: 4mm; page-break-inside: avoid; }
+  .two-col > div { flex: 1; min-width: 0; }
+</style>
+</head>
+<body>
+
+<div class="doc-title">청량리 전통시장 클러스터 상권 분석 보고서</div>
+<div class="doc-meta">2026. 8. 31 &nbsp;·&nbsp; v0.1</div>
+
+<h2>핵심 요약</h2>
+<ul class="summary-list">
+  <li>1. 청량리 시장 클러스터 10개 시장을 대상으로 공실(2006~2023년)과 매출(2021~2025년) 시계열을 구축하고, 기능 유형별 활성화 전략의 차별화 필요성을 검토함.</li>
+  <li>2. 문헌 조사로는 클러스터가 4개 상권(한약재 도매·새벽 청과 도매·근린 소매·관광 F&amp;B)으로 나뉘는 것으로 보였으나, <strong>실제 거래 패턴으로 군집화한 결과 이 분류는 상당 부분 수정이 필요함</strong>. "청량리 = 한약재 도매 집적지"라는 통념은 <strong>서울약령시장 한 곳에만 해당</strong>하며(주말 매출 비중 19.3%, 단독 군집), 경동시장은 실제 업종 구성이 청과상 35.3%로 종합시장에 가까움.</li>
+  <li>3. <strong>소상공인시장진흥공단 연도별 공실 데이터는 정책 판단 근거로 사용하기 어려움이 확인됨.</strong> 최근 구간에서 전국 시장의 47.6%가 전년도와 완전히 동일한 값을 기록하며, 매년 약 20%의 시장에서 총점포수(분모)가 ±20% 이상 변동함. 상세는 Ⅷ장 참조.</li>
+  <li>4. 따라서 이 자료로 흔히 인용되는 <strong>경동시장의 "46.9% 고착"과 청량리전통시장의 "2022년 회복"은 실제 상권 변화로 해석할 수 없음.</strong> 전자는 3개 연도에 동일한 기록이 반복 수록된 것이고, 후자는 총점포수(분모)가 33개 줄어든 결과임.</li>
+  <li>5. 분모 오염이 없는 <strong>영업점포수</strong>로 보면 청량리전통시장은 2019년 70개에서 2023년 61개로 완만히 축소 중이며, 회복으로 볼 근거가 없음.</li>
+  <li>6. 별도 출처인 카드매출 기준으로는 <strong>서울약령시장만 매출 -12%로 유일하게 감소</strong>하고 점포도 -59개 순감소하여, 클러스터에서 유일하게 일관된 쇠퇴 신호를 보임.</li>
+  <li>7. 스타벅스 경동1960 개점(2022년 12월) 전후로 20~30대 매출 비중이 5.3%에서 3.7%로 <strong>오히려 감소</strong>함. 집객 성과가 상권 고객 구성의 변화로 전환되지 않았음.</li>
+  <li>8. 시간대별 매출로 기능축을 검증한 결과 D축(체류형)과 수산 도매는 확인되었으나, <strong>B축의 새벽 청과 도매 성격은 카드매출 기준으로 확인되지 않아 가설 수정이 필요함.</strong></li>
+  <li>9. 생활인구 108개월분 분석 결과, 2023년 대량 입주의 효과는 <strong>전농1동(+7.2%)·용신동에 귀착</strong>되었고, <strong>경동시장·서울약령시가 있는 제기동은 오히려 -2.9% 감소</strong>함. 2022년 대비 2025년으로 보면 격차는 전농1동 +15.5% 대 제기동 -7.8%로 확대됨.</li>
+  <li>10. 즉 재개발 유입 인구는 <strong>시장 도보권 밖에 자리잡았고 시장의 배후지는 계속 비어 왔음.</strong> 이는 서울약령시장의 매출 감소와 전 시장의 청년층 매출 비중 하락을 설명하는 구조적 원인으로 판단됨.</li>
+  <li>11. 더욱이 제기동에서 감소폭이 가장 큰 연령대는 <strong>60대 이상(-15.1%, 약 1,237명)</strong>임. 청량리 시장 매출의 46~72%를 차지하는 <strong>주 고객층이 도보권 배후지에서 가장 빠르게 이탈</strong>하고 있음.</li>
+  <li>12. 업종별로는 편의점·반찬가게·한식음식점 등 <strong>생활밀착형 소매가 성장</strong>하는 반면 <strong>한방 관련 업종은 일제히 부진</strong>(한의원 -26%, 의약품 1.3%)함. 서울약령시장의 부진은 개별 시장 문제가 아니라 한방 수요 자체의 축소가 원인임.</li>
+</ul>
+
+<p>기준 일자: 공실 2023년 (소상공인시장진흥공단) · 매출 2021~2025년 (서울시 상권분석서비스) · 생활인구 2017.01~2026.07 (서울시)</p>
+
+<div class="callout">
+  <p><strong>보고서 구성</strong> — Ⅱ~Ⅳ장은 기존 공표 통계로 클러스터 현황을 정리하고, Ⅴ~Ⅶ장은 카드매출·생활인구로 실태를 검증함. Ⅷ장은 널리 인용되는 공실 통계의 신뢰성을 별도로 다룸. <strong>Ⅲ장의 공실 수치보다 Ⅴ장의 매출 지표를 우선</strong>하여 읽을 것을 권함.</p>
+</div>
+
+<h1>Ⅰ. 분석 개요</h1>
+
+<div class="caption">[표 Ⅰ-1] 분석 조건</div>
+<table>
+  <tr><th style="width:22%">구분</th><th>내용</th></tr>
+  <tr><td class="ctr">공간 범위</td><td>서울 동대문구 청량리 시장 클러스터 (제기동·청량리동·용신동 일대)</td></tr>
+  <tr><td class="ctr">대상 시장</td><td>10개 시장 (공식 통계 등재 기준)</td></tr>
+  <tr><td class="ctr">분석 목적</td><td>상권 활성화 정책 수립을 위한 실태 진단</td></tr>
+</table>
+
+<div class="caption">[표 Ⅰ-2] 사용 자료</div>
+<table>
+  <tr><th style="width:26%">자료</th><th style="width:16%">출처</th><th style="width:18%">기간</th><th>용도</th></tr>
+  <tr><td>상권분석서비스 추정매출</td><td class="ctr">서울시</td><td class="ctr">2021~2025 분기</td><td>매출·시간대·요일·연령대 (Ⅴ·Ⅶ장)</td></tr>
+  <tr><td>상권분석서비스 점포</td><td class="ctr">서울시</td><td class="ctr">2021~2025 분기</td><td>업종 구성, 개·폐업 (Ⅴ·Ⅶ장)</td></tr>
+  <tr><td>생활인구 (집계구·시간대)</td><td class="ctr">서울시</td><td class="ctr">2017.01~2026.07</td><td>배후인구 변화 (Ⅵ장)</td></tr>
+  <tr><td>연도별 영업·빈점포 현황</td><td class="ctr">소진공</td><td class="ctr">2006~2023</td><td>공실 추이 (Ⅲ장) 및 신뢰성 검증 (Ⅷ장)</td></tr>
+  <tr><td>시장별 점포·종사자 통계</td><td class="ctr">소진공</td><td class="ctr">2023</td><td>시장 규모·상인 수 (Ⅱ장)</td></tr>
+  <tr><td>상가업소 정보</td><td class="ctr">소진공</td><td class="ctr">2026.06</td><td>점포 좌표·업종 (보조)</td></tr>
+</table>
+
+<ul>
+  <li>공실률은 빈점포 ÷ (영업점포 + 빈점포)로 산출하며, 노점은 점포가 아니므로 제외함</li>
+  <li>기능축 분류(Ⅱ장)는 문헌·언론 조사에 기반하며, Ⅶ장에서 실제 거래 패턴으로 재검증함</li>
+  <li>생활인구는 03~05시를 상주인구, 10~16시를 활동인구의 대리 지표로 사용함</li>
+  <li>매출은 카드결제 기반 추정치로, 현금·계좌 거래가 많은 도매 상권은 과소 반영될 수 있음</li>
+</ul>
+
+<h1>Ⅱ. 클러스터 구성</h1>
+
+<h2>1. 기능축 구분</h2>
+
+<p>청량리 일대는 통상 단일한 전통시장 밀집지로 인식되나, 고객과 거래형태를 기준으로 보면 서로 독립적으로 작동하는 4개 상권으로 구분됨. 동일한 공실률이라도 축에 따라 의미가 달라지므로, 활성화 정책은 축별로 분리 설계되어야 함.</p>
+
+<div class="caption">[표 Ⅱ-1] 기능축별 구성</div>
+<table>
+  <tr>
+    <th style="width:7%">축</th><th style="width:19%">유형</th><th style="width:35%">구성 시장</th>
+    <th style="width:9%">거래</th><th>특징</th>
+  </tr>
+  <tr>
+    <td class="ctr">A</td><td>전국 한약재 도매</td>
+    <td>서울약령시장, 경동시장, 경동광성상가, 청량종합도매시장</td>
+    <td class="ctr">B2B</td><td>전국 한약재 유통의 70% 이상 담당</td>
+  </tr>
+  <tr>
+    <td class="ctr">B</td><td>새벽 청과 도매</td>
+    <td>청량리청과물시장, 동서시장</td>
+    <td class="ctr">B2B</td><td>자정~정오 영업으로 일반 소매와 시간대 상이</td>
+  </tr>
+  <tr>
+    <td class="ctr">C</td><td>근린 생활 소매</td>
+    <td>청량리종합시장, 청량리농수산물시장, 청량리수산시장</td>
+    <td class="ctr">B2C</td><td>지역 주민 대상, 재개발 이주에 직접 영향</td>
+  </tr>
+  <tr>
+    <td class="ctr">D</td><td>관광·F&amp;B 체류형</td>
+    <td>청량리전통시장</td>
+    <td class="ctr">B2C</td><td>통닭골목 등 체류형 소비, 관광 수요 담당</td>
+  </tr>
+</table>
+<p class="note">※ 경동시장은 3층 청년몰·야시장·스타벅스를 통해 D축 기능을 일부 겸함.</p>
+
+<div class="caption">[그림 Ⅱ-1] 기능축별 점포 구성</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 130" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="기능축별 점포 구성">
+<rect x="8.0" y="22" width="435.9" height="26" rx="3" fill="#2E5E8A"/>
+<text x="226.9" y="38.0" text-anchor="middle" font-size="7.6" fill="#FFFFFF" font-weight="700">1,721</text>
+<rect x="445.9" y="22" width="50.4" height="26" rx="3" fill="#5B9BBF"/>
+<text x="472.1" y="38.0" text-anchor="middle" font-size="7.6" fill="#FFFFFF" font-weight="700">206</text>
+<rect x="498.3" y="22" width="94.9" height="26" rx="3" fill="#8FBF9F"/>
+<text x="546.7" y="38.0" text-anchor="middle" font-size="7.6" fill="#FFFFFF" font-weight="700">381</text>
+<rect x="595.2" y="22" width="14.8" height="26" rx="3" fill="#C98A5B"/>
+<rect x="8" y="61" width="9" height="9" rx="2" fill="#2E5E8A"/>
+<text x="21" y="68" font-size="7.4" fill="#000000">전국 한약재 도매 1,721개 (72.5%)</text>
+<rect x="159.60000000000002" y="61" width="9" height="9" rx="2" fill="#5B9BBF"/>
+<text x="172.60000000000002" y="68" font-size="7.4" fill="#000000">새벽 청과 도매 206개 (8.7%)</text>
+<rect x="289.6" y="61" width="9" height="9" rx="2" fill="#8FBF9F"/>
+<text x="302.6" y="68" font-size="7.4" fill="#000000">근린 생활 소매 381개 (16.0%)</text>
+<rect x="425.0" y="61" width="9" height="9" rx="2" fill="#C98A5B"/>
+<text x="438.0" y="68" font-size="7.4" fill="#000000">관광·F&amp;B 체류형 66개 (2.8%)</text>
+</svg></div>
+
+<h2>2. 시장 규모</h2>
+
+<div class="caption">[그림 Ⅱ-2] 시장별 점포 규모 (색상 = 기능축)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 222" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시장별 점포 규모">
+<line x1="120.0" y1="12" x2="120.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="210" text-anchor="middle" font-size="7" fill="#666666">0개</text>
+<line x1="213.9" y1="12" x2="213.9" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="213.9" y="210" text-anchor="middle" font-size="7" fill="#666666">200개</text>
+<line x1="307.8" y1="12" x2="307.8" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="307.8" y="210" text-anchor="middle" font-size="7" fill="#666666">400개</text>
+<line x1="401.8" y1="12" x2="401.8" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="401.8" y="210" text-anchor="middle" font-size="7" fill="#666666">600개</text>
+<line x1="495.7" y1="12" x2="495.7" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="495.7" y="210" text-anchor="middle" font-size="7" fill="#666666">800개</text>
+<line x1="589.6" y1="12" x2="589.6" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="589.6" y="210" text-anchor="middle" font-size="7" fill="#666666">1,000개</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120" y="12" width="446.6" height="13" rx="4" fill="#2E5E8A"/>
+<text x="571.6" y="22" font-size="7.6" fill="#000000">951개</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="120" y="32" width="320.3" height="13" rx="4" fill="#2E5E8A"/>
+<text x="445.3" y="42" font-size="7.6" fill="#000000">682개</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120" y="52" width="72.3" height="13" rx="4" fill="#5B9BBF"/>
+<text x="197.3" y="62" font-size="7.6" fill="#000000">154개</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="120" y="72" width="67.6" height="13" rx="4" fill="#8FBF9F"/>
+<text x="192.6" y="82" font-size="7.6" fill="#000000">144개</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120" y="92" width="57.8" height="13" rx="4" fill="#8FBF9F"/>
+<text x="182.8" y="102" font-size="7.6" fill="#000000">123개</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120" y="112" width="53.5" height="13" rx="4" fill="#8FBF9F"/>
+<text x="178.5" y="122" font-size="7.6" fill="#000000">114개</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120" y="132" width="41.3" height="13" rx="4" fill="#2E5E8A"/>
+<text x="166.3" y="142" font-size="7.6" fill="#000000">88개</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120" y="152" width="31.0" height="13" rx="4" fill="#C98A5B"/>
+<text x="156.0" y="162" font-size="7.6" fill="#000000">66개</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120" y="172" width="24.4" height="13" rx="4" fill="#5B9BBF"/>
+<text x="149.4" y="182" font-size="7.6" fill="#000000">52개</text>
+<line x1="120" y1="189" x2="589.6" y2="189" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<p>서울약령시장이 10개 시장 중 최대 규모이며, 경동시장과 합하면 A축(한약재 도매)이 클러스터 점포의 과반을 차지함. 청량리 상권의 물리적 실체는 소매시장이 아니라 <strong>전국 단위 한약재 도매 집적지</strong>임.</p>
+
+<div class="caption">[그림 Ⅱ-3] 점포당 상인 수</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 242" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="점포당 상인 수">
+<line x1="120.0" y1="12" x2="120.0" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="230" text-anchor="middle" font-size="7" fill="#666666">0명</text>
+<line x1="215.8" y1="12" x2="215.8" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="215.8" y="230" text-anchor="middle" font-size="7" fill="#666666">1명</text>
+<line x1="311.5" y1="12" x2="311.5" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="311.5" y="230" text-anchor="middle" font-size="7" fill="#666666">2명</text>
+<line x1="407.3" y1="12" x2="407.3" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="407.3" y="230" text-anchor="middle" font-size="7" fill="#666666">3명</text>
+<line x1="503.0" y1="12" x2="503.0" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="503.0" y="230" text-anchor="middle" font-size="7" fill="#666666">4명</text>
+<line x1="598.8" y1="12" x2="598.8" y2="209" stroke="#E3E3E3" stroke-width="1"/>
+<text x="598.8" y="230" text-anchor="middle" font-size="7" fill="#666666">5명</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120" y="12" width="434.6" height="13" rx="4" fill="#2E5E8A"/>
+<text x="559.6" y="22" font-size="7.6" fill="#000000">5명</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="120" y="32" width="283.5" height="13" rx="4" fill="#8FBF9F"/>
+<text x="408.5" y="42" font-size="7.6" fill="#000000">3명</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120" y="52" width="241.3" height="13" rx="4" fill="#2E5E8A"/>
+<text x="366.3" y="62" font-size="7.6" fill="#000000">3명</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120" y="72" width="231.5" height="13" rx="4" fill="#8FBF9F"/>
+<text x="356.5" y="82" font-size="7.6" fill="#000000">2명</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량종합도매시장</text>
+<rect x="120" y="92" width="154.3" height="13" rx="4" fill="#2E5E8A"/>
+<text x="279.3" y="102" font-size="7.6" fill="#000000">2명</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120" y="112" width="150.2" height="13" rx="4" fill="#5B9BBF"/>
+<text x="275.2" y="122" font-size="7.6" fill="#000000">2명</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120" y="132" width="147.3" height="13" rx="4" fill="#5B9BBF"/>
+<text x="272.3" y="142" font-size="7.6" fill="#000000">2명</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120" y="152" width="127.7" height="13" rx="4" fill="#8FBF9F"/>
+<text x="252.7" y="162" font-size="7.6" fill="#000000">1명</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120" y="172" width="102.3" height="13" rx="4" fill="#C98A5B"/>
+<text x="227.3" y="182" font-size="7.6" fill="#000000">1명</text>
+<text x="114" y="202" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="120" y="192" width="77.0" height="13" rx="4" fill="#2E5E8A"/>
+<text x="202.0" y="202" font-size="7.6" fill="#000000">1명</text>
+<line x1="120" y1="209" x2="598.8" y2="209" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<p>서울약령시장은 점포당 상인 수가 가장 높아 한 점포에 복수의 종사자가 근무하는 구조임. 반면 경동시장은 점포 수 대비 상인이 적어, 공실 점포가 다수 포함된 결과로 해석됨.</p>
+
+<h1>Ⅲ. 공실 현황 및 추이</h1>
+
+<div class="callout alert">
+  <p><strong>본 장의 수치는 신뢰성 한계가 확인되었음.</strong> 원자료에 동일 기록의 연도 간 반복과 분모(총점포수) 불안정이 존재하여, 개별 시장의 연도별 변화를 실제 상권 변동으로 해석할 수 없음. 검증 내용은 <strong>Ⅷ장</strong>에 정리하였으며, 상권 진단은 <strong>Ⅴ장의 매출 데이터</strong>를 우선해야 함. 본 장은 문제의 소재를 보이기 위해 원자료 그대로 수록함.</p>
+</div>
+
+<h2>1. 클러스터 전체 추이</h2>
+
+<div class="caption">[그림 Ⅲ-1] 클러스터 공실률 추이 (2006~2023)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 230" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="클러스터 전체 공실률 추이 2006~2023">
+<line x1="42" y1="184.0" x2="606" y2="184.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="186.6" text-anchor="end" font-size="7" fill="#666666">0%</text>
+<line x1="42" y1="128.0" x2="606" y2="128.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="130.6" text-anchor="end" font-size="7" fill="#666666">10%</text>
+<line x1="42" y1="72.0" x2="606" y2="72.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="74.6" text-anchor="end" font-size="7" fill="#666666">20%</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">30%</text>
+<text x="42.0" y="197" text-anchor="middle" font-size="6.8" fill="#666666">06</text>
+<text x="108.4" y="197" text-anchor="middle" font-size="6.8" fill="#666666">08</text>
+<text x="174.7" y="197" text-anchor="middle" font-size="6.8" fill="#666666">10</text>
+<text x="241.1" y="197" text-anchor="middle" font-size="6.8" fill="#666666">12</text>
+<text x="274.2" y="197" text-anchor="middle" font-size="6.8" fill="#666666">13</text>
+<text x="307.4" y="197" text-anchor="middle" font-size="6.8" fill="#666666">14</text>
+<text x="340.6" y="197" text-anchor="middle" font-size="6.8" fill="#666666">15</text>
+<text x="373.8" y="197" text-anchor="middle" font-size="6.8" fill="#666666">16</text>
+<text x="406.9" y="197" text-anchor="middle" font-size="6.8" fill="#666666">17</text>
+<text x="440.1" y="197" text-anchor="middle" font-size="6.8" fill="#666666">18</text>
+<text x="473.3" y="197" text-anchor="middle" font-size="6.8" fill="#666666">19</text>
+<text x="506.5" y="197" text-anchor="middle" font-size="6.8" fill="#666666">20</text>
+<text x="539.6" y="197" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="572.8" y="197" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="606.0" y="197" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<line x1="42" y1="184.0" x2="606" y2="184.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,166.3 L108.4,149.0 L174.7,152.8 L241.1,124.4 L274.2,35.4 L307.4,166.6 L340.6,108.4 L373.8,118.0 L406.9,172.2 L440.1,160.3 L473.3,161.4 L506.5,97.9 L539.6,104.0 L572.8,106.4 L606.0,105.0" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="166.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="108.4" cy="149.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="174.7" cy="152.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="241.1" cy="124.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="274.2" cy="35.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="307.4" cy="166.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="340.6" cy="108.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="373.8" cy="118.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="406.9" cy="172.2" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="440.1" cy="160.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="473.3" cy="161.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="506.5" cy="97.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="539.6" cy="104.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="572.8" cy="106.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="105.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+</svg></div>
+
+<p>2017~2019년 2~4% 수준에서 안정되어 있던 공실률이 2020년을 기점으로 급등하여 이후 14% 내외에서 고착됨. 2013년과 2015~2016년의 높은 수치는 조사 대상 시장 구성이 연도마다 달라 발생한 변동으로 보이며, 해석에 주의가 필요함.</p>
+
+<h2>2. 시장별 현황</h2>
+
+<div class="caption">[표 Ⅲ-1] 2023년 시장별 공실 현황</div>
+<table>
+  <tr>
+    <th style="width:30%">시장명</th><th style="width:10%">축</th>
+    <th style="width:20%">전체점포</th><th style="width:18%">빈점포</th><th>공실률</th>
+  </tr>
+  <tr class="hi"><td>경동시장</td><td class='ctr'>A</td><td class='num'>682</td><td class='num'>320</td><td class="num warn">46.9%</td></tr>
+<tr class="hi"><td>청량리전통시장</td><td class='ctr'>D</td><td class='num'>66</td><td class='num'>5</td><td class="num warn">7.6%</td></tr>
+<tr><td>청량리농수산물시장</td><td class='ctr'>C</td><td class='num'>123</td><td class='num'>5</td><td class="num">4.1%</td></tr>
+<tr><td>동서시장</td><td class='ctr'>B</td><td class='num'>52</td><td class='num'>2</td><td class="num">3.8%</td></tr>
+<tr><td>경동광성상가</td><td class='ctr'>A</td><td class='num'>88</td><td class='num'>3</td><td class="num">3.4%</td></tr>
+<tr><td>서울약령시장</td><td class='ctr'>A</td><td class='num'>951</td><td class='num'>0</td><td class="num">0.0%</td></tr>
+<tr><td>청량리수산시장</td><td class='ctr'>C</td><td class='num'>114</td><td class='num'>0</td><td class="num">0.0%</td></tr>
+<tr><td>청량리종합시장</td><td class='ctr'>C</td><td class='num'>144</td><td class='num'>0</td><td class="num">0.0%</td></tr>
+<tr><td>청량리청과물시장</td><td class='ctr'>B</td><td class='num'>154</td><td class='num'>0</td><td class="num">0.0%</td></tr>
+  <tr class="total"><td>합계</td><td class="ctr">—</td><td class="num">2,374</td><td class="num">335</td><td class="num">14.1%</td></tr>
+</table>
+
+<div class="caption">[그림 Ⅲ-2] 2023년 시장별 공실률</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 222" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2023년 시장별 공실률">
+<line x1="120.0" y1="12" x2="120.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="210" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+<line x1="213.0" y1="12" x2="213.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="213.0" y="210" text-anchor="middle" font-size="7" fill="#666666">10%</text>
+<line x1="306.0" y1="12" x2="306.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="306.0" y="210" text-anchor="middle" font-size="7" fill="#666666">20%</text>
+<line x1="399.0" y1="12" x2="399.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="399.0" y="210" text-anchor="middle" font-size="7" fill="#666666">30%</text>
+<line x1="492.0" y1="12" x2="492.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="492.0" y="210" text-anchor="middle" font-size="7" fill="#666666">40%</text>
+<line x1="585.0" y1="12" x2="585.0" y2="189" stroke="#E3E3E3" stroke-width="1"/>
+<text x="585.0" y="210" text-anchor="middle" font-size="7" fill="#666666">50%</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="120" y="12" width="436.2" height="13" rx="4" fill="#2E5E8A"/>
+<text x="561.2" y="22" font-size="7.6" fill="#000000">46.9%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120" y="32" width="70.7" height="13" rx="4" fill="#A8C0D4"/>
+<text x="195.7" y="42" font-size="7.6" fill="#000000">7.6%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120" y="52" width="38.1" height="13" rx="4" fill="#A8C0D4"/>
+<text x="163.1" y="62" font-size="7.6" fill="#000000">4.1%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120" y="72" width="35.3" height="13" rx="4" fill="#A8C0D4"/>
+<text x="160.3" y="82" font-size="7.6" fill="#000000">3.8%</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120" y="92" width="31.6" height="13" rx="4" fill="#A8C0D4"/>
+<text x="156.6" y="102" font-size="7.6" fill="#000000">3.4%</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120" y="112" width="1.2" height="13" rx="0" fill="#A8C0D4"/>
+<text x="126.2" y="122" font-size="7.6" fill="#000000">0.0%</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120" y="132" width="1.2" height="13" rx="0" fill="#A8C0D4"/>
+<text x="126.2" y="142" font-size="7.6" fill="#000000">0.0%</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="120" y="152" width="1.2" height="13" rx="0" fill="#A8C0D4"/>
+<text x="126.2" y="162" font-size="7.6" fill="#000000">0.0%</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120" y="172" width="1.2" height="13" rx="0" fill="#A8C0D4"/>
+<text x="126.2" y="182" font-size="7.6" fill="#000000">0.0%</text>
+<line x1="120" y1="189" x2="585.0" y2="189" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<div class="caption">[그림 Ⅲ-3] 공실 집중도</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 118" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="공실 집중도">
+<rect x="8.0" y="22" width="575.0" height="26" rx="3" fill="#B03A3A"/>
+<text x="296.5" y="38.0" text-anchor="middle" font-size="7.6" fill="#FFFFFF" font-weight="700">320</text>
+<rect x="585.0" y="22" width="7.0" height="26" rx="3" fill="#D98B8B"/>
+<rect x="594.0" y="22" width="16.0" height="26" rx="3" fill="#A8C0D4"/>
+<rect x="8" y="61" width="9" height="9" rx="2" fill="#B03A3A"/>
+<text x="21" y="68" font-size="7.4" fill="#000000">경동시장 320개 (95.5%)</text>
+<rect x="121.80000000000001" y="61" width="9" height="9" rx="2" fill="#D98B8B"/>
+<text x="134.8" y="68" font-size="7.4" fill="#000000">청량리전통시장 5개 (1.5%)</text>
+<rect x="235.60000000000002" y="61" width="9" height="9" rx="2" fill="#A8C0D4"/>
+<text x="248.60000000000002" y="68" font-size="7.4" fill="#000000">나머지 8개 시장 합계 10개 (3.0%)</text>
+</svg></div>
+
+<p>클러스터 평균 14.1%는 실체를 가리는 수치임. 전체 공실의 95.5%가 경동시장 한 곳에, 상위 2개 시장을 합하면 97.0%가 집중되어 있으며, 나머지 시장은 대부분 5% 미만으로 사실상 만실 상태임. 청량리 전통시장이 전반적으로 쇠퇴하고 있다는 통념은 데이터로 지지되지 않으며, <strong>특정 시장에서 발생한 국지적 공실 문제</strong>로 재정의되어야 함.</p>
+
+<h2>3. 기능축별 공실률</h2>
+
+<div class="caption">[그림 Ⅲ-4] 기능축별 공실률</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 122" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="기능축별 공실률">
+<line x1="120.0" y1="12" x2="120.0" y2="89" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="110" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+<line x1="236.2" y1="12" x2="236.2" y2="89" stroke="#E3E3E3" stroke-width="1"/>
+<text x="236.2" y="110" text-anchor="middle" font-size="7" fill="#666666">5%</text>
+<line x1="352.5" y1="12" x2="352.5" y2="89" stroke="#E3E3E3" stroke-width="1"/>
+<text x="352.5" y="110" text-anchor="middle" font-size="7" fill="#666666">10%</text>
+<line x1="468.8" y1="12" x2="468.8" y2="89" stroke="#E3E3E3" stroke-width="1"/>
+<text x="468.8" y="110" text-anchor="middle" font-size="7" fill="#666666">15%</text>
+<line x1="585.0" y1="12" x2="585.0" y2="89" stroke="#E3E3E3" stroke-width="1"/>
+<text x="585.0" y="110" text-anchor="middle" font-size="7" fill="#666666">20%</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">전국 한약재 도매</text>
+<rect x="120" y="12" width="436.4" height="13" rx="4" fill="#2E5E8A"/>
+<text x="561.4" y="22" font-size="7.6" fill="#000000">18.8%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">새벽 청과 도매</text>
+<rect x="120" y="32" width="22.6" height="13" rx="4" fill="#5B9BBF"/>
+<text x="147.6" y="42" font-size="7.6" fill="#000000">1.0%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">근린 생활 소매</text>
+<rect x="120" y="52" width="30.5" height="13" rx="4" fill="#8FBF9F"/>
+<text x="155.5" y="62" font-size="7.6" fill="#000000">1.3%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">관광·F&amp;B 체류형</text>
+<rect x="120" y="72" width="176.1" height="13" rx="4" fill="#C98A5B"/>
+<text x="301.1" y="82" font-size="7.6" fill="#000000">7.6%</text>
+<line x1="120" y1="89" x2="585.0" y2="89" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<p>A축(한약재 도매)의 공실률이 높게 나타나나, 이는 경동시장 단독으로 형성된 수치임. 경동시장을 제외하면 A축 공실률은 1% 미만으로, 한약재 도매 상권 전반이 침체되었다고 볼 근거는 확인되지 않음.</p>
+
+<h2>4. 연도별 상세</h2>
+
+<div class="caption">[표 Ⅲ-2] 시장별 공실률 추이 (%, 2016~2023)</div>
+<table>
+  <tr><th style="width:24%">시장명</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th></tr>
+  <tr><td>경동광성상가</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>2.9</td><td class='num'>1.2</td><td class='num'>3.4</td></tr>
+<tr><td>경동시장</td><td class='num warn'>38.0</td><td class='num'>0.0</td><td class='num'>7.2</td><td class='num'>7.2</td><td class='num warn'>46.6</td><td class='num warn'>46.6</td><td class='num warn'>46.6</td><td class='num warn'>46.9</td></tr>
+<tr><td>동서시장</td><td class='num'>17.2</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>3.8</td><td class='num'>3.8</td><td class='num'>3.8</td></tr>
+<tr><td>서울약령시장</td><td class='num'>0.4</td><td class='num'>3.6</td><td class='num'>4.9</td><td class='num'>4.7</td><td class='num'>2.5</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td></tr>
+<tr><td>청량리농수산물시장</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>3.3</td><td class='num'>3.3</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>4.1</td><td class='num'>4.1</td></tr>
+<tr><td>청량리수산시장</td><td class='num'>3.2</td><td class='num'>2.9</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.9</td><td class='num'>0.0</td><td class='num'>0.0</td></tr>
+<tr><td>청량리전통시장</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>1.4</td><td class='num'>1.4</td><td class='num warn'>29.1</td><td class='num warn'>39.8</td><td class='num'>7.1</td><td class='num'>7.6</td></tr>
+<tr><td>청량리종합시장</td><td class='num'>0.0</td><td class='num'>7.1</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td></tr>
+<tr><td>청량리청과물시장</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td><td class='num'>0.0</td></tr>
+<tr><td>청량종합도매시장</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='num'>2.8</td><td class='num'>—</td><td class='num'>—</td></tr>
+</table>
+<p class="note">※ 20% 이상은 강조 표시. "—"는 해당 연도 조사 미포함.</p>
+
+<h1>Ⅳ. 경동시장 심층 분석</h1>
+
+<div class="caption">[그림 Ⅳ-1] 경동시장·청량리전통시장 공실률 추이와 주요 사건</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 246" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="경동시장과 청량리전통시장 공실률 추이 비교">
+<line x1="42" y1="200.0" x2="606" y2="200.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="202.6" text-anchor="end" font-size="7" fill="#666666">0%</text>
+<line x1="42" y1="163.2" x2="606" y2="163.2" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="165.8" text-anchor="end" font-size="7" fill="#666666">10%</text>
+<line x1="42" y1="126.4" x2="606" y2="126.4" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="129.0" text-anchor="end" font-size="7" fill="#666666">20%</text>
+<line x1="42" y1="89.6" x2="606" y2="89.6" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="92.2" text-anchor="end" font-size="7" fill="#666666">30%</text>
+<line x1="42" y1="52.8" x2="606" y2="52.8" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="55.4" text-anchor="end" font-size="7" fill="#666666">40%</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">50%</text>
+<line x1="506.5" y1="16" x2="506.5" y2="200" stroke="#B03A3A" stroke-width="0.9" stroke-dasharray="3 2" opacity="0.7"/>
+<text x="503.5" y="25" text-anchor="end" font-size="6.8" fill="#B03A3A">공실 급등</text>
+<line x1="539.6" y1="16" x2="539.6" y2="200" stroke="#B03A3A" stroke-width="0.9" stroke-dasharray="3 2" opacity="0.7"/>
+<text x="536.6" y="36" text-anchor="end" font-size="6.8" fill="#B03A3A">건물 인수</text>
+<line x1="572.8" y1="16" x2="572.8" y2="200" stroke="#B03A3A" stroke-width="0.9" stroke-dasharray="3 2" opacity="0.7"/>
+<text x="569.8" y="25" text-anchor="end" font-size="6.8" fill="#B03A3A">스타벅스 개점</text>
+<text x="42.0" y="213" text-anchor="middle" font-size="6.8" fill="#666666">06</text>
+<text x="108.4" y="213" text-anchor="middle" font-size="6.8" fill="#666666">08</text>
+<text x="174.7" y="213" text-anchor="middle" font-size="6.8" fill="#666666">10</text>
+<text x="241.1" y="213" text-anchor="middle" font-size="6.8" fill="#666666">12</text>
+<text x="274.2" y="213" text-anchor="middle" font-size="6.8" fill="#666666">13</text>
+<text x="307.4" y="213" text-anchor="middle" font-size="6.8" fill="#666666">14</text>
+<text x="340.6" y="213" text-anchor="middle" font-size="6.8" fill="#666666">15</text>
+<text x="373.8" y="213" text-anchor="middle" font-size="6.8" fill="#666666">16</text>
+<text x="406.9" y="213" text-anchor="middle" font-size="6.8" fill="#666666">17</text>
+<text x="440.1" y="213" text-anchor="middle" font-size="6.8" fill="#666666">18</text>
+<text x="473.3" y="213" text-anchor="middle" font-size="6.8" fill="#666666">19</text>
+<text x="506.5" y="213" text-anchor="middle" font-size="6.8" fill="#666666">20</text>
+<text x="539.6" y="213" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="572.8" y="213" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="606.0" y="213" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<line x1="42" y1="200.0" x2="606" y2="200.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,142.6 L108.4,167.6 L174.7,158.0 L241.1,137.4 L274.2,56.8 L307.4,173.5 L340.6,63.8 L373.8,60.2 L406.9,200.0 L440.1,173.5 L473.3,173.5 L506.5,28.5 L539.6,28.5 L572.8,28.5 L606.0,27.4" fill="none" stroke="#B03A3A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="142.6" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="108.4" cy="167.6" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="174.7" cy="158.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="241.1" cy="137.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="274.2" cy="56.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="307.4" cy="173.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="340.6" cy="63.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="373.8" cy="60.2" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="406.9" cy="200.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="440.1" cy="173.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="473.3" cy="173.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="506.5" cy="28.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="539.6" cy="28.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="572.8" cy="28.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="27.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M174.7,194.8 L241.1,200.0 L274.2,200.0 L307.4,200.0 L340.6,200.0 L373.8,200.0 L406.9,200.0 L440.1,194.8 L473.3,194.8 L506.5,92.9 L539.6,53.5 L572.8,173.9 L606.0,172.0" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="174.7" cy="194.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="241.1" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="274.2" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="307.4" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="340.6" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="373.8" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="406.9" cy="200.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="440.1" cy="194.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="473.3" cy="194.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="506.5" cy="92.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="539.6" cy="53.5" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="572.8" cy="173.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="172.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="232" width="9" height="3.5" rx="1.5" fill="#B03A3A"/>
+<text x="59" y="235.4" font-size="7.2" fill="#000000">경동시장</text>
+<rect x="94.8" y="232" width="9" height="3.5" rx="1.5" fill="#2E5E8A"/>
+<text x="107.8" y="235.4" font-size="7.2" fill="#000000">청량리전통시장</text>
+</svg></div>
+
+<h2>1. 공실 급등 시점</h2>
+
+<p>경동시장 공실률은 2019년 7.2%에서 2020년 46.6%로 한 해 만에 급등하였으며, 이후 2023년까지 46.9% 수준을 유지함. 주목할 점은 이 급등이 <strong>케이디마켓의 건물 인수(2021년 3월)보다 앞선다</strong>는 것임.</p>
+
+<div class="callout alert">
+  <p><strong>해석 수정</strong> — 종전에는 건물 인수 이후의 임대료·관리비 인상이 상인 이탈을 초래한 것으로 해석되었으나, 시계열상 공실은 인수 이전에 이미 발생하였음. 임대료 인상은 공실의 <strong>원인이 아니라 공실 발생 이후의 대응</strong>으로 보는 것이 타당함. 즉 공실로 임대수입이 감소한 상태에서 차입 이자를 감당하기 위해 잔존 상인에게 부담이 전가된 구조로 이해됨.</p>
+</div>
+
+<h2>2. 임대차 조건</h2>
+
+<div class="caption">[표 Ⅳ-1] 경동시장 임대차 조건 변화</div>
+<table>
+  <tr><th style="width:26%">항목</th><th>변화 내용</th></tr>
+  <tr><td class="ctr">임대료</td><td>55만 7,700원(2020.8) → 60만 8,300원(2023.5), 약 9% 상승</td></tr>
+  <tr><td class="ctr">관리비</td><td>임차료의 5%(2018) → 20%(2023)</td></tr>
+  <tr><td class="ctr">건물 매매가</td><td>840억 원 (감정평가액 1,500억 원)</td></tr>
+  <tr><td class="ctr">차입 구조</td><td>자본금 1억 원으로 750억 원 차입, 연 이자 34~39억 원</td></tr>
+</table>
+<p class="note">※ 출처: 한국일보 2024.2.17</p>
+
+<h2>3. 집객 사업의 효과</h2>
+
+<p>경동시장에는 청년몰(2019년 8월), 야시장, 스타벅스 경동1960(2022년 12월)이 순차적으로 도입되었으며, 방문객 증가와 고객 연령층 다변화 측면에서 성공 사례로 평가받아 왔음. 그러나 공실률은 개점 이후에도 46.9%로 변화가 없음.</p>
+
+<div class="callout">
+  <p><strong>정책적 함의</strong> — 집객(사람을 끌어오는 것)과 점포 존속(상인이 남는 것)은 별개의 성과 지표임. 경동시장 사례는 유동인구 증가가 자동으로 기존 점포의 매출·존속으로 전환되지 않음을 보여줌. 활성화 사업의 성과 평가 지표에 <strong>공실률·점포 생존율</strong>이 포함되어야 하며, 방문객 수만으로 성패를 판단해서는 안 됨.</p>
+</div>
+
+<h2>4. 대조 사례 — 청량리전통시장</h2>
+
+<p>청량리전통시장은 2020~2021년 39.8%까지 공실률이 상승하였으나 2022년 이후 7.6%로 회복함. 동일 클러스터·동일 시기에 상반된 궤적이 나타난 것으로, 회복 요인 규명이 정책 설계에 직접적인 시사점을 제공할 것으로 판단됨. 다만 본 분석 시점에서 회복 원인은 규명되지 않았으며 후속 조사가 필요함.</p>
+
+<h1>Ⅴ. 매출 분석</h1>
+
+<p>서울시 상권분석서비스 추정매출(카드결제 기반)로 9개 시장의 2021~2025년 매출을 분석함. 공실률이 점포의 <strong>있고 없음</strong>을 본다면, 매출은 남은 점포가 <strong>실제로 어떻게 영업하는지</strong>를 보여줌. 두 지표를 함께 볼 때 상권의 실태가 드러남.</p>
+
+<h2>1. 매출 추이</h2>
+
+<div class="caption">[그림 Ⅴ-1] 주요 시장 연매출 추이 (억원)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 214" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="주요 시장 연매출 추이">
+<line x1="42" y1="168.0" x2="606" y2="168.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="170.6" text-anchor="end" font-size="7" fill="#666666">0</text>
+<line x1="42" y1="130.0" x2="606" y2="130.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="132.6" text-anchor="end" font-size="7" fill="#666666">2천</text>
+<line x1="42" y1="92.0" x2="606" y2="92.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="94.6" text-anchor="end" font-size="7" fill="#666666">4천</text>
+<line x1="42" y1="54.0" x2="606" y2="54.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="56.6" text-anchor="end" font-size="7" fill="#666666">6천</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">8천</text>
+<text x="42.0" y="181" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="183.0" y="181" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="324.0" y="181" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<text x="465.0" y="181" text-anchor="middle" font-size="6.8" fill="#666666">24</text>
+<text x="606.0" y="181" text-anchor="middle" font-size="6.8" fill="#666666">25</text>
+<line x1="42" y1="168.0" x2="606" y2="168.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,86.1 L183.0,89.2 L324.0,57.9 L465.0,38.0 L606.0,16.9" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="86.1" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="183.0" cy="89.2" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="324.0" cy="57.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="465.0" cy="38.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="16.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,68.5 L183.0,48.0 L324.0,46.3 L465.0,32.5 L606.0,21.1" fill="none" stroke="#5B9BBF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="68.5" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="183.0" cy="48.0" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="324.0" cy="46.3" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="465.0" cy="32.5" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="21.1" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,122.5 L183.0,131.2 L324.0,111.7 L465.0,85.5 L606.0,57.7" fill="none" stroke="#8FBF9F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="122.5" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="183.0" cy="131.2" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="324.0" cy="111.7" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="465.0" cy="85.5" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="57.7" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,114.6 L183.0,110.3 L324.0,105.0 L465.0,100.0 L606.0,91.0" fill="none" stroke="#C98A5B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="114.6" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="183.0" cy="110.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="324.0" cy="105.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="465.0" cy="100.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="91.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="200" width="9" height="3.5" rx="1.5" fill="#2E5E8A"/>
+<text x="59" y="203.4" font-size="7.2" fill="#000000">청량리청과물시장</text>
+<rect x="127.6" y="200" width="9" height="3.5" rx="1.5" fill="#5B9BBF"/>
+<text x="140.6" y="203.4" font-size="7.2" fill="#000000">청량리종합시장</text>
+<rect x="201.0" y="200" width="9" height="3.5" rx="1.5" fill="#8FBF9F"/>
+<text x="214.0" y="203.4" font-size="7.2" fill="#000000">동서시장</text>
+<rect x="249.8" y="200" width="9" height="3.5" rx="1.5" fill="#C98A5B"/>
+<text x="262.8" y="203.4" font-size="7.2" fill="#000000">경동시장</text>
+</svg></div>
+
+<div class="caption">[그림 Ⅴ-2] 2021→2025 매출 성장률</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 218" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2021→2025 매출 성장률">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120.0" y="12" width="25.9" height="13" rx="3" fill="#B03A3A"/>
+<text x="150.9" y="22" text-anchor="start" font-size="7.4" fill="#000000">-12%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="145.9" y="32" width="98.8" height="13" rx="3" fill="#5B8C6E"/>
+<text x="248.8" y="42" text-anchor="start" font-size="7.4" fill="#000000">+44%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="145.9" y="52" width="102.3" height="13" rx="3" fill="#5B8C6E"/>
+<text x="252.2" y="62" text-anchor="start" font-size="7.4" fill="#000000">+46%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="145.9" y="72" width="106.3" height="13" rx="3" fill="#5B8C6E"/>
+<text x="256.2" y="82" text-anchor="start" font-size="7.4" fill="#000000">+48%</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="145.9" y="92" width="172.0" height="13" rx="3" fill="#5B8C6E"/>
+<text x="321.9" y="102" text-anchor="start" font-size="7.4" fill="#000000">+77%</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="145.9" y="112" width="188.8" height="13" rx="3" fill="#5B8C6E"/>
+<text x="338.7" y="122" text-anchor="start" font-size="7.4" fill="#000000">+85%</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="145.9" y="132" width="225.2" height="13" rx="3" fill="#5B8C6E"/>
+<text x="375.2" y="142" text-anchor="start" font-size="7.4" fill="#000000">+101%</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="145.9" y="152" width="318.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="468.0" y="162" text-anchor="start" font-size="7.4" fill="#000000">+143%</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="145.9" y="172" width="434.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="584.0" y="182" text-anchor="start" font-size="7.4" fill="#000000">+194%</text>
+<line x1="145.9" y1="9" x2="145.9" y2="188.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="145.9" y="208" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+</svg></div>
+
+<p>클러스터 대부분의 시장이 매출 성장을 보이는 가운데 <strong>서울약령시장만 -12%로 유일하게 감소</strong>함. 한약재 소비 감소라는 전국 단위 수요 변화가 매출에 직접 반영된 것으로 판단됨.</p>
+
+<h2>2. 공실률과 매출의 괴리</h2>
+
+<div class="caption">[그림 Ⅴ-3] 공실률과 매출 성장률의 관계</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 258" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="공실률과 매출 성장률">
+<line x1="46" y1="16.0" x2="604" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="41" y="18.6" text-anchor="end" font-size="7" fill="#666666">218%</text>
+<line x1="46" y1="66.5" x2="604" y2="66.5" stroke="#E3E3E3" stroke-width="1"/>
+<text x="41" y="69.1" text-anchor="end" font-size="7" fill="#666666">160%</text>
+<line x1="46" y1="117.0" x2="604" y2="117.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="41" y="119.6" text-anchor="end" font-size="7" fill="#666666">102%</text>
+<line x1="46" y1="167.5" x2="604" y2="167.5" stroke="#E3E3E3" stroke-width="1"/>
+<text x="41" y="170.1" text-anchor="end" font-size="7" fill="#666666">44%</text>
+<line x1="46" y1="218.0" x2="604" y2="218.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="41" y="220.6" text-anchor="end" font-size="7" fill="#666666">-13%</text>
+<text x="46.0" y="231.0" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+<text x="185.5" y="231.0" text-anchor="middle" font-size="7" fill="#666666">13%</text>
+<text x="325.0" y="231.0" text-anchor="middle" font-size="7" fill="#666666">26%</text>
+<text x="464.5" y="231.0" text-anchor="middle" font-size="7" fill="#666666">39%</text>
+<text x="604.0" y="231.0" text-anchor="middle" font-size="7" fill="#666666">53%</text>
+<line x1="152.2" y1="16" x2="152.2" y2="218" stroke="#B03A3A" stroke-width="0.9" stroke-dasharray="3 2" opacity="0.6"/>
+<line x1="46" y1="206.3" x2="604" y2="206.3" stroke="#B03A3A" stroke-width="0.9" stroke-dasharray="3 2" opacity="0.6"/>
+<circle cx="46.0" cy="36.4" r="4.5" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="53.0" y="39.0" text-anchor="start" font-size="7" fill="#000000">청량리수산시장</text>
+<circle cx="86.4" cy="81.8" r="4.5" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="93.4" y="84.4" text-anchor="start" font-size="7" fill="#000000">동서시장</text>
+<circle cx="89.6" cy="118.2" r="4.5" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="96.6" y="120.8" text-anchor="start" font-size="7" fill="#000000">청량리농수산물시장</text>
+<circle cx="46.0" cy="132.4" r="4.5" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="53.0" y="135.0" text-anchor="start" font-size="7" fill="#000000">청량리청과물시장</text>
+<circle cx="126.7" cy="139.0" r="4.5" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="133.7" y="141.6" text-anchor="start" font-size="7" fill="#000000">청량리전통시장</text>
+<circle cx="46.0" cy="164.7" r="4.5" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="53.0" y="167.3" text-anchor="start" font-size="7" fill="#000000">청량리종합시장</text>
+<circle cx="82.1" cy="166.3" r="4.5" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="89.1" y="168.9" text-anchor="start" font-size="7" fill="#000000">경동광성상가</text>
+<circle cx="544.2" cy="167.6" r="4.5" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="537.2" y="170.2" text-anchor="end" font-size="7" fill="#000000">경동시장</text>
+<circle cx="46.0" cy="216.5" r="4.5" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<text x="53.0" y="219.1" text-anchor="start" font-size="7" fill="#000000">서울약령시장</text>
+<line x1="46" y1="218.0" x2="604" y2="218.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="325.0" y="252" text-anchor="middle" font-size="7.4" fill="#666666">2023년 공실률 (%)</text>
+<text x="10" y="117.0" text-anchor="middle" font-size="7.4" fill="#666666" transform="rotate(-90 10 117.0)">2021→2025 매출 성장률 (%)</text>
+</svg></div>
+
+<div class="callout alert">
+  <p><strong>공실률만으로는 상권 건강을 판단할 수 없음</strong> — 두 시장이 정반대 방향으로 어긋남.</p>
+  <p>· <strong>서울약령시장</strong>: 공실률 0%로 가장 건강해 보이나, 매출은 -12%로 유일한 감소이며 점포도 -59개 순감소함. 점포는 채워져 있으나 <strong>영업 내용이 위축</strong>되는 전형적인 완만한 쇠퇴 양상임.</p>
+  <p>· <strong>경동시장</strong>: 공실률 46.9%로 최악이나, 매출은 2,808억 원에서 4,051억 원으로 44% 증가함. 점포의 절반이 비었음에도 <strong>남은 점포로 거래가 집중</strong>되고 있음.</p>
+  <p>정책 대상 선정 시 공실률 단일 지표에 의존하면 서울약령시장 같은 사례를 놓치게 됨. <strong>공실률과 매출 추이를 교차</strong>하여 판단해야 함.</p>
+</div>
+
+<h2>3. 시간대별 매출 구성 — 기능축 가설 검증</h2>
+
+<div class="caption">[그림 Ⅴ-4] 시장별 시간대 매출 구성비 (2023년, %)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 224" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시장별 시간대 매출 구성">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120.0" y="12" width="10.5" height="13" fill="#1F3F5C"/>
+<rect x="132.0" y="12" width="134.4" height="13" fill="#2E5E8A"/>
+<text x="199.9" y="21.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">28</text>
+<rect x="267.9" y="12" width="142.8" height="13" fill="#5B9BBF"/>
+<text x="340.0" y="21.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">30</text>
+<rect x="412.2" y="12" width="164.8" height="13" fill="#8FBF9F"/>
+<text x="495.3" y="21.5" text-anchor="middle" font-size="6.6" fill="#000000">34</text>
+<rect x="578.5" y="12" width="24.0" height="13" fill="#C98A5B"/>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="120.0" y="32" width="4.0" height="13" fill="#1F3F5C"/>
+<rect x="125.5" y="32" width="117.5" height="13" fill="#2E5E8A"/>
+<text x="185.0" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">25</text>
+<rect x="244.5" y="32" width="168.2" height="13" fill="#5B9BBF"/>
+<text x="329.3" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">35</text>
+<rect x="414.1" y="32" width="156.5" height="13" fill="#8FBF9F"/>
+<text x="493.1" y="41.5" text-anchor="middle" font-size="6.6" fill="#000000">33</text>
+<rect x="572.1" y="32" width="29.2" height="13" fill="#C98A5B"/>
+<text x="587.5" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">6</text>
+<rect x="602.8" y="32" width="0.8" height="13" fill="#8C5B7A"/>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120.0" y="52" width="2.6" height="13" fill="#1F3F5C"/>
+<rect x="124.1" y="52" width="65.3" height="13" fill="#2E5E8A"/>
+<text x="157.5" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">14</text>
+<rect x="190.9" y="52" width="165.6" height="13" fill="#5B9BBF"/>
+<text x="274.4" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">35</text>
+<rect x="358.0" y="52" width="180.0" height="13" fill="#8FBF9F"/>
+<text x="448.7" y="61.5" text-anchor="middle" font-size="6.6" fill="#000000">38</text>
+<rect x="539.4" y="52" width="57.5" height="13" fill="#C98A5B"/>
+<text x="568.9" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">12</text>
+<rect x="598.4" y="52" width="4.1" height="13" fill="#8C5B7A"/>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120.0" y="72" width="6.0" height="13" fill="#1F3F5C"/>
+<rect x="127.5" y="72" width="92.9" height="13" fill="#2E5E8A"/>
+<text x="174.7" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">20</text>
+<rect x="221.9" y="72" width="150.8" height="13" fill="#5B9BBF"/>
+<text x="298.0" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">31</text>
+<rect x="374.2" y="72" width="157.4" height="13" fill="#8FBF9F"/>
+<text x="453.6" y="81.5" text-anchor="middle" font-size="6.6" fill="#000000">33</text>
+<rect x="533.1" y="72" width="69.2" height="13" fill="#C98A5B"/>
+<text x="568.4" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120.0" y="92" width="9.8" height="13" fill="#1F3F5C"/>
+<rect x="131.3" y="92" width="102.6" height="13" fill="#2E5E8A"/>
+<text x="183.3" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">22</text>
+<rect x="235.3" y="92" width="141.5" height="13" fill="#5B9BBF"/>
+<text x="306.8" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">30</text>
+<rect x="378.4" y="92" width="143.4" height="13" fill="#8FBF9F"/>
+<text x="450.8" y="101.5" text-anchor="middle" font-size="6.6" fill="#000000">30</text>
+<rect x="523.2" y="92" width="73.5" height="13" fill="#C98A5B"/>
+<text x="560.7" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="598.2" y="92" width="4.3" height="13" fill="#8C5B7A"/>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120.0" y="112" width="12.6" height="13" fill="#1F3F5C"/>
+<rect x="134.1" y="112" width="157.7" height="13" fill="#2E5E8A"/>
+<text x="213.7" y="121.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">33</text>
+<rect x="293.3" y="112" width="146.0" height="13" fill="#5B9BBF"/>
+<text x="367.0" y="121.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">30</text>
+<rect x="440.8" y="112" width="141.5" height="13" fill="#8FBF9F"/>
+<text x="512.3" y="121.5" text-anchor="middle" font-size="6.6" fill="#000000">30</text>
+<rect x="583.8" y="112" width="18.5" height="13" fill="#C98A5B"/>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120.0" y="132" width="41.9" height="13" fill="#1F3F5C"/>
+<text x="141.7" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">9</text>
+<rect x="163.4" y="132" width="166.2" height="13" fill="#2E5E8A"/>
+<text x="247.2" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">35</text>
+<rect x="331.1" y="132" width="126.3" height="13" fill="#5B9BBF"/>
+<text x="395.0" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">26</text>
+<rect x="458.8" y="132" width="117.2" height="13" fill="#8FBF9F"/>
+<text x="518.2" y="141.5" text-anchor="middle" font-size="6.6" fill="#000000">25</text>
+<rect x="577.5" y="132" width="25.0" height="13" fill="#C98A5B"/>
+<text x="590.8" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">5</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="120.0" y="152" width="8.1" height="13" fill="#1F3F5C"/>
+<rect x="129.6" y="152" width="117.0" height="13" fill="#2E5E8A"/>
+<text x="188.8" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">24</text>
+<rect x="248.1" y="152" width="160.8" height="13" fill="#5B9BBF"/>
+<text x="329.3" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">34</text>
+<rect x="410.4" y="152" width="149.4" height="13" fill="#8FBF9F"/>
+<text x="485.8" y="161.5" text-anchor="middle" font-size="6.6" fill="#000000">31</text>
+<rect x="561.3" y="152" width="39.6" height="13" fill="#C98A5B"/>
+<text x="581.8" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">8</text>
+<rect x="602.4" y="152" width="0.8" height="13" fill="#8C5B7A"/>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120.0" y="172" width="5.0" height="13" fill="#1F3F5C"/>
+<rect x="126.5" y="172" width="87.6" height="13" fill="#2E5E8A"/>
+<text x="171.0" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">18</text>
+<rect x="215.6" y="172" width="123.3" height="13" fill="#5B9BBF"/>
+<text x="278.0" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">26</text>
+<rect x="340.3" y="172" width="126.9" height="13" fill="#8FBF9F"/>
+<text x="404.6" y="181.5" text-anchor="middle" font-size="6.6" fill="#000000">27</text>
+<rect x="468.8" y="172" width="110.7" height="13" fill="#C98A5B"/>
+<text x="524.9" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">23</text>
+<rect x="581.0" y="172" width="21.5" height="13" fill="#8C5B7A"/>
+<rect x="120" y="199" width="9" height="9" rx="2" fill="#1F3F5C"/>
+<text x="132" y="206" font-size="7" fill="#000000">00~06</text>
+<rect x="170.0" y="199" width="9" height="9" rx="2" fill="#2E5E8A"/>
+<text x="182.0" y="206" font-size="7" fill="#000000">06~11</text>
+<rect x="220.0" y="199" width="9" height="9" rx="2" fill="#5B9BBF"/>
+<text x="232.0" y="206" font-size="7" fill="#000000">11~14</text>
+<rect x="270.0" y="199" width="9" height="9" rx="2" fill="#8FBF9F"/>
+<text x="282.0" y="206" font-size="7" fill="#000000">14~17</text>
+<rect x="320.0" y="199" width="9" height="9" rx="2" fill="#C98A5B"/>
+<text x="332.0" y="206" font-size="7" fill="#000000">17~21</text>
+<rect x="370.0" y="199" width="9" height="9" rx="2" fill="#8C5B7A"/>
+<text x="382.0" y="206" font-size="7" fill="#000000">21~24</text>
+</svg></div>
+
+<p>4개 기능축 가설을 실제 결제 시점으로 검증한 결과, <strong>일부는 확인되고 일부는 기각됨</strong>.</p>
+
+<ul>
+  <li><strong>확인</strong> — D축(청량리전통시장)은 17~21시 23.2%, 21~24시 4.7%로 유일하게 저녁 매출 비중이 높음. 통닭골목 중심의 체류형 소비라는 성격이 데이터로 뒷받침됨</li>
+  <li><strong>확인</strong> — 청량리수산시장은 00~06시 9.0%, 06~11시 34.6%로 새벽·오전에 집중되어 도매 성격이 뚜렷함</li>
+  <li><strong>기각</strong> — B축(청량리청과물시장·동서시장)을 "자정~정오 새벽 도매"로 분류했으나, 00~06시 매출은 각각 2.3%·1.5%에 그침. 카드 결제 기준으로는 <strong>새벽 도매 성격이 확인되지 않음</strong>. 현금 거래 비중이 높거나, 상권 영역에 일반 소매 점포가 다수 포함된 결과로 추정됨</li>
+</ul>
+
+<div class="callout">
+  <p><strong>가설 수정</strong> — 기능축 분류는 문헌·언론 조사에 기반한 것으로, 매출 데이터로는 B축의 새벽 도매 성격이 확인되지 않음. 카드매출은 B2B 현금·계좌 거래를 포착하지 못하므로 <strong>도매 상권의 실태를 과소 반영</strong>할 가능성이 있음. 축 분류는 유지하되, 향후 현장 조사로 재검증이 필요함.</p>
+</div>
+
+<h2>4. 연령대 구성 변화</h2>
+
+<div class="caption">[그림 Ⅴ-5] 20~30대 매출 비중 변화 (2021→2025, %p)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 218" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="20~30대 매출 비중 변화 2021→2025">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120.0" y="12" width="460.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="585.0" y="22" text-anchor="start" font-size="7.4" fill="#000000">-13%p</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="202.3" y="32" width="377.7" height="13" rx="3" fill="#B03A3A"/>
+<text x="198.3" y="42" text-anchor="end" font-size="7.4" fill="#000000">-11%p</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="387.1" y="52" width="192.9" height="13" rx="3" fill="#B03A3A"/>
+<text x="383.1" y="62" text-anchor="end" font-size="7.4" fill="#000000">-5%p</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="491.7" y="72" width="88.3" height="13" rx="3" fill="#B03A3A"/>
+<text x="487.7" y="82" text-anchor="end" font-size="7.4" fill="#000000">-2%p</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="504.8" y="92" width="75.2" height="13" rx="3" fill="#B03A3A"/>
+<text x="500.8" y="102" text-anchor="end" font-size="7.4" fill="#000000">-2%p</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="506.2" y="112" width="73.8" height="13" rx="3" fill="#B03A3A"/>
+<text x="502.2" y="122" text-anchor="end" font-size="7.4" fill="#000000">-2%p</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="521.5" y="132" width="58.5" height="13" rx="3" fill="#B03A3A"/>
+<text x="517.5" y="142" text-anchor="end" font-size="7.4" fill="#000000">-2%p</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="531.4" y="152" width="48.6" height="13" rx="3" fill="#B03A3A"/>
+<text x="527.4" y="162" text-anchor="end" font-size="7.4" fill="#000000">-1%p</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="542.4" y="172" width="37.6" height="13" rx="3" fill="#B03A3A"/>
+<text x="538.4" y="182" text-anchor="end" font-size="7.4" fill="#000000">-1%p</text>
+<line x1="580.0" y1="9" x2="580.0" y2="188.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="580.0" y="208" text-anchor="middle" font-size="7" fill="#666666">0%p</text>
+</svg></div>
+
+<p>분석 대상 9개 시장 중 <strong>9개 시장에서 20~30대 매출 비중이 감소</strong>함. 청량리 상권 전반이 고령화되고 있음을 의미함.</p>
+
+<p>특히 주목할 점은 경동시장의 20~30대 비중이 5.3%에서 3.7%로 <strong>오히려 감소</strong>했다는 것임. 스타벅스 경동1960(2022년 12월)과 청년몰이 젊은 층을 유입시켰다는 평가가 있으나, 상권 매출 구성에서는 그 효과가 확인되지 않음.</p>
+
+<div class="callout alert">
+  <p><strong>경동1960 효과의 정량 평가</strong> — 방문객 증가는 여러 차례 보도되었으나 정량 지표는 제시된 바 없었음. 본 분석 결과 개점 전후로 (ⓐ) 공실률 46.6%→46.9% 변화 없음, (ⓑ) 20~30대 매출 비중 5.3%→3.7% 감소, (ⓒ) 매출 총액은 44% 증가가 확인됨. <strong>집객은 이루어졌으나 그것이 기존 점포의 고객 구성이나 점포 존속으로 전환되지는 않은 것</strong>으로 판단됨.</p>
+  <p class="note" style="color:#8a5a5a">※ 단, 스타벅스 자체 매출이 해당 상권 영역에 포함되는지 확인되지 않았으며, 포함되지 않았다면 (ⓑ)의 해석은 달라질 수 있음. 상권 경계 확인 후 재검증 필요.</p>
+</div>
+
+<h2>5. 개·폐업 회전</h2>
+
+<div class="caption">[그림 Ⅴ-6] 2021~2025 점포 순증 (개업－폐업)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 218" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2021~2025 점포 순증">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120.0" y="12" width="327.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="452.0" y="22" text-anchor="start" font-size="7.4" fill="#000000">-59개</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="363.9" y="32" width="83.1" height="13" rx="3" fill="#B03A3A"/>
+<text x="359.9" y="42" text-anchor="end" font-size="7.4" fill="#000000">-15개</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="386.0" y="52" width="61.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="382.0" y="62" text-anchor="end" font-size="7.4" fill="#000000">-11개</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="447.0" y="72" width="11.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="462.1" y="82" text-anchor="start" font-size="7.4" fill="#000000">+2개</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="447.0" y="92" width="16.6" height="13" rx="3" fill="#5B8C6E"/>
+<text x="467.6" y="102" text-anchor="start" font-size="7.4" fill="#000000">+3개</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="447.0" y="112" width="55.4" height="13" rx="3" fill="#5B8C6E"/>
+<text x="506.4" y="122" text-anchor="start" font-size="7.4" fill="#000000">+10개</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="447.0" y="132" width="88.7" height="13" rx="3" fill="#5B8C6E"/>
+<text x="539.7" y="142" text-anchor="start" font-size="7.4" fill="#000000">+16개</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="447.0" y="152" width="116.4" height="13" rx="3" fill="#5B8C6E"/>
+<text x="567.4" y="162" text-anchor="start" font-size="7.4" fill="#000000">+21개</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="447.0" y="172" width="133.0" height="13" rx="3" fill="#5B8C6E"/>
+<text x="584.0" y="182" text-anchor="start" font-size="7.4" fill="#000000">+24개</text>
+<line x1="447.0" y1="9" x2="447.0" y2="188.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="447.0" y="208" text-anchor="middle" font-size="7" fill="#666666">0개</text>
+</svg></div>
+
+<p>서울약령시장이 -59개로 가장 큰 순감소를 기록함. 매출 감소와 점포 순감소가 동시에 나타나 <strong>클러스터에서 유일하게 명확한 쇠퇴 신호</strong>를 보이는 시장임. 반면 경동시장은 공실률이 높음에도 개·폐업 회전 자체는 균형에 가까움.</p>
+
+<h1>Ⅵ. 배후인구 분석</h1>
+
+<p>서울시 생활인구(집계구 단위, 시간대별) 108개월분을 수집하여 행정동별 배후인구 변화를 분석함. 03~05시 인구를 상주인구의 대리 지표로 사용함.</p>
+
+<h2>1. 2023년 대량 입주의 실제 귀착지</h2>
+
+<div class="caption">[그림 Ⅵ-1] 행정동별 야간 생활인구 추이</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 224" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="행정동별 야간 생활인구 추이">
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="180.6" text-anchor="end" font-size="7" fill="#666666">0</text>
+<line x1="42" y1="137.5" x2="606" y2="137.5" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="140.1" text-anchor="end" font-size="7" fill="#666666">10천</text>
+<line x1="42" y1="97.0" x2="606" y2="97.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="99.6" text-anchor="end" font-size="7" fill="#666666">20천</text>
+<line x1="42" y1="56.5" x2="606" y2="56.5" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="59.1" text-anchor="end" font-size="7" fill="#666666">30천</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">40천</text>
+<text x="42.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">17</text>
+<text x="104.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">18</text>
+<text x="167.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">19</text>
+<text x="230.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">20</text>
+<text x="292.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="355.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="418.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<text x="480.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">24</text>
+<text x="543.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">25</text>
+<text x="606.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">26</text>
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,41.7 L104.7,43.1 L167.3,41.6 L230.0,45.9 L292.7,51.3 L355.3,59.2 L418.0,54.1 L480.7,42.1 L543.3,40.7 L606.0,39.8" fill="none" stroke="#5B8C6E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="41.7" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="43.1" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="41.6" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="45.9" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="51.3" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="59.2" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="54.1" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="42.1" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="40.7" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="39.8" r="2.6" fill="#5B8C6E" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,18.1 L104.7,18.7 L167.3,23.7 L230.0,25.5 L292.7,37.0 L355.3,32.2 L418.0,23.5 L480.7,18.7 L543.3,22.3 L606.0,19.4" fill="none" stroke="#5B9BBF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="18.1" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="18.7" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="23.7" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="25.5" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="37.0" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="32.2" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="23.5" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="18.7" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="22.3" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="19.4" r="2.6" fill="#5B9BBF" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,48.2 L104.7,42.6 L167.3,46.1 L230.0,55.9 L292.7,50.8 L355.3,46.2 L418.0,47.3 L480.7,52.5 L543.3,56.5 L606.0,59.4" fill="none" stroke="#B03A3A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="48.2" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="42.6" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="46.1" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="55.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="50.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="46.2" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="47.3" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="52.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="56.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="59.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,91.6 L104.7,95.0 L167.3,103.2 L230.0,102.7 L292.7,108.8 L355.3,103.2 L418.0,99.9 L480.7,101.4 L543.3,106.6 L606.0,106.9" fill="none" stroke="#C98A5B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="91.6" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="95.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="103.2" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="102.7" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="108.8" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="103.2" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="99.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="101.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="106.6" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="106.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="210" width="9" height="3.5" rx="1.5" fill="#5B8C6E"/>
+<text x="59" y="213.4" font-size="7.2" fill="#000000">전농1동</text>
+<rect x="94.8" y="210" width="9" height="3.5" rx="1.5" fill="#5B9BBF"/>
+<text x="107.8" y="213.4" font-size="7.2" fill="#000000">용신동</text>
+<rect x="135.39999999999998" y="210" width="9" height="3.5" rx="1.5" fill="#B03A3A"/>
+<text x="148.39999999999998" y="213.4" font-size="7.2" fill="#000000">제기동</text>
+<rect x="175.99999999999997" y="210" width="9" height="3.5" rx="1.5" fill="#C98A5B"/>
+<text x="188.99999999999997" y="213.4" font-size="7.2" fill="#000000">청량리동</text>
+</svg></div>
+
+<div class="caption">[그림 Ⅵ-2] 2023년 입주 전후 6개월 야간인구 증감</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 318" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2023년 입주 전후 야간인구 증감">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">회기동</text>
+<rect x="120.0" y="12" width="233.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="358.0" y="22" text-anchor="start" font-size="7.4" fill="#000000">-7.4%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">답십리2동</text>
+<rect x="129.4" y="32" width="223.6" height="13" rx="3" fill="#B03A3A"/>
+<text x="358.0" y="42" text-anchor="start" font-size="7.4" fill="#000000">-7.1%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">휘경1동</text>
+<rect x="190.7" y="52" width="162.2" height="13" rx="3" fill="#B03A3A"/>
+<text x="186.7" y="62" text-anchor="end" font-size="7.4" fill="#000000">-5.2%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">이문2동</text>
+<rect x="201.9" y="72" width="151.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="197.9" y="82" text-anchor="end" font-size="7.4" fill="#000000">-4.8%</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">전농2동</text>
+<rect x="208.8" y="92" width="144.1" height="13" rx="3" fill="#B03A3A"/>
+<text x="204.8" y="102" text-anchor="end" font-size="7.4" fill="#000000">-4.6%</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">제기동</text>
+<rect x="261.0" y="112" width="92.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="257.0" y="122" text-anchor="end" font-size="7.4" fill="#000000">-2.9%</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">휘경2동</text>
+<rect x="273.3" y="132" width="79.6" height="13" rx="3" fill="#B03A3A"/>
+<text x="269.3" y="142" text-anchor="end" font-size="7.4" fill="#000000">-2.5%</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">이문1동</text>
+<rect x="280.0" y="152" width="73.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="276.0" y="162" text-anchor="end" font-size="7.4" fill="#000000">-2.3%</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">답십리1동</text>
+<rect x="339.5" y="172" width="13.5" height="13" rx="3" fill="#B03A3A"/>
+<text x="335.5" y="182" text-anchor="end" font-size="7.4" fill="#000000">-0.4%</text>
+<text x="114" y="202" text-anchor="end" font-size="7.6" fill="#000000">장안1동</text>
+<rect x="353.0" y="192" width="34.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="391.9" y="202" text-anchor="start" font-size="7.4" fill="#000000">+1.1%</text>
+<text x="114" y="222" text-anchor="end" font-size="7.6" fill="#000000">청량리동</text>
+<rect x="353.0" y="212" width="88.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="445.8" y="222" text-anchor="start" font-size="7.4" fill="#000000">+2.8%</text>
+<text x="114" y="242" text-anchor="end" font-size="7.6" fill="#000000">용신동</text>
+<rect x="353.0" y="232" width="158.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="515.0" y="242" text-anchor="start" font-size="7.4" fill="#000000">+5.0%</text>
+<text x="114" y="262" text-anchor="end" font-size="7.6" fill="#000000">장안2동</text>
+<rect x="353.0" y="252" width="219.4" height="13" rx="3" fill="#5B8C6E"/>
+<text x="576.4" y="262" text-anchor="start" font-size="7.4" fill="#000000">+7.0%</text>
+<text x="114" y="282" text-anchor="end" font-size="7.6" fill="#000000">전농1동</text>
+<rect x="353.0" y="272" width="227.0" height="13" rx="3" fill="#5B8C6E"/>
+<text x="584.0" y="282" text-anchor="start" font-size="7.4" fill="#000000">+7.2%</text>
+<line x1="353.0" y1="9" x2="353.0" y2="288.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="353.0" y="308" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+</svg></div>
+
+<div class="callout alert">
+  <p><strong>신규 입주 인구는 시장 배후지에 늘지 않았음</strong></p>
+  <p>2023년 청량리역 일대에 약 2,800세대가 입주하였고, 그 효과는 <strong>전농1동(+7.2%)과 용신동</strong>에서 확인됨. 청량리역 롯데캐슬 SKY-L65가 전농동, 한양수자인 그라시엘이 용두동(용신동)에 위치한 결과임.</p>
+  <p>그러나 <strong>경동시장과 서울약령시가 있는 제기동은 같은 기간 -2.9% 감소</strong>하였음. 2022년 대비 2025년으로 범위를 넓히면 격차는 더 벌어져 전농1동 +15.5%, 제기동 -7.8%임.</p>
+  <p>즉 재개발로 유입된 인구는 <strong>시장에서 도보권 밖에 자리잡았고, 정작 시장의 배후지는 계속 비어 왔음.</strong> 이는 Ⅴ장에서 확인된 두 현상 — 서울약령시장의 매출 감소, 그리고 전 시장의 20~30대 매출 비중 하락 — 과 정합함.</p>
+</div>
+
+<h2>2. 시간대별 인구 구조</h2>
+
+<div class="caption">[그림 Ⅵ-3] 시간대별 생활인구 지수 (각 동의 최저 시간대 = 100)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 224" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시간대별 생활인구 지수">
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="180.6" text-anchor="end" font-size="7" fill="#666666">100</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">150</text>
+<text x="42.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="66.5" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="91.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="115.6" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="140.1" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="164.6" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="189.1" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="213.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="238.2" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="262.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="287.2" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="311.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="336.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="360.8" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="385.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="409.8" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="434.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="458.9" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="483.4" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="507.9" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="532.4" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="557.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="581.5" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<text x="606.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666"></text>
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,171.9 L66.5,168.0 L91.0,167.6 L115.6,167.8 L140.1,166.1 L164.6,161.4 L189.1,156.3 L213.7,143.0 L238.2,132.4 L262.7,120.9 L287.2,107.3 L311.7,97.1 L336.3,91.3 L360.8,88.4 L385.3,93.7 L409.8,99.2 L434.3,104.7 L458.9,109.2 L483.4,116.5 L507.9,127.9 L532.4,139.9 L557.0,145.5 L581.5,150.5 L606.0,178.0" fill="none" stroke="#C98A5B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="171.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="66.5" cy="168.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="91.0" cy="167.6" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="115.6" cy="167.8" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="140.1" cy="166.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="164.6" cy="161.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="189.1" cy="156.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="213.7" cy="143.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="238.2" cy="132.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="262.7" cy="120.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="287.2" cy="107.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="311.7" cy="97.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="336.3" cy="91.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="360.8" cy="88.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="385.3" cy="93.7" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="409.8" cy="99.2" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="434.3" cy="104.7" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="458.9" cy="109.2" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="483.4" cy="116.5" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="507.9" cy="127.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="532.4" cy="139.9" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="557.0" cy="145.5" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="581.5" cy="150.5" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="178.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,161.5 L66.5,158.9 L91.0,155.9 L115.6,151.9 L140.1,146.9 L164.6,143.1 L189.1,137.5 L213.7,138.7 L238.2,129.4 L262.7,121.3 L287.2,119.0 L311.7,117.4 L336.3,120.7 L360.8,122.5 L385.3,123.6 L409.8,128.8 L434.3,141.0 L458.9,156.0 L483.4,171.6 L507.9,176.8 L532.4,178.0 L557.0,176.3 L581.5,168.8 L606.0,165.2" fill="none" stroke="#B03A3A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="161.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="66.5" cy="158.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="91.0" cy="155.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="115.6" cy="151.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="140.1" cy="146.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="164.6" cy="143.1" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="189.1" cy="137.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="213.7" cy="138.7" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="238.2" cy="129.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="262.7" cy="121.3" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="287.2" cy="119.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="311.7" cy="117.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="336.3" cy="120.7" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="360.8" cy="122.5" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="385.3" cy="123.6" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="409.8" cy="128.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="434.3" cy="141.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="458.9" cy="156.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="483.4" cy="171.6" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="507.9" cy="176.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="532.4" cy="178.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="557.0" cy="176.3" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="581.5" cy="168.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="165.2" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,164.6 L66.5,160.8 L91.0,154.0 L115.6,150.5 L140.1,146.4 L164.6,146.3 L189.1,146.1 L213.7,137.2 L238.2,125.8 L262.7,121.0 L287.2,118.2 L311.7,114.1 L336.3,115.0 L360.8,118.0 L385.3,121.2 L409.8,125.4 L434.3,129.9 L458.9,137.4 L483.4,150.9 L507.9,154.6 L532.4,154.0 L557.0,151.3 L581.5,146.7 L606.0,178.0" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="164.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="66.5" cy="160.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="91.0" cy="154.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="115.6" cy="150.5" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="140.1" cy="146.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="164.6" cy="146.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="189.1" cy="146.1" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="213.7" cy="137.2" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="238.2" cy="125.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="262.7" cy="121.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="287.2" cy="118.2" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="311.7" cy="114.1" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="336.3" cy="115.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="360.8" cy="118.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="385.3" cy="121.2" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="409.8" cy="125.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="434.3" cy="129.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="458.9" cy="137.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="483.4" cy="150.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="507.9" cy="154.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="532.4" cy="154.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="557.0" cy="151.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="581.5" cy="146.7" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="178.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="210" width="9" height="3.5" rx="1.5" fill="#C98A5B"/>
+<text x="59" y="213.4" font-size="7.2" fill="#000000">청량리동</text>
+<rect x="94.8" y="210" width="9" height="3.5" rx="1.5" fill="#B03A3A"/>
+<text x="107.8" y="213.4" font-size="7.2" fill="#000000">제기동</text>
+<rect x="135.39999999999998" y="210" width="9" height="3.5" rx="1.5" fill="#2E5E8A"/>
+<text x="148.39999999999998" y="213.4" font-size="7.2" fill="#000000">용신동</text>
+</svg></div>
+
+<p>청량리동은 주간 최고치가 야간 최저치의 1.28배로, 제기동(1.19배)보다 외부 유입 의존도가 높음. 청량리역 환승 수요와 시장 방문객이 겹친 결과로 판단됨.</p>
+
+<p>다만 두 동 모두 <strong>야간 인구가 절대적으로 크고 주간 증가폭은 완만</strong>하여, 상권 성격이 광역 집객형이 아니라 <strong>배후 주거지 의존형</strong>임을 보여줌. 배후인구 감소가 곧바로 상권에 타격이 되는 구조임.</p>
+
+<div class="callout">
+  <p><strong>정책 함의</strong> — 청량리 시장 상권의 1차 과제는 외부 관광객 유치가 아니라 <strong>도보권 배후인구 확보</strong>임. 진행 중인 정비사업이 시장 인접지의 주거를 늘리는 방향인지, 아니면 배후지를 비우고 시장에서 떨어진 곳에 고층 주거를 짓는 방향인지에 따라 상권의 향방이 갈림. 현재까지의 데이터는 후자에 가까움.</p>
+</div>
+
+<h2>3. 배후인구의 연령 구성 변화</h2>
+
+<div class="caption">[그림 Ⅵ-4] 행정동별 연령대 야간인구 변화 (2022→2025)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 358" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="행정동별 연령대 야간인구 변화">
+<text x="144" y="22" text-anchor="end" font-size="7.6" fill="#000000">제기동 · 0-19</text>
+<rect x="150.0" y="12" width="199.4" height="13" rx="3" fill="#B03A3A"/>
+<text x="354.4" y="22" text-anchor="start" font-size="7.4" fill="#000000">-19.1%</text>
+<text x="144" y="42" text-anchor="end" font-size="7.6" fill="#000000">제기동 · 20-39</text>
+<rect x="344.6" y="32" width="4.8" height="13" rx="3" fill="#B03A3A"/>
+<text x="340.6" y="42" text-anchor="end" font-size="7.4" fill="#000000">-0.5%</text>
+<text x="144" y="62" text-anchor="end" font-size="7.6" fill="#000000">제기동 · 40-59</text>
+<rect x="273.2" y="52" width="76.2" height="13" rx="3" fill="#B03A3A"/>
+<text x="269.2" y="62" text-anchor="end" font-size="7.4" fill="#000000">-7.3%</text>
+<text x="144" y="82" text-anchor="end" font-size="7.6" fill="#000000">제기동 · 60+</text>
+<rect x="191.4" y="72" width="158.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="187.4" y="82" text-anchor="end" font-size="7.4" fill="#000000">-15.1%</text>
+<text x="144" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리동 · 0-19</text>
+<rect x="271.6" y="92" width="77.8" height="13" rx="3" fill="#B03A3A"/>
+<text x="267.6" y="102" text-anchor="end" font-size="7.4" fill="#000000">-7.4%</text>
+<text x="144" y="122" text-anchor="end" font-size="7.6" fill="#000000">청량리동 · 20-39</text>
+<rect x="349.4" y="112" width="51.7" height="13" rx="3" fill="#5B8C6E"/>
+<text x="405.1" y="122" text-anchor="start" font-size="7.4" fill="#000000">+4.9%</text>
+<text x="144" y="142" text-anchor="end" font-size="7.6" fill="#000000">청량리동 · 40-59</text>
+<rect x="275.6" y="132" width="73.8" height="13" rx="3" fill="#B03A3A"/>
+<text x="271.6" y="142" text-anchor="end" font-size="7.4" fill="#000000">-7.1%</text>
+<text x="144" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리동 · 60+</text>
+<rect x="235.9" y="152" width="113.5" height="13" rx="3" fill="#B03A3A"/>
+<text x="231.9" y="162" text-anchor="end" font-size="7.4" fill="#000000">-10.9%</text>
+<text x="144" y="182" text-anchor="end" font-size="7.6" fill="#000000">용신동 · 0-19</text>
+<rect x="349.4" y="172" width="160.8" height="13" rx="3" fill="#5B8C6E"/>
+<text x="514.2" y="182" text-anchor="start" font-size="7.4" fill="#000000">+15.4%</text>
+<text x="144" y="202" text-anchor="end" font-size="7.6" fill="#000000">용신동 · 20-39</text>
+<rect x="349.4" y="192" width="103.5" height="13" rx="3" fill="#5B8C6E"/>
+<text x="456.9" y="202" text-anchor="start" font-size="7.4" fill="#000000">+9.9%</text>
+<text x="144" y="222" text-anchor="end" font-size="7.6" fill="#000000">용신동 · 40-59</text>
+<rect x="349.4" y="212" width="92.7" height="13" rx="3" fill="#5B8C6E"/>
+<text x="446.1" y="222" text-anchor="start" font-size="7.4" fill="#000000">+8.9%</text>
+<text x="144" y="242" text-anchor="end" font-size="7.6" fill="#000000">용신동 · 60+</text>
+<rect x="310.1" y="232" width="39.3" height="13" rx="3" fill="#B03A3A"/>
+<text x="306.1" y="242" text-anchor="end" font-size="7.4" fill="#000000">-3.8%</text>
+<text x="144" y="262" text-anchor="end" font-size="7.6" fill="#000000">전농1동 · 0-19</text>
+<rect x="349.4" y="252" width="230.6" height="13" rx="3" fill="#5B8C6E"/>
+<text x="584.0" y="262" text-anchor="start" font-size="7.4" fill="#000000">+22.1%</text>
+<text x="144" y="282" text-anchor="end" font-size="7.6" fill="#000000">전농1동 · 20-39</text>
+<rect x="349.4" y="272" width="186.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="540.4" y="282" text-anchor="start" font-size="7.4" fill="#000000">+17.9%</text>
+<text x="144" y="302" text-anchor="end" font-size="7.6" fill="#000000">전농1동 · 40-59</text>
+<rect x="349.4" y="292" width="223.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="577.3" y="302" text-anchor="start" font-size="7.4" fill="#000000">+21.4%</text>
+<text x="144" y="322" text-anchor="end" font-size="7.6" fill="#000000">전농1동 · 60+</text>
+<rect x="349.4" y="312" width="43.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="397.3" y="322" text-anchor="start" font-size="7.4" fill="#000000">+4.2%</text>
+<line x1="349.4" y1="9" x2="349.4" y2="328.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="349.4" y="348" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+</svg></div>
+
+<div class="callout alert">
+  <p><strong>시장의 핵심 고객층이 배후지에서 가장 빠르게 이탈하고 있음</strong></p>
+  <p>제기동에서 감소폭이 가장 큰 연령대는 <strong>60대 이상(-15.1%, 약 1,237명)</strong>임. 청량리동도 60대 이상이 -10.9%로 가장 크게 줄었음. 반면 20~39세는 제기동에서 거의 변동이 없고 청량리동에서는 오히려 소폭 증가함.</p>
+  <p>Ⅴ장에서 확인한 대로 청량리 시장의 매출은 60대 이상이 46~72%를 차지함. <strong>주 고객층이 도보권 배후지에서 사라지고 있다는 뜻</strong>이며, 이는 단순한 인구 감소보다 상권에 훨씬 직접적인 타격임.</p>
+  <p>신축이 들어선 용신동·전농1동은 전 연령대가 증가했으나, 60대 이상 증가폭(용신동 −3.8%, 전농1동 +4.2%)은 다른 연령대보다 작음. <strong>유입 인구의 연령 구성이 시장 고객층과 어긋남</strong>을 시사함.</p>
+</div>
+
+<h1>Ⅶ. 시장 유형 재분류</h1>
+
+<p>Ⅱ장의 4개 기능축은 문헌·언론 조사에 기반한 분류임. Ⅴ장에서 B축(새벽 청과 도매)이 카드매출로 기각되었으므로, <strong>실제 거래 패턴에서 유형을 다시 도출</strong>하여 대조함.</p>
+
+<h2>1. 요일별 매출 패턴</h2>
+
+<div class="caption">[그림 Ⅶ-1] 시장별 요일 매출 구성 (2025년, %)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 224" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시장별 요일 매출 구성">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">서울약령시장</text>
+<rect x="120.0" y="12" width="88.2" height="13" fill="#DCE5EC"/>
+<text x="164.8" y="21.5" text-anchor="middle" font-size="6.6" fill="#000000">19</text>
+<rect x="209.7" y="12" width="81.4" height="13" fill="#C3D3DF"/>
+<text x="251.1" y="21.5" text-anchor="middle" font-size="6.6" fill="#000000">17</text>
+<rect x="292.6" y="12" width="69.4" height="13" fill="#A8C0D4"/>
+<text x="328.0" y="21.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="363.4" y="12" width="71.9" height="13" fill="#8FAFC7"/>
+<text x="400.1" y="21.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="436.8" y="12" width="72.5" height="13" fill="#5B9BBF"/>
+<text x="473.8" y="21.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<rect x="510.8" y="12" width="65.5" height="13" fill="#2E5E8A"/>
+<text x="544.3" y="21.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">14</text>
+<rect x="577.7" y="12" width="24.8" height="13" fill="#1F3F5C"/>
+<text x="590.9" y="21.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">5</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">청량리농수산물시장</text>
+<rect x="120.0" y="32" width="72.7" height="13" fill="#DCE5EC"/>
+<text x="157.1" y="41.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="194.2" y="32" width="64.5" height="13" fill="#C3D3DF"/>
+<text x="227.2" y="41.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="260.2" y="32" width="70.4" height="13" fill="#A8C0D4"/>
+<text x="296.2" y="41.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="332.1" y="32" width="76.4" height="13" fill="#8FAFC7"/>
+<text x="371.0" y="41.5" text-anchor="middle" font-size="6.6" fill="#000000">16</text>
+<rect x="410.0" y="32" width="78.3" height="13" fill="#5B9BBF"/>
+<text x="449.9" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="489.8" y="32" width="75.6" height="13" fill="#2E5E8A"/>
+<text x="528.4" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="566.9" y="32" width="35.6" height="13" fill="#1F3F5C"/>
+<text x="585.5" y="41.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">8</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120.0" y="52" width="65.4" height="13" fill="#DCE5EC"/>
+<text x="153.5" y="61.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="186.9" y="52" width="75.4" height="13" fill="#C3D3DF"/>
+<text x="225.3" y="61.5" text-anchor="middle" font-size="6.6" fill="#000000">16</text>
+<rect x="263.8" y="52" width="68.3" height="13" fill="#A8C0D4"/>
+<text x="298.7" y="61.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="333.5" y="52" width="69.4" height="13" fill="#8FAFC7"/>
+<text x="369.0" y="61.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="404.4" y="52" width="74.6" height="13" fill="#5B9BBF"/>
+<text x="442.5" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="480.6" y="52" width="88.0" height="13" fill="#2E5E8A"/>
+<text x="525.3" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">19</text>
+<rect x="570.1" y="52" width="32.4" height="13" fill="#1F3F5C"/>
+<text x="587.1" y="61.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">7</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120.0" y="72" width="72.4" height="13" fill="#DCE5EC"/>
+<text x="156.9" y="81.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="193.9" y="72" width="64.6" height="13" fill="#C3D3DF"/>
+<text x="226.9" y="81.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="259.9" y="72" width="72.2" height="13" fill="#A8C0D4"/>
+<text x="296.8" y="81.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="333.7" y="72" width="66.2" height="13" fill="#8FAFC7"/>
+<text x="367.5" y="81.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="401.3" y="72" width="74.9" height="13" fill="#5B9BBF"/>
+<text x="439.5" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="477.7" y="72" width="79.9" height="13" fill="#2E5E8A"/>
+<text x="518.4" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">17</text>
+<rect x="559.1" y="72" width="43.4" height="13" fill="#1F3F5C"/>
+<text x="581.5" y="81.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">9</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120.0" y="92" width="64.3" height="13" fill="#DCE5EC"/>
+<text x="152.9" y="101.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="185.8" y="92" width="66.1" height="13" fill="#C3D3DF"/>
+<text x="219.6" y="101.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="253.4" y="92" width="63.6" height="13" fill="#A8C0D4"/>
+<text x="285.9" y="101.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="318.5" y="92" width="66.6" height="13" fill="#8FAFC7"/>
+<text x="352.5" y="101.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="386.5" y="92" width="75.9" height="13" fill="#5B9BBF"/>
+<text x="425.2" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">16</text>
+<rect x="463.9" y="92" width="86.2" height="13" fill="#2E5E8A"/>
+<text x="507.8" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">18</text>
+<rect x="551.6" y="92" width="50.9" height="13" fill="#1F3F5C"/>
+<text x="577.8" y="101.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">11</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">경동시장</text>
+<rect x="120.0" y="112" width="65.3" height="13" fill="#DCE5EC"/>
+<text x="153.4" y="121.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="186.8" y="112" width="63.4" height="13" fill="#C3D3DF"/>
+<text x="219.3" y="121.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="251.7" y="112" width="66.8" height="13" fill="#A8C0D4"/>
+<text x="285.9" y="121.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="320.0" y="112" width="64.8" height="13" fill="#8FAFC7"/>
+<text x="353.2" y="121.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="386.3" y="112" width="70.0" height="13" fill="#5B9BBF"/>
+<text x="422.0" y="121.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<rect x="457.8" y="112" width="89.4" height="13" fill="#2E5E8A"/>
+<text x="503.2" y="121.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">19</text>
+<rect x="548.7" y="112" width="53.8" height="13" fill="#1F3F5C"/>
+<text x="576.3" y="121.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">11</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">청량리종합시장</text>
+<rect x="120.0" y="132" width="64.2" height="13" fill="#DCE5EC"/>
+<text x="152.9" y="141.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="185.7" y="132" width="61.7" height="13" fill="#C3D3DF"/>
+<text x="217.3" y="141.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="248.9" y="132" width="59.9" height="13" fill="#A8C0D4"/>
+<text x="279.6" y="141.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="310.4" y="132" width="70.0" height="13" fill="#8FAFC7"/>
+<text x="346.1" y="141.5" text-anchor="middle" font-size="6.6" fill="#000000">15</text>
+<rect x="381.9" y="132" width="73.3" height="13" fill="#5B9BBF"/>
+<text x="419.3" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<rect x="456.7" y="132" width="91.2" height="13" fill="#2E5E8A"/>
+<text x="503.1" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">19</text>
+<rect x="549.4" y="132" width="53.1" height="13" fill="#1F3F5C"/>
+<text x="576.7" y="141.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">11</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120.0" y="152" width="58.2" height="13" fill="#DCE5EC"/>
+<text x="149.8" y="161.5" text-anchor="middle" font-size="6.6" fill="#000000">12</text>
+<rect x="179.7" y="152" width="64.1" height="13" fill="#C3D3DF"/>
+<text x="212.5" y="161.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="245.3" y="152" width="60.2" height="13" fill="#A8C0D4"/>
+<text x="276.1" y="161.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="307.0" y="152" width="65.7" height="13" fill="#8FAFC7"/>
+<text x="340.6" y="161.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="374.3" y="152" width="71.9" height="13" fill="#5B9BBF"/>
+<text x="411.0" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<rect x="447.7" y="152" width="93.4" height="13" fill="#2E5E8A"/>
+<text x="495.1" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">20</text>
+<rect x="542.5" y="152" width="60.0" height="13" fill="#1F3F5C"/>
+<text x="573.3" y="161.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">13</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120.0" y="172" width="57.5" height="13" fill="#DCE5EC"/>
+<text x="149.5" y="181.5" text-anchor="middle" font-size="6.6" fill="#000000">12</text>
+<rect x="179.0" y="172" width="67.4" height="13" fill="#C3D3DF"/>
+<text x="213.4" y="181.5" text-anchor="middle" font-size="6.6" fill="#000000">14</text>
+<rect x="247.8" y="172" width="57.4" height="13" fill="#A8C0D4"/>
+<text x="277.3" y="181.5" text-anchor="middle" font-size="6.6" fill="#000000">12</text>
+<rect x="306.7" y="172" width="63.6" height="13" fill="#8FAFC7"/>
+<text x="339.2" y="181.5" text-anchor="middle" font-size="6.6" fill="#000000">13</text>
+<rect x="371.8" y="172" width="67.9" height="13" fill="#5B9BBF"/>
+<text x="406.5" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">14</text>
+<rect x="441.2" y="172" width="90.5" height="13" fill="#2E5E8A"/>
+<text x="487.2" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">19</text>
+<rect x="533.2" y="172" width="69.3" height="13" fill="#1F3F5C"/>
+<text x="568.6" y="181.5" text-anchor="middle" font-size="6.6" fill="#FFFFFF">15</text>
+<rect x="120" y="199" width="9" height="9" rx="2" fill="#DCE5EC"/>
+<text x="132" y="206" font-size="7" fill="#000000">월요일</text>
+<rect x="158.8" y="199" width="9" height="9" rx="2" fill="#C3D3DF"/>
+<text x="170.8" y="206" font-size="7" fill="#000000">화요일</text>
+<rect x="197.60000000000002" y="199" width="9" height="9" rx="2" fill="#A8C0D4"/>
+<text x="209.60000000000002" y="206" font-size="7" fill="#000000">수요일</text>
+<rect x="236.40000000000003" y="199" width="9" height="9" rx="2" fill="#8FAFC7"/>
+<text x="248.40000000000003" y="206" font-size="7" fill="#000000">목요일</text>
+<rect x="275.20000000000005" y="199" width="9" height="9" rx="2" fill="#5B9BBF"/>
+<text x="287.20000000000005" y="206" font-size="7" fill="#000000">금요일</text>
+<rect x="314.00000000000006" y="199" width="9" height="9" rx="2" fill="#2E5E8A"/>
+<text x="326.00000000000006" y="206" font-size="7" fill="#000000">토요일</text>
+<rect x="352.80000000000007" y="199" width="9" height="9" rx="2" fill="#1F3F5C"/>
+<text x="364.80000000000007" y="206" font-size="7" fill="#000000">일요일</text>
+</svg></div>
+
+<p>주말 매출 비중은 도매·소매 성격을 가르는 지표임. B2B 도매는 거래처가 영업하는 평일에 집중되고, B2C 소매는 주말에 분산됨.</p>
+
+<ul>
+  <li><strong>서울약령시장 19.3%</strong> — 클러스터 최저. 일요일 매출은 5.4%에 그쳐 <strong>사실상 주 6일 도매 상권</strong>임. 문헌상 A축 분류가 유일하게 데이터로 확인된 사례</li>
+  <li><strong>청량리청과물시장 32.3%</strong> — 오히려 높은 축에 속함. 문헌상 B축(새벽 도매)으로 분류했으나 <strong>요일 패턴 역시 소매에 가까움</strong>. 시간대에 이어 요일로도 도매 성격이 확인되지 않음</li>
+</ul>
+
+<h2>2. 군집 분석 결과</h2>
+
+<p>각 시장을 시간대(6) · 요일(7) · 연령대(6) 매출 구성비로 이루어진 19차원 벡터로 표현한 뒤 계층적 군집화(Ward)를 수행함. 구성비를 사용하므로 시장 규모의 영향을 받지 않음.</p>
+
+<div class="caption">[표 Ⅶ-1] 문헌 기반 분류와 데이터 기반 분류 대조</div>
+<table>
+  <tr><th style="width:28%">시장</th><th style="width:14%">문헌 축</th><th style="width:24%">데이터 군집</th><th>주말 비중</th></tr>
+  <tr><td>동서시장</td><td class="ctr">B</td><td class="ctr">주말 소매형</td><td class="num">33.6%</td></tr>
+<tr><td>청량리전통시장</td><td class="ctr">D</td><td class="ctr">주말 소매형</td><td class="num">26.1%</td></tr>
+<tr><td>청량리청과물시장</td><td class="ctr">B</td><td class="ctr">주말 소매형</td><td class="num">32.3%</td></tr>
+<tr><td>서울약령시장</td><td class="ctr">A</td><td class="ctr">평일 도매형</td><td class="num">19.3%</td></tr>
+<tr><td>경동광성상가</td><td class="ctr">A</td><td class="ctr">혼합 대형</td><td class="num">28.9%</td></tr>
+<tr><td>경동시장</td><td class="ctr">A</td><td class="ctr">혼합 대형</td><td class="num">30.2%</td></tr>
+<tr><td>청량리종합시장</td><td class="ctr">C</td><td class="ctr">혼합 대형</td><td class="num">30.4%</td></tr>
+<tr><td>청량리농수산물시장</td><td class="ctr">C</td><td class="ctr">근린 생필품형</td><td class="num">23.6%</td></tr>
+<tr><td>청량리수산시장</td><td class="ctr">C</td><td class="ctr">근린 생필품형</td><td class="num">25.5%</td></tr>
+</table>
+
+<div class="callout alert">
+  <p><strong>문헌 기반 4개 축은 상당 부분 수정이 필요함</strong></p>
+  <p>· <strong>서울약령시장이 단독 군집으로 분리됨.</strong> 클러스터 내 다른 어느 시장과도 거래 패턴이 다름. 한약재 도매라는 성격이 데이터로 확인되는 유일한 시장임</p>
+  <p>· <strong>경동시장은 청량리종합시장과 같은 군집.</strong> A축(한약재 도매)으로 분류했으나 실제로는 종합시장에 가까움. 실제 업종 구성도 청과상 35.3%·미용재료 18.4%·수산물 12.5%로 한약재 관련은 소수임</p>
+  <p>· <strong>청량리청과물시장·동서시장은 청량리전통시장과 묶임.</strong> 도매(B축)가 아니라 주말 소매·먹거리 성격을 공유함</p>
+  <p>즉 "청량리 = 한약재 도매 집적지"라는 통념은 <strong>서울약령시장 한 곳에만 해당</strong>하며, 나머지 시장은 근린 소매 상권으로 보는 것이 데이터에 부합함.</p>
+</div>
+
+<h2>3. 업종별 성장과 쇠퇴</h2>
+
+<div class="caption">[그림 Ⅶ-2] 업종별 매출 성장률 (2021→2025)</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 278" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="업종별 매출 성장률 2021→2025">
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">여관</text>
+<rect x="120.0" y="12" width="113.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="238.0" y="22" text-anchor="start" font-size="7.4" fill="#000000">-59%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">한의원</text>
+<rect x="183.2" y="32" width="49.8" height="13" rx="3" fill="#B03A3A"/>
+<text x="179.2" y="42" text-anchor="end" font-size="7.4" fill="#000000">-26%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">의료기기</text>
+<rect x="205.7" y="52" width="27.3" height="13" rx="3" fill="#B03A3A"/>
+<text x="201.7" y="62" text-anchor="end" font-size="7.4" fill="#000000">-14%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">치과의원</text>
+<rect x="228.0" y="72" width="5.0" height="13" rx="3" fill="#B03A3A"/>
+<text x="224.0" y="82" text-anchor="end" font-size="7.4" fill="#000000">-3%</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">문구</text>
+<rect x="231.1" y="92" width="1.9" height="13" rx="3" fill="#B03A3A"/>
+<text x="227.1" y="102" text-anchor="end" font-size="7.4" fill="#000000">-1%</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">슈퍼마켓</text>
+<rect x="233.0" y="112" width="1.2" height="13" rx="3" fill="#5B8C6E"/>
+<text x="238.2" y="122" text-anchor="start" font-size="7.4" fill="#000000">+1%</text>
+<text x="114" y="142" text-anchor="end" font-size="7.6" fill="#000000">분식전문점</text>
+<rect x="233.0" y="132" width="113.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="350.1" y="142" text-anchor="start" font-size="7.4" fill="#000000">+59%</text>
+<text x="114" y="162" text-anchor="end" font-size="7.6" fill="#000000">청과상</text>
+<rect x="233.0" y="152" width="137.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="374.1" y="162" text-anchor="start" font-size="7.4" fill="#000000">+72%</text>
+<text x="114" y="182" text-anchor="end" font-size="7.6" fill="#000000">수산물판매</text>
+<rect x="233.0" y="172" width="190.7" height="13" rx="3" fill="#5B8C6E"/>
+<text x="427.7" y="182" text-anchor="start" font-size="7.4" fill="#000000">+100%</text>
+<text x="114" y="202" text-anchor="end" font-size="7.6" fill="#000000">한식음식점</text>
+<rect x="233.0" y="192" width="255.1" height="13" rx="3" fill="#5B8C6E"/>
+<text x="492.0" y="202" text-anchor="start" font-size="7.4" fill="#000000">+133%</text>
+<text x="114" y="222" text-anchor="end" font-size="7.6" fill="#000000">반찬가게</text>
+<rect x="233.0" y="212" width="261.9" height="13" rx="3" fill="#5B8C6E"/>
+<text x="498.8" y="222" text-anchor="start" font-size="7.4" fill="#000000">+137%</text>
+<text x="114" y="242" text-anchor="end" font-size="7.6" fill="#000000">편의점</text>
+<rect x="233.0" y="232" width="347.0" height="13" rx="3" fill="#5B8C6E"/>
+<text x="584.0" y="242" text-anchor="start" font-size="7.4" fill="#000000">+181%</text>
+<line x1="233.0" y1="9" x2="233.0" y2="248.0" stroke="#9A9A9A" stroke-width="1"/>
+<text x="233.0" y="268" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+</svg></div>
+
+<p>클러스터 전체 매출을 업종별로 나누면 성장과 쇠퇴가 뚜렷이 갈림. 성장 업종은 편의점·반찬가게·한식음식점 등 <strong>생활밀착형 소매와 먹거리</strong>에 집중됨.</p>
+
+<p>반면 <strong>한방 관련 업종이 일제히 부진</strong>함. 한의원 -26%, 의약품 1.3%로 4년간 사실상 정체 또는 감소임. Ⅴ장에서 확인된 서울약령시장의 매출 감소는 개별 시장의 문제가 아니라 <strong>한방 수요 자체의 축소</strong>가 원인임을 보여줌.</p>
+
+<div class="callout">
+  <p><strong>정책 함의</strong> — 지원 대상 선정 시 업종 단위 판단이 필요함. 한방 업종은 지역 집객 사업으로 회복되지 않으므로, 서울약령시장에는 활성화 사업보다 <strong>업종 전환·판로 다변화</strong> 지원이 적합함. 반대로 먹거리·생활 소매는 이미 성장 중이므로 시설·위생 등 기반 지원이 효율적임.</p>
+</div>
+
+<h1>Ⅷ. 공실 데이터 신뢰성 검증</h1>
+
+<div class="callout alert">
+  <p><strong>본 장의 결론</strong> — 소상공인시장진흥공단 연도별 공실 데이터는 <strong>정책 판단의 근거로 사용하기 어려움</strong>이 확인됨. Ⅲ장의 공실률 수치는 이 한계를 전제로 읽어야 하며, 상권 진단은 Ⅴ장의 매출 데이터를 우선해야 함.</p>
+</div>
+
+<p>Ⅲ장에서 관찰된 두 현상 — 경동시장의 46.6% 고착과 청량리전통시장의 2022년 회복 — 의 원인을 추적하는 과정에서 원자료의 구조적 문제가 드러남. 전국 데이터로 검증한 결과는 다음과 같음.</p>
+
+<h2>1. 매년 새로 조사되지 않음</h2>
+
+<div class="caption">[그림 Ⅷ-1] 전년도와 (영업점포, 빈점포)가 완전히 동일한 시장의 비율</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 162" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="전년도와 완전히 동일한 기록의 비율">
+<line x1="120.0" y1="12" x2="120.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="150" text-anchor="middle" font-size="7" fill="#666666">0%</text>
+<line x1="213.0" y1="12" x2="213.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="213.0" y="150" text-anchor="middle" font-size="7" fill="#666666">10%</text>
+<line x1="306.0" y1="12" x2="306.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="306.0" y="150" text-anchor="middle" font-size="7" fill="#666666">20%</text>
+<line x1="399.0" y1="12" x2="399.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="399.0" y="150" text-anchor="middle" font-size="7" fill="#666666">30%</text>
+<line x1="492.0" y1="12" x2="492.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="492.0" y="150" text-anchor="middle" font-size="7" fill="#666666">40%</text>
+<line x1="585.0" y1="12" x2="585.0" y2="129" stroke="#E3E3E3" stroke-width="1"/>
+<text x="585.0" y="150" text-anchor="middle" font-size="7" fill="#666666">50%</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">2017→2018</text>
+<rect x="120" y="12" width="273.4" height="13" rx="4" fill="#A8C0D4"/>
+<text x="398.4" y="22" font-size="7.6" fill="#000000">29.4%</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">2018→2019</text>
+<rect x="120" y="32" width="226.0" height="13" rx="4" fill="#A8C0D4"/>
+<text x="351.0" y="42" font-size="7.6" fill="#000000">24.3%</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">2019→2020</text>
+<rect x="120" y="52" width="279.0" height="13" rx="4" fill="#A8C0D4"/>
+<text x="404.0" y="62" font-size="7.6" fill="#000000">30.0%</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">2020→2021</text>
+<rect x="120" y="72" width="71.6" height="13" rx="4" fill="#A8C0D4"/>
+<text x="196.6" y="82" font-size="7.6" fill="#000000">7.7%</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">2021→2022</text>
+<rect x="120" y="92" width="350.6" height="13" rx="4" fill="#2E5E8A"/>
+<text x="475.6" y="102" font-size="7.6" fill="#000000">37.7%</text>
+<text x="114" y="122" text-anchor="end" font-size="7.6" fill="#000000">2022→2023</text>
+<rect x="120" y="112" width="442.7" height="13" rx="4" fill="#2E5E8A"/>
+<text x="567.7" y="122" font-size="7.6" fill="#000000">47.6%</text>
+<line x1="120" y1="129" x2="585.0" y2="129" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<p>가장 최근 구간에서 전국 시장의 <strong>47.6%가 전년도와 완전히 같은 값</strong>을 기록함. 직전 구간도 37.7%임. 매년 전수 조사가 이루어진다면 나타날 수 없는 수치이며, <strong>상당수 시장의 값이 갱신되지 않고 이월</strong>되고 있음을 의미함.</p>
+
+<p>청량리 클러스터도 예외가 아님. 경동시장은 2018·2019년이 영업 516·빈점포 40으로 동일하고, <strong>2020·2021·2022년 3개 연도가 영업 362·빈점포 316으로 완전히 동일</strong>함. 즉 Ⅲ장에서 "3년간 46.6% 고착"으로 서술한 것은 관측된 변화가 아니라 <strong>동일 기록이 반복 수록된 결과</strong>임.</p>
+
+<h2>2. 분모(총점포수)가 불안정함</h2>
+
+<div class="caption">[표 Ⅷ-1] 청량리전통시장 원자료</div>
+<table>
+  <tr><th style="width:14%">연도</th><th style="width:20%">영업점포</th><th style="width:20%">빈점포</th><th style="width:22%">총점포(분모)</th><th>공실률</th></tr>
+  <tr><td class="ctr">2019</td><td class="num">70</td><td class="num">1</td><td class="num">71</td><td class="num">1.4%</td></tr>
+  <tr class="hi"><td class="ctr">2020</td><td class="num">73</td><td class="num">30</td><td class="num warn">103</td><td class="num">29.1%</td></tr>
+  <tr class="hi"><td class="ctr">2021</td><td class="num">62</td><td class="num">41</td><td class="num warn">103</td><td class="num">39.8%</td></tr>
+  <tr class="hi"><td class="ctr">2022</td><td class="num">65</td><td class="num">5</td><td class="num warn">70</td><td class="num">7.1%</td></tr>
+  <tr><td class="ctr">2023</td><td class="num">61</td><td class="num">5</td><td class="num">66</td><td class="num">7.6%</td></tr>
+</table>
+
+<p>2022년 공실률 급락(39.8%→7.1%)은 빈 점포가 채워진 결과가 아님. <strong>총점포수가 103에서 70으로 33개 줄어든 것</strong>, 즉 모집단에서 점포가 빠진 결과임. 같은 기간 영업점포수는 62개에서 65개로 3개 늘었을 뿐이며, 2019년의 70개에도 미치지 못함.</p>
+
+<p>전국적으로도 매년 시장의 약 20%에서 총점포수가 전년 대비 ±20% 이상 변동함. 공실률의 분모 자체가 안정적이지 않음.</p>
+
+<h2>3. 2022년 전국적 회복은 없었음</h2>
+
+<div class="caption">[그림 Ⅷ-2] 전국 평균 대비 클러스터 공실률</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 210" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="전국 대비 클러스터 공실률">
+<line x1="42" y1="164.0" x2="606" y2="164.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="166.6" text-anchor="end" font-size="7" fill="#666666">0%</text>
+<line x1="42" y1="127.0" x2="606" y2="127.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="129.6" text-anchor="end" font-size="7" fill="#666666">5%</text>
+<line x1="42" y1="90.0" x2="606" y2="90.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="92.6" text-anchor="end" font-size="7" fill="#666666">10%</text>
+<line x1="42" y1="53.0" x2="606" y2="53.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="55.6" text-anchor="end" font-size="7" fill="#666666">15%</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">20%</text>
+<text x="42.0" y="177" text-anchor="middle" font-size="6.8" fill="#666666">14</text>
+<text x="104.7" y="177" text-anchor="middle" font-size="6.8" fill="#666666">15</text>
+<text x="167.3" y="177" text-anchor="middle" font-size="6.8" fill="#666666">16</text>
+<text x="230.0" y="177" text-anchor="middle" font-size="6.8" fill="#666666">17</text>
+<text x="292.7" y="177" text-anchor="middle" font-size="6.8" fill="#666666">18</text>
+<text x="355.3" y="177" text-anchor="middle" font-size="6.8" fill="#666666">19</text>
+<text x="418.0" y="177" text-anchor="middle" font-size="6.8" fill="#666666">20</text>
+<text x="480.7" y="177" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="543.3" y="177" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="606.0" y="177" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<line x1="42" y1="164.0" x2="606" y2="164.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,97.2 L104.7,96.2 L167.3,97.0 L230.0,101.7 L292.7,99.5 L355.3,91.6 L418.0,88.7 L480.7,81.9 L543.3,79.0 L606.0,77.0" fill="none" stroke="#A8C0D4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="97.2" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="96.2" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="97.0" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="101.7" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="99.5" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="91.6" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="88.7" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="81.9" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="79.0" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="77.0" r="2.6" fill="#A8C0D4" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,141.0 L104.7,64.1 L167.3,76.8 L230.0,148.4 L292.7,132.6 L355.3,134.1 L418.0,50.3 L480.7,58.3 L543.3,61.4 L606.0,59.6" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="141.0" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="64.1" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="76.8" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="148.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="132.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="134.1" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="50.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="58.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="61.4" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="59.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="196" width="9" height="3.5" rx="1.5" fill="#A8C0D4"/>
+<text x="59" y="199.4" font-size="7.2" fill="#000000">전국 평균</text>
+<rect x="103.0" y="196" width="9" height="3.5" rx="1.5" fill="#2E5E8A"/>
+<text x="116.0" y="199.4" font-size="7.2" fill="#000000">청량리 클러스터</text>
+</svg></div>
+
+<p>전국 공실률은 2017년 8.42%를 저점으로 2023년 11.75%까지 <strong>단조 상승</strong>함. 청량리전통시장의 2022년 급락을 뒷받침할 전국적 추세는 존재하지 않음.</p>
+
+<h2>4. 대안 지표 — 영업점포수</h2>
+
+<div class="caption">[그림 Ⅷ-3] 주요 시장 영업점포수 추이</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 224" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="주요 시장 영업점포수 추이">
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="180.6" text-anchor="end" font-size="7" fill="#666666">0</text>
+<line x1="42" y1="124.0" x2="606" y2="124.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="126.6" text-anchor="end" font-size="7" fill="#666666">500</text>
+<line x1="42" y1="70.0" x2="606" y2="70.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="72.6" text-anchor="end" font-size="7" fill="#666666">1천</text>
+<line x1="42" y1="16.0" x2="606" y2="16.0" stroke="#E3E3E3" stroke-width="1"/>
+<text x="37" y="18.6" text-anchor="end" font-size="7" fill="#666666">2천</text>
+<text x="42.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">14</text>
+<text x="104.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">15</text>
+<text x="167.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">16</text>
+<text x="230.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">17</text>
+<text x="292.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">18</text>
+<text x="355.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">19</text>
+<text x="418.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">20</text>
+<text x="480.7" y="191" text-anchor="middle" font-size="6.8" fill="#666666">21</text>
+<text x="543.3" y="191" text-anchor="middle" font-size="6.8" fill="#666666">22</text>
+<text x="606.0" y="191" text-anchor="middle" font-size="6.8" fill="#666666">23</text>
+<line x1="42" y1="178.0" x2="606" y2="178.0" stroke="#9A9A9A" stroke-width="1"/>
+<path d="M42.0,115.4 L104.7,120.8 L167.3,125.2 L230.0,124.0 L292.7,122.3 L355.3,122.3 L418.0,138.9 L480.7,138.9 L543.3,138.9 L606.0,138.9" fill="none" stroke="#B03A3A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="115.4" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="120.8" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="125.2" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="124.0" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="122.3" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="122.3" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="138.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="138.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="138.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="138.9" r="2.6" fill="#B03A3A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,66.9 L104.7,64.6 L167.3,37.6 L230.0,78.6 L292.7,79.5 L355.3,79.5 L418.0,74.6 L480.7,75.3 L543.3,75.3 L606.0,75.3" fill="none" stroke="#2E5E8A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="66.9" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="64.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="37.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="78.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="79.5" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="79.5" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="74.6" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="75.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="75.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="75.3" r="2.6" fill="#2E5E8A" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,166.4 L104.7,166.4 L167.3,166.4 L230.0,166.7 L292.7,163.4 L355.3,163.4 L418.0,163.4 L480.7,162.6 L543.3,162.6 L606.0,162.4" fill="none" stroke="#8FBF9F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="166.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="166.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="166.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="166.7" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="163.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="163.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="163.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="162.6" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="162.6" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="162.4" r="2.6" fill="#8FBF9F" stroke="#FFFFFF" stroke-width="1.4"/>
+<path d="M42.0,171.3 L104.7,170.5 L167.3,170.1 L230.0,170.1 L292.7,170.1 L355.3,170.4 L418.0,170.1 L480.7,171.3 L543.3,171.0 L606.0,171.4" fill="none" stroke="#C98A5B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42.0" cy="171.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="104.7" cy="170.5" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="167.3" cy="170.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="230.0" cy="170.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="292.7" cy="170.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="355.3" cy="170.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="418.0" cy="170.1" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="480.7" cy="171.3" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="543.3" cy="171.0" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<circle cx="606.0" cy="171.4" r="2.6" fill="#C98A5B" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="46" y="210" width="9" height="3.5" rx="1.5" fill="#B03A3A"/>
+<text x="59" y="213.4" font-size="7.2" fill="#000000">경동시장</text>
+<rect x="94.8" y="210" width="9" height="3.5" rx="1.5" fill="#2E5E8A"/>
+<text x="107.8" y="213.4" font-size="7.2" fill="#000000">서울약령시장</text>
+<rect x="160.0" y="210" width="9" height="3.5" rx="1.5" fill="#8FBF9F"/>
+<text x="173.0" y="213.4" font-size="7.2" fill="#000000">청량리종합시장</text>
+<rect x="233.39999999999998" y="210" width="9" height="3.5" rx="1.5" fill="#C98A5B"/>
+<text x="246.39999999999998" y="213.4" font-size="7.2" fill="#000000">청량리전통시장</text>
+</svg></div>
+
+<p>분모 오염을 피하려면 공실률 대신 <strong>영업점포수</strong>를 보아야 함. 이 지표로 보면 청량리전통시장은 2019년 70개에서 2023년 61개로 <strong>완만히 축소</strong> 중이며, "회복"으로 볼 근거가 없음.</p>
+
+<p>경동시장은 2019년 516개에서 2020년 362개로 감소한 뒤 4개 연도 연속 동일한 값이 기록되어 있어, 감소 시점 이후의 추이는 판단할 수 없음.</p>
+
+<h2>5. 경동시장 316개 "빈점포"의 정체</h2>
+
+<div class="callout alert">
+  <p>통계상 경동시장의 영업점포 362개는 한국일보 보도의 "상인회 소속 362곳"과 정확히 일치함. 서로 다른 출처가 같은 값을 가리키므로 신뢰도가 확보된 것으로 보이나, <strong>정반대의 의미</strong>일 가능성이 큼.</p>
+  <p>같은 보도에 따르면 경동시장 전체 점포는 620여 곳이고 상인회 소속은 362곳이며, <strong>상인회가 주장하는 실제 공실률은 20%</strong>임. 통계상 영업점포 362가 상인회 소속 수와 정확히 일치한다는 것은, 조사가 <strong>상인회를 통해 이루어져 미소속 점포가 빈 점포로 계상되었을 가능성</strong>을 시사함.</p>
+  <p>그렇다면 46.6%는 실제 공실률이 아니라 <strong>상인회 조직률의 이면</strong>일 수 있음. 확정하려면 소진공에 조사표 원표와 점포 모집단 정의를 확인해야 함.</p>
+</div>
+
+<h2>6. 지표별 사용 가능 여부</h2>
+
+<p>본 보고서에서 다룬 지표를 신뢰성 기준으로 구분하면 다음과 같음. 정책 판단에는 "사용 가능" 지표를 근거로 삼아야 함.</p>
+
+<div class="caption">[표 Ⅷ-2] 지표별 사용 가능 여부</div>
+<table>
+  <tr><th style="width:32%">지표</th><th style="width:15%">사용 가능성</th><th>근거</th></tr>
+  <tr class="hi">
+    <td>경동시장 공실률 46.9%</td><td class="ctr warn">사용 불가</td>
+    <td>3개 연도에 동일 기록이 반복 수록됨. 실제 추이 판단 불가. 상인회 주장치는 20%</td>
+  </tr>
+  <tr class="hi">
+    <td>청량리전통시장 2022년 급락</td><td class="ctr warn">사용 불가</td>
+    <td>분모 33개 감소의 산물. 영업점포수는 오히려 감소 중</td>
+  </tr>
+  <tr class="hi">
+    <td>공실의 97%가 경동시장 집중</td><td class="ctr warn">재산정 필요</td>
+    <td>경동시장 316이 상인회 미소속 점포를 계상한 결과일 가능성</td>
+  </tr>
+  <tr>
+    <td>클러스터 공실률 14.1%</td><td class="ctr">과대 추정</td>
+    <td>동일 사유로 실제보다 높게 산출되었을 가능성</td>
+  </tr>
+  <tr>
+    <td>영업점포수 추이</td><td class="ctr">제한적 사용</td>
+    <td>분모 오염은 없으나 반복 기록 구간은 제외하고 읽어야 함</td>
+  </tr>
+  <tr>
+    <td>시장별 매출·성장률 (Ⅴ장)</td><td class="ctr">사용 가능</td>
+    <td>카드결제 기반 별도 출처이며 분기 단위로 갱신됨</td>
+  </tr>
+  <tr>
+    <td>시간대·요일·연령대 구성 (Ⅴ·Ⅶ장)</td><td class="ctr">사용 가능</td>
+    <td>동일 출처. 구성비이므로 규모 오차의 영향도 받지 않음</td>
+  </tr>
+  <tr>
+    <td>배후인구 변화 (Ⅵ장)</td><td class="ctr">사용 가능</td>
+    <td>서울시 생활인구, 집계구 단위 전수 집계</td>
+  </tr>
+</table>
+
+<h1>Ⅸ. 기타 데이터 검증</h1>
+
+<h2>1. 기준 시점 확정</h2>
+
+<p>당초 기준 시점이 불명확했던 「시장_점포수_종사자」 데이터는, 10개 시장 전체의 공실률이 연도별 통계의 <strong>2021년 값과 정확히 일치</strong>함을 확인하여 2021년 기준 자료로 확정함. 본 보고서는 최신 자료인 2023년 기준으로 재작성되었음.</p>
+
+<h2>2. 수치 교차검증</h2>
+
+<p>경동시장 2021년 영업점포 362개는 한국일보(2024.2.17)가 독립적으로 보도한 "경동시장 상인회 소속 점포 362곳"과 일치함. 정부 통계와 언론 취재라는 상이한 경로가 동일한 값을 지시하므로 신뢰도가 확보된 것으로 판단됨.</p>
+
+<h2>3. 공식 자료 오류 확인</h2>
+
+<p>동대문구 홍보자료는 청량리청과물시장과 동서시장을 동일 시장으로 표기하나, 공식 통계는 주소·유형·규모가 모두 다른 별개 시장으로 등재하고 있음. 구청 자료를 그대로 인용할 경우 점포 수 중복 집계 또는 시장 누락이 발생함.</p>
+
+<h2>4. 잔여 검증 과제</h2>
+
+<div class="caption">[표 Ⅸ-1] 확정 전 검증 필요 항목</div>
+<table>
+  <tr><th style="width:5%">No</th><th style="width:26%">항목</th><th>내용 및 조치</th></tr>
+  <tr>
+    <td class="ctr">1</td><td>2020년 급등 원인</td>
+    <td>코로나19 영향과 개별 시장 요인의 구분 필요. 전국·서울 평균 공실률과 대조하여 지역 고유 요인을 분리해야 함</td>
+  </tr>
+  <tr>
+    <td class="ctr">2</td><td>조사 대상 변동</td>
+    <td>연도별로 조사에 포함된 시장이 달라 클러스터 합계의 연속성이 완전하지 않음. 2013·2015~2016년 수치는 특히 주의</td>
+  </tr>
+  <tr>
+    <td class="ctr">3</td><td>빈점포 "0"의 해석 <span class="warn">(해소)</span></td>
+    <td>서울약령시장의 공실 0%가 실제 건강 상태인지 의문이었으나, 매출 -12%·점포 -59개 감소가 확인되어 <strong>"공실 없음"과 "영업 부진"이 양립함이 입증됨</strong>. Ⅴ장 참조</td>
+  </tr>
+  <tr>
+    <td class="ctr">4</td><td>청량리전통시장 회복 요인</td>
+    <td>2022년 급격한 회복의 배경 미규명. 실제 입점 증가인지 조사 방식 변경인지 확인 필요</td>
+  </tr>
+  <tr>
+    <td class="ctr">5</td><td>면적 수치 상이</td>
+    <td>경동시장 22,262㎡(서울시) vs 15,540㎡(소진공) 등 출처별 차이 존재. 면적 기반 비교는 출처 통일 후 수행</td>
+  </tr>
+</table>
+
+<h1>Ⅹ. 결론 및 정책 제언</h1>
+
+<h2>1. 진단 요약 — 시장별로 문제가 다름</h2>
+
+<p>공실률과 매출을 교차하면 클러스터 내 시장이 네 가지 유형으로 나뉨. 유형별로 필요한 처방이 다르므로 일괄 지원은 효과를 기대하기 어려움.</p>
+
+<div class="caption">[표 Ⅹ-1] 공실·매출 교차 진단</div>
+<table>
+  <tr><th style="width:15%">유형</th><th style="width:22%">해당 시장</th><th style="width:26%">상태</th><th>필요한 접근</th></tr>
+  <tr class="hi">
+    <td class="ctr"><strong>구조 왜곡형</strong></td><td>경동시장</td>
+    <td>공실 46.9% · 매출 44% 증가</td>
+    <td>임대차 구조 개입. 집객 사업이 아니라 <strong>공실 해소와 임대료 안정화</strong>가 관건</td>
+  </tr>
+  <tr class="hi">
+    <td class="ctr"><strong>잠복 쇠퇴형</strong></td><td>서울약령시장</td>
+    <td>공실 0% · 매출 -12% 감소 · 점포 -59개</td>
+    <td>수요 자체가 축소되는 업종. 품목 전환·판로 다변화 등 <strong>업종 재편</strong> 지원</td>
+  </tr>
+  <tr>
+    <td class="ctr">회복형</td><td>청량리전통시장</td>
+    <td>공실 39.8%→7.6% 회복 · 매출 증가</td>
+    <td>회복 요인 규명 후 <strong>타 시장 확산</strong> 검토</td>
+  </tr>
+  <tr>
+    <td class="ctr">안정 성장형</td><td>청과물·종합·농수산물·수산·동서시장</td>
+    <td>공실 5% 미만 · 매출 증가</td>
+    <td>현상 유지. 시설·안전 등 <strong>기본 인프라</strong> 중심 지원</td>
+  </tr>
+</table>
+
+<h2>2. 정책 제언</h2>
+
+<ul>
+  <li><strong>성과지표 재설계</strong> — 활성화 사업의 성과를 방문객 수로 평가하면 경동시장 같은 사례를 성공으로 오판하게 됨. <strong>공실률·점포 생존율·기존 상인 매출</strong>을 필수 지표로 포함해야 함</li>
+  <li><strong>공실률 단일 지표 탈피</strong> — 서울약령시장은 공실률만 보면 최우수 시장이나 실제로는 클러스터에서 유일하게 매출과 점포가 동시에 감소 중임. 진단 지표에 <strong>매출 추이</strong>를 반드시 병기해야 함</li>
+  <li><strong>유형별 분리 지원</strong> — 데이터 기반 재분류(Ⅶ장) 결과 서울약령시장만 평일 도매형으로 분리되고 나머지는 소매 성격임. <strong>서울약령시장에는 업종 전환·판로 다변화</strong>를, 나머지 시장에는 근린 소매 기반 지원을 적용해야 함. 한방 수요 축소는 지역 집객 사업으로 해결되지 않음</li>
+  <li><strong>고령 고객층 이탈에 대한 대응</strong> — 제기동 60대 이상 인구가 3년간 약 1,237명 감소함. 시장 매출의 절반 이상을 차지하는 연령대이므로, 배후 고령 인구의 이동 원인(재개발 이주, 주거비 등) 파악과 함께 <strong>원거리 고령 고객의 접근성 확보</strong>가 필요함</li>
+  <li><strong>경동시장 임대차 실태조사</strong> — 공실 46.9%가 5년째 고착된 것은 시장 실패 신호임. 건물 소유구조·차입·임대조건에 대한 행정 차원의 실태 파악이 선행되어야 함</li>
+  <li><strong>정비사업의 배후인구 설계 재검토</strong> — 2023년 입주 인구는 전농1동·용신동에 귀착되었고 시장 배후지인 제기동은 오히려 감소함(Ⅵ장). 진행 중인 청량리6·7·8구역이 같은 패턴을 반복하면 상권 기반은 계속 약해짐. <strong>시장 도보권 내 주거 공급</strong>이 어떤 집객 사업보다 직접적인 활성화 수단임</li>
+</ul>
+
+<h2>3. 잔여 과제</h2>
+
+<div class="caption">[표 Ⅹ-2] 후속 분석 항목</div>
+<table>
+  <tr><th style="width:9%">순서</th><th style="width:34%">분석</th><th>상태 및 기대 산출</th></tr>
+  <tr><td class="ctr">1</td><td>생활인구 시간대별 프로파일</td><td>수집 진행 중(115개월). 카드매출이 놓치는 현금·도매 거래를 체류인구로 보완</td></tr>
+  <tr><td class="ctr">2</td><td>2023년 입주 전후 배후인구 변화</td><td>생활인구 수집 완료 후 착수. 재개발이 근린 소매(C축)에 미친 영향 정량화</td></tr>
+  <tr><td class="ctr">3</td><td>상권 경계와 시장 경계의 대조</td><td>상권분석서비스 영역이 시장 건물보다 넓어 매출이 과대 계상될 수 있음. 경계 확인 필요</td></tr>
+  <tr><td class="ctr">4</td><td>경동1960 상권 귀속 확인</td><td>스타벅스 매출이 경동시장 상권에 포함되는지 확인. 연령 구성 해석의 전제</td></tr>
+  <tr><td class="ctr">5</td><td>청량리전통시장 회복 요인 조사</td><td>문헌·현장 조사 진행 중</td></tr>
+</table>
+
+<div class="caption">[그림 Ⅹ-1] 시장별 노점 수</div>
+<div class="figure"><svg width="100%" viewBox="0 0 620 142" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시장별 노점 수">
+<line x1="120.0" y1="12" x2="120.0" y2="109" stroke="#E3E3E3" stroke-width="1"/>
+<text x="120.0" y="130" text-anchor="middle" font-size="7" fill="#666666">0개</text>
+<line x1="238.6" y1="12" x2="238.6" y2="109" stroke="#E3E3E3" stroke-width="1"/>
+<text x="238.6" y="130" text-anchor="middle" font-size="7" fill="#666666">20개</text>
+<line x1="357.1" y1="12" x2="357.1" y2="109" stroke="#E3E3E3" stroke-width="1"/>
+<text x="357.1" y="130" text-anchor="middle" font-size="7" fill="#666666">40개</text>
+<line x1="475.6" y1="12" x2="475.6" y2="109" stroke="#E3E3E3" stroke-width="1"/>
+<text x="475.6" y="130" text-anchor="middle" font-size="7" fill="#666666">60개</text>
+<line x1="594.2" y1="12" x2="594.2" y2="109" stroke="#E3E3E3" stroke-width="1"/>
+<text x="594.2" y="130" text-anchor="middle" font-size="7" fill="#666666">80개</text>
+<text x="114" y="22" text-anchor="end" font-size="7.6" fill="#000000">경동광성상가</text>
+<rect x="120" y="12" width="450.5" height="13" rx="4" fill="#2E5E8A"/>
+<text x="575.5" y="22" font-size="7.6" fill="#000000">76개</text>
+<text x="114" y="42" text-anchor="end" font-size="7.6" fill="#000000">동서시장</text>
+<rect x="120" y="32" width="118.5" height="13" rx="4" fill="#5B9BBF"/>
+<text x="243.6" y="42" font-size="7.6" fill="#000000">20개</text>
+<text x="114" y="62" text-anchor="end" font-size="7.6" fill="#000000">청량리청과물시장</text>
+<rect x="120" y="52" width="88.9" height="13" rx="4" fill="#5B9BBF"/>
+<text x="213.9" y="62" font-size="7.6" fill="#000000">15개</text>
+<text x="114" y="82" text-anchor="end" font-size="7.6" fill="#000000">청량리수산시장</text>
+<rect x="120" y="72" width="29.6" height="13" rx="4" fill="#8FBF9F"/>
+<text x="154.6" y="82" font-size="7.6" fill="#000000">5개</text>
+<text x="114" y="102" text-anchor="end" font-size="7.6" fill="#000000">청량리전통시장</text>
+<rect x="120" y="92" width="5.9" height="13" rx="0" fill="#C98A5B"/>
+<text x="130.9" y="102" font-size="7.6" fill="#000000">1개</text>
+<line x1="120" y1="109" x2="594.2" y2="109" stroke="#9A9A9A" stroke-width="1"/>
+</svg></div>
+
+<p>경동광성상가는 점포 대비 노점 비중이 높아, 정비 사업 설계 시 노점 상인의 이해관계가 핵심 변수가 될 것으로 판단됨. 동대문구가 추진 중인 거리가게 실명제 및 정비 사업의 효과를 별도로 추적할 필요가 있음.</p>
+
+<p class="note">※ 2023년 청량리역 일대에 약 2,800세대가 동시 입주하여 배후 인구 구조가 급변하였음에도 20~30대 매출 비중은 대부분의 시장에서 감소하였음. 신규 입주 인구가 전통시장 소비로 연결되지 않고 있을 가능성이 있으며, 이는 후속 분석에서 확인이 필요한 사항임. GTX-B·C는 2031년 개통 목표로 일정이 조정되어 단기 상권 영향은 제한적일 것으로 판단됨.</p>
+
+</body>
+</html>
